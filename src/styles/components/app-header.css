@@ -1,11 +1,26 @@
 .header {
-    background-color: lightblue;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.2em;
     position: fixed;
+    width: 61em;
+    background-color: rgb(251, 253, 255);
+    border-bottom: 1px rgb(195, 208, 210) solid;
+    top: 0;
+    height: 4.08em;
+    align-items: center;
+    margin-left: 17%;
+    margin-right: 17%;
+}
+
+.header-container {
+    border-bottom: 1px rgb(195, 208, 210) solid;
+    height: 4.08em;
     width: 100%;
+    background-color: rgb(251, 253, 255);
+    display: flex;
+    justify-content: center;
 }
 
 .link-btn {
@@ -15,12 +30,21 @@
     color: black;
 }
 
-.main-logo {}
+.main-logo {
+    font-family: Fontspring;
+    /* font-family: Fontspring-bold; */
+    font-size: x-large
+}
 
+.search-header {
+    background-color: #eaeeef;
+    border-style: none;
+    border-radius: 0.5em;
+}
 
 .nav-bar-header {
     display: flex;
-    gap: 0.8em;
+    gap: 1.1em;
     /* justify-content: space-between; */
     height: 2em;
 }
@@ -28,4 +52,10 @@
 .nav-header-icon {
     /* height: 2em; */
     height: 70%;
+
+}
+
+.profile-pic-header {
+    border-radius: 50%;
+    height: 80%;
 }

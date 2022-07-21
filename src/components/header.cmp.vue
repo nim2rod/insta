@@ -1,29 +1,40 @@
 <template>
-  <header class="header">
-    <div class="main-logo">Instagram</div>
-    <input type="text" placeholder="search" />
+  <header class="header-container">
+    <section class="header">
+      <div class="main-logo">Instagram</div>
 
-    <nav class="nav-bar-header">
-      <router-link to="/">
-        <img class="nav-header-icon" src="../icons/home.png" alt="" />
-      </router-link>
+      <input class="search-header" type="text" placeholder="  🔍   Search" />
 
-      <router-link to="/dm">
-        <img
-          class="nav-header-icon"
-          src="../icons/direct-instagram.png"
-          alt=""
-        />
-      </router-link>
+      <nav class="nav-bar-header">
+        <router-link to="/">
+          <img class="nav-header-icon" src="../icons/home.png" alt="" />
+        </router-link>
 
-      <img class="nav-header-icon" src="../icons/add.png" alt="" />
+        <router-link to="/dm">
+          <img
+            class="nav-header-icon"
+            src="../icons/direct-instagram.png"
+            alt=""
+          />
+        </router-link>
 
-      <router-link to="/explore">
-        <img class="nav-header-icon" src="../icons/direction.png" alt="" />
-      </router-link>
+        <img class="nav-header-icon" src="../icons/add.png" alt="" />
 
-      <img class="nav-header-icon" src="../icons/heart.png" alt="" />
-    </nav>
+        <router-link to="/explore">
+          <img class="nav-header-icon" src="../icons/direction.png" alt="" />
+        </router-link>
+
+        <img class="nav-header-icon" src="../icons/heart.png" alt="" />
+
+        <router-link to="/user/:userI">
+          <img
+            class="nav-header-icon profile-pic-header"
+            src="../img/profile-pic/ross-profile.jpeg"
+            alt=""
+          />
+        </router-link>
+      </nav>
+    </section>
   </header>
 </template>
 

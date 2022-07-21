@@ -1,5 +1,6 @@
 @import "./base/helpers.css";
 @import "./base/basic.css";
+@import "./setup/typography.css";
 
 @import "./components/app-header.css";
 @import "./components/app-footer.css";
@@ -7,6 +8,7 @@
 @import "./components/story-preview.css";
 @import "./components/story-filter.css";
 @import "./components/story-details.css";
+@import "./components/24stories.css";
 
 @import "./views/insta-app.css";
 @import "./views/user-page.css";

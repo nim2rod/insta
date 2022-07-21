@@ -1,0 +1,25 @@
+.stories-bar-container {
+    /* border: black solid; */
+    width: 25em;
+    height: 5em;
+    margin-left: 15%;
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.story {
+    /* border: 2px solid linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); */
+    /* border: 5px solid transparent; */
+    /* border-image: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); */
+    /* border-image-slice: 1; */
+
+    border-radius: 2em;
+    border-color: rgb(53, 99, 156);
+    border-width: 2px;
+    border-style: solid;
+
+    width: 4em;
+    height: 4em;
+    /* border-radius: 50%; */
+}
