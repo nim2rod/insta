@@ -1,5 +1,4 @@
 <template>
-  <h2>insa-app</h2>
   <story-list :stories="stories"></story-list>
 </template>
 

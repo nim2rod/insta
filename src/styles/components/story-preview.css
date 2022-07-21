@@ -1,6 +1,8 @@
-.img-story {
-    width: 10em;
+.layout-card {
+    margin-left: 0.3em;
+    padding: 0.25em
 }
+
 
 .story-card {
     margin-left: 15%;
@@ -16,14 +18,89 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5em;
+    height: 3em;
+}
+
+.username-top-card {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: small;
+}
+
+.username-bar {
+    padding: 0.3em;
+    margin-left: 0.5em
+}
+
+.loc-card {
+    font-family: system-ui;
+    font-size: x-small;
+    margin-top: 0.3em;
+}
+
+.img-story {
+    width: 100%;
 }
 
 .action-card {
     display: flex;
     justify-content: space-between;
+    height: 1.8em;
+    /* width: 0em; */
+    /* border: #a19b9b solid; */
+}
+
+.like-comment {
+    gap: 0.5em;
+    width: 2em;
+}
+
+.save-btn-card {
+    /* height: 1.2em; */
+    height: 85%;
+    margin-right: 0.3em;
+}
+
+.liked-bar {
+    font-family: sans-serif;
+    font-size: unset
+}
+
+.username-bottom-card {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: small;
+
 }
 
 .content {
     display: flex;
     gap: 0.5em;
+    align-items: baseline;
+}
+
+.comments {
+    color: grey;
+}
+
+.time-ago {
+    color: rgb(171, 174, 174);
+}
+
+.add-comment-bar {
+    display: flex;
+    justify-content: space-between;
+    border: 1px #f1eaea solid;
+    /* border-top: #a19b9b 1px; */
+    padding: 0.5em;
+    font-family: sans-serif;
+    color: #a19b9b;
+}
+
+.add-comment {
+    margin-left: 0.5em;
+}
+
+.post-btn-crd {
+    color: rgb(61, 192, 236);
 }
