@@ -1,0 +1,11 @@
+.header{
+background-color: lightblue;
+padding: 1rem;
+}
+
+.link-btn{
+    margin: 1rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+}

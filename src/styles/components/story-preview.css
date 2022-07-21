@@ -1,0 +1,29 @@
+.img-story {
+    width: 10em;
+}
+
+.story-card {
+    margin-left: 15%;
+    margin-bottom: 3%;
+    border: 1px rgb(229, 202, 202) solid;
+    border-radius: 0.4em;
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+
+.action-card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    gap: 0.5em;
+}

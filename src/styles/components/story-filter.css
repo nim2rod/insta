@@ -1,0 +1,16 @@
+.filter{
+    display: flex;
+    align-items:flex-start ;
+    justify-content: center;
+    width: 90%;
+}
+
+.filter >*{
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    margin: 0.4rem;
+}
+
+.el-input{
+    width: 30%;
+}
