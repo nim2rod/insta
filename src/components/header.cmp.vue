@@ -26,7 +26,7 @@
 
         <img class="nav-header-icon" src="../icons/heart.png" alt="" />
 
-        <router-link to="/user/:userI">
+        <router-link to="/user/:userId">
           <img
             class="nav-header-icon profile-pic-header"
             src="../img/profile-pic/ross-profile.jpeg"

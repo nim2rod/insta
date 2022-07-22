@@ -7,6 +7,11 @@ body {
   background-color: rgb(237, 240, 241);
 }
 
+.router-link {
+  text-decoration: none;
+  color: black;
+}
+
 h1,
 h2,
 h3,

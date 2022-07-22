@@ -17,6 +17,18 @@
     margin-left: 1em;
 }
 
+/* .story-img-container {
+    width: 3.8em;
+    height: 3.8em;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border-color: rgb(53, 99, 156);
+    border-width: 3px;
+    border-style: solid;
+} */
+
+
 .story-img {
     /* border: 2px solid linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); */
     /* border: 5px solid transparent; */
@@ -26,6 +38,11 @@
     border-color: rgb(53, 99, 156);
     border-width: 3px;
     border-style: solid;
+    height: 100%;
+    width: auto;
+    display: inline;
+    margin: 0 auto;
+
     width: 3.8em;
     height: 3.8em;
     /* border-radius: 50%; */

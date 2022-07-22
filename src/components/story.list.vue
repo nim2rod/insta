@@ -1,7 +1,7 @@
 <template>
   <section class="list-container" v-if="stories">
     <div v-for="story in stories" :key="story._id">
-      <story-card :story="story"></story-card>
+      <story-card :story="story" @showComments="showComments"></story-card>
     </div>
   </section>
 </template>
@@ -14,6 +14,12 @@ export default {
   },
   components: {
     storyCard,
+  },
+  methods: {
+    showComments(story) {
+      console.log("listt", story);
+      this.$emit("showComments", story);
+    },
   },
 };
 </script>

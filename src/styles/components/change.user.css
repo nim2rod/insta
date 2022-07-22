@@ -1,0 +1,32 @@
+.change-user-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8em;
+}
+
+.img-user-change {
+    width: 3.3em;
+    border-radius: 2em
+}
+
+.names-change-bar {
+    font-family: system-ui;
+    font-weight: 500;
+    font-size: smaller;
+    margin-left: 1.2em;
+}
+
+.names-change-bar span {
+    font-family: system-ui;
+
+    color: grey;
+    margin-top: 0.3em;
+}
+
+.switch-btn {
+    color: rgb(192, 141, 237);
+    font-family: system-ui;
+    font-weight: 500;
+    font-size: small;
+}

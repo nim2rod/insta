@@ -16,6 +16,7 @@
     <div class="data-card">
       <img class="img-story" :src="imgSrc" />
     </div>
+
     <!-- ACTION -->
     <div class="action-card layout-card">
       <div class="flex like-comment">
@@ -25,6 +26,7 @@
       </div>
       <img class="save-btn-card" src="../icons/save-instagram.png" alt="" />
     </div>
+
     <!-- LIKE -->
     <div class="liked-bar layout-card">140 likes</div>
     <div class="content layout-card">
@@ -33,7 +35,9 @@
       </div>
       <div>{{ story.txt }}</div>
     </div>
-    <div class="comments layout-card">
+
+    <!-- COMMENTS -->
+    <div class="comments layout-card btn" @click="viewComments(story)">
       View all {{ story.comments.length }} comments
     </div>
     <div class="time-ago layout-card">5 hours ago</div>
@@ -53,10 +57,13 @@ export default {
   props: {
     story: Object,
   },
-  methods: {},
-  created() {
-    console.log("this.story", this.story);
+  methods: {
+    viewComments(story) {
+      console.log("view comment");
+      this.$emit("showComments", story);
+    },
   },
+  created() {},
   computed: {
     imgSrc() {
       return this.story.imgUrl;

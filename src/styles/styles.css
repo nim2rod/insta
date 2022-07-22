@@ -9,7 +9,11 @@
 @import "./components/story-filter.css";
 @import "./components/story-details.css";
 @import "./components/24stories.css";
-@import "./components/sugget.css";
+@import "./components/suggest.css";
+@import "./components/change.user.css";
+@import "./components/copyrights.css";
+@import "./components/comment.css";
+
 
 @import "./views/insta-app.css";
 @import "./views/user-page.css";

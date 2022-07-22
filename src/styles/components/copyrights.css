@@ -1,0 +1,9 @@
+.copyright {
+    margin-top: 2em;
+    font-family: system-ui;
+    font-size: 0.71em;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2em;
+    color: #afadad;
+}

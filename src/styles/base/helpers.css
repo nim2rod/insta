@@ -33,3 +33,7 @@
 .margin-auto {
   margin: auto;
 }
+
+.btn {
+  cursor: pointer;
+}

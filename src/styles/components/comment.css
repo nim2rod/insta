@@ -1,0 +1,40 @@
+.comments-backround {
+    background-color: rgb(235, 235, 221);
+    justify-content: center;
+    position: fixed;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: flex;
+}
+
+.comments-backround span {
+    position: fixed;
+    top: 3px;
+    right: 0;
+    z-index: 5;
+}
+
+.comments-backround span img {
+    height: 3em
+}
+
+.comment-view-container {
+    border: 1px black solid;
+    justify-content: center;
+    position: fixed;
+    top: 2em;
+    height: 85%;
+    max-width: 52em;
+    min-width: 30em;
+    display: flex;
+}
+
+.img-comment-view {}
+
+.comments-txt-box {
+    width: 28em;
+    /* height: 30em; */
+    min-height: 25px;
+    border: 2px solid;
+    background-color: aqua;
+}
