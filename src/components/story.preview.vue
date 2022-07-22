@@ -48,19 +48,39 @@
       </div>
       <div class="post-btn-crd">Post</div>
     </div>
-    <div></div>
+
+    <comment
+      v-if="commentMode"
+      @closeComments="closeComments"
+      class="comment-view-container"
+      :story="story"
+    ></comment>
   </section>
 </template>
 
 <script>
+import comment from "../components/comment.mode.cmp.vue";
+
 export default {
   props: {
     story: Object,
   },
+  components: {
+    comment,
+  },
+
+  data() {
+    return {
+      commentMode: 0,
+    };
+  },
   methods: {
     viewComments(story) {
       console.log("view comment");
-      this.$emit("showComments", story);
+      this.commentMode = 1;
+    },
+    closeComments() {
+      this.commentMode = 0;
     },
   },
   created() {},
