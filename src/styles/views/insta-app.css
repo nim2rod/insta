@@ -1,9 +1,12 @@
-.add-toy-btn {
-    position: relative;
-    margin: 1rem;
-    text-decoration: none;
-    font-size: 1.4rem;
-    color: black;
+.insta-app {
+    display: flex;
+    justify-content: center;
 }
 
-.insta-app {}
+.user-seggestions-main {
+    /* border: black solid; */
+    height: fit-content;
+    width: 19em;
+    margin-top: 5.4em;
+    margin-left: 2.2em;
+}

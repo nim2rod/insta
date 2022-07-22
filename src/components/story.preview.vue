@@ -62,7 +62,6 @@ export default {
       return this.story.imgUrl;
     },
     location() {
-      console.log("???", this.story);
       return this.story.loc.name;
     },
     profileImgSrc() {

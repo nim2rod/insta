@@ -1,8 +1,11 @@
 <template>
   <section class="stories-bar-container">
-    <div v-for="story in stories" :key="story._id">
-      <img class="story" :src="story.by.profileImgUrl" alt="" />
-    </div>
+    <section class="stories-bar-box">
+      <div v-for="story in stories" :key="story._id">
+        <img class="story-img" :src="story.by.profileImgUrl" alt="" />
+        <div class="username-stories-bar">{{ story.by.username }}</div>
+      </div>
+    </section>
   </section>
 </template>
 

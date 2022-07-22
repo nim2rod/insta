@@ -1,0 +1,41 @@
+.suggest-container {
+    /* border: 2px burlywood solid; */
+    display: flex;
+    /* align-content: stretch; */
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.suggest-img {
+    width: 2em;
+    height: 2em;
+    border-radius: 2em;
+}
+
+.username-block-suggest {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 0.5em;
+}
+
+.suggest-username {
+    font-family: system-ui;
+    font-weight: 500;
+    font-size: smaller;
+}
+
+.suggest-for-you {
+    font-family: system-ui;
+    font-size: 11px;
+    color: grey;
+    margin-top: 0.3em;
+}
+
+.follow-suggest {
+    color: rgb(192, 141, 237);
+    font-family: system-ui;
+    font-weight: 500;
+    font-size: small;
+}

@@ -6,28 +6,43 @@ const store = createStore({
     state: {
         stories: null,
         filterBy: null,
+        suggestions: null,
     },
     getters: {
         storiesToDisplay(state) {
             return state.stories
+        },
+        suggestionsToDisplay(state) {
+            return state.suggestions
         }
     },
     mutations: {
         setStories(state, { stories }) {
             state.stories = stories
+        },
+        setSuggettions(state, { suggestions }) {
+            state.suggestions = suggestions
         }
 
     },
     actions: {
         loadStories({ commit }) {
-            console.log('index front - action load stories');
             storyService
                 .query()
                 .then((stories) => {
-                    console.log('load story -then');
                     commit({ type: 'setStories', stories })
                     return stories
                 })
+                .catch((err) => {
+                    console.log('index- catch');
+                    console.log(err)
+                })
+        },
+        loadSuggest4u({ commit }) {
+            storyService.querySuggestions().then((suggestions) => {
+                commit({ type: 'setSuggettions', suggestions })
+                return suggestions
+            })
                 .catch((err) => {
                     console.log('index- catch');
                     console.log(err)
