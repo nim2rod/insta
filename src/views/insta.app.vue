@@ -12,7 +12,6 @@
       <suggest :suggestions="suggestions"></suggest>
       <copy> </copy>
     </section>
-    <comment v-if="commentMode" @closeComments="closeComments"></comment>
   </section>
 </template>
 
@@ -22,25 +21,12 @@ import storyList from "../components/story.list.vue";
 import storyTwentyFour from "../components/24stories.cmp.vue";
 import suggest from "../components/suggest4u.cmp.vue";
 import copy from "../components/copyright.cmp.vue";
-import comment from "../components/comment.mode.cmp.vue";
 
 export default {
   data() {
-    return {
-      commentMode: 0,
-    };
+    return {};
   },
-  methods: {
-    showCommentsMode(story) {
-      console.log("appppp");
-      console.log("story-emit", story);
-      this.commentMode = 1;
-    },
-    closeComments() {
-      console.log("you made it");
-      this.commentMode = 0;
-    },
-  },
+  methods: {},
   computed: {
     stories() {
       return this.$store.getters.storiesToDisplay;
@@ -55,7 +41,7 @@ export default {
     suggest,
     change,
     copy,
-    comment,
+    // comment,
   },
 };
 </script>

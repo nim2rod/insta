@@ -8,6 +8,7 @@
 
 <script>
 import storyCard from "./story.preview.vue";
+
 export default {
   props: {
     stories: Array,
@@ -15,11 +16,16 @@ export default {
   components: {
     storyCard,
   },
+  data() {
+    return {};
+  },
   methods: {
-    showComments(story) {
-      console.log("listt", story);
-      this.$emit("showComments", story);
-    },
+    // showComments(story) {
+    //   this.commentMode = 1;
+    // },
+    // closeComments() {
+    //   this.commentMode = 0;
+    // },
   },
 };
 </script>

@@ -1,5 +1,5 @@
 .comments-backround {
-    background-color: rgb(235, 235, 221);
+    background-color: rgb(210, 210, 17);
     justify-content: center;
     position: fixed;
     width: -webkit-fill-available;
@@ -37,4 +37,25 @@
     min-height: 25px;
     border: 2px solid;
     background-color: aqua;
+}
+
+.comments-txt-box-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-comments-bar {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.top-comments-bar img {
+    width: 3em;
+    border-radius: 2em;
+}
+
+.left-top-comments-bar {
+    display: flex;
+    align-items: center;
 }
