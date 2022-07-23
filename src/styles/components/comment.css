@@ -13,16 +13,16 @@
 
 /*EXIT BTN*/
 .comments-backround span img {
-    height: 3em;
+    height: 2em;
     position: fixed;
-    top: 3px;
-    right: 0;
+    top: 1em;
+    right: 1em;
     z-index: 5;
 }
 
 /*BACKROUND*/
 .comments-backround {
-    background-color: rgb(210, 210, 17);
+    background-color: rgb(105 109 105 / 90%);
     justify-content: center;
     display: flex;
     position: fixed;
@@ -64,6 +64,8 @@
     align-items: center;
 }
 
+.top-comments-bar {}
+
 .content-comments-bar {
     font-family: system-ui;
     font-size: 0.9em;
@@ -91,6 +93,19 @@
     border-radius: 2em;
     margin-left: 0.7em;
 }
+
+.profile-img-comments-border {
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 2em;
+    margin-left: 0.7em;
+    border-radius: 2em;
+    border-color: rgb(53, 99, 156);
+    border-width: 2.8px;
+    border-style: solid;
+}
+
+
 
 .left-top-comments-bar {
     display: flex;
