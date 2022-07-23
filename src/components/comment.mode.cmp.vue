@@ -14,11 +14,12 @@
         <div class="top-comments-bar">
           <div class="left-top-comments-bar">
             <img
-              class="profile-img-comments"
+              class="profile-img-comments-border"
               :src="story.by.profileImgUrl"
               alt=""
             />
             <p class="username-comment">{{ story.by.username }}</p>
+            <p class="username-comment">• &nbsp Following</p>
           </div>
           <span
             >...
@@ -27,7 +28,7 @@
         </div>
         <div class="auther-comments-bar">
           <img
-            class="profile-img-comments"
+            class="profile-img-comments-border"
             :src="story.by.profileImgUrl"
             alt=""
           />
