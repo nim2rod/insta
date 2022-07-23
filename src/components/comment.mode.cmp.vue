@@ -47,7 +47,7 @@
             <div class="left-comment-container">
               <img
                 class="profile-img-comments"
-                src="../img/profile-pic/monika-profile.jpeg"
+                :src="comment.by.profileImgUrl"
                 alt=""
               />
               <div class="username-txt-comment">
@@ -61,6 +61,32 @@
           </div>
           <div class="comment-block-buttom">2h <span>Reply</span></div>
         </div>
+        <!-- FOOTER -->
+        <section class="footer-comments">
+          <!-- ACTION -->
+          <div class="action-card layout-card">
+            <div class="flex like-comment">
+              <img src="../icons/heart.png" alt="" />
+              <img src="../icons/bubble-chat.png" alt="" />
+              <img src="../icons/direct-instagram.png" alt="" />
+            </div>
+            <img
+              class="save-btn-card"
+              src="../icons/save-instagram.png"
+              alt=""
+            />
+          </div>
+          <div class="liked-bar layout-card">140 likes</div>
+          <div class="time-ago layout-card">5 hours ago</div>
+          <!-- ADD COMMENT -->
+          <div class="add-comment-bar layout-card">
+            <div class="flex add-coment-smily">
+              <img src="../icons/smile.png" alt="" />
+              <div class="add-comment">Add a comment</div>
+            </div>
+            <div class="post-btn-crd">Post</div>
+          </div>
+        </section>
       </div>
     </section>
   </section>
