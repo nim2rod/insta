@@ -48,7 +48,7 @@
       </div>
       <div class="post-btn-crd">Post</div>
     </div>
-
+    <!-- COMMENT-CMP -->
     <comment
       v-if="commentMode"
       @closeComments="closeComments"

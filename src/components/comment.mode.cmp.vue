@@ -3,31 +3,64 @@
     <span class="btn">
       <img src="../icons/close.png" alt="" @click="closeComments()" />
     </span>
-    <section class="comment-view-container">
+    <section class="comment-view-container-in-cmp">
       <!-- <img class="img-comment-view" :src="story.imgUrl" alt="" /> -->
       <img
         class="img-comment-view"
         src="../img/profile-pic/fibi-profile.jpeg"
         alt=""
       />
-
       <div class="comments-txt-box-right">
         <div class="top-comments-bar">
           <div class="left-top-comments-bar">
-            <img :src="story.by.profileImgUrl" alt="" />
-            {{ story.by.username }}
+            <img
+              class="profile-img-comments"
+              :src="story.by.profileImgUrl"
+              alt=""
+            />
+            <p class="username-comment">{{ story.by.username }}</p>
           </div>
-          <div>...</div>
+          <span
+            >...
+            <!-- <img class="icon-comments" src="../icons/more.png" alt="" /> -->
+          </span>
         </div>
         <div class="auther-comments-bar">
-          <img src="" alt="" />
+          <img
+            class="profile-img-comments"
+            :src="story.by.profileImgUrl"
+            alt=""
+          />
           <div class="content-comments-bar">
-            <span>{{ story.by.username }}</span>
+            <span class="username-comment">{{ story.by.username }}</span>
             {{ story.txt }}
-            <p>{{ story.tags[0] }}</p>
+            <p v-for="tag in story.tags" :key="tag">#{{ tag }}</p>
           </div>
         </div>
-        <div class="all-comments-container"></div>
+        <div class="time-ago-comment">43m</div>
+        <div
+          class="comment-block"
+          v-for="comment in story.comments"
+          :key="comment.id"
+        >
+          <div class="comment-block-top">
+            <div class="left-comment-container">
+              <img
+                class="profile-img-comments"
+                src="../img/profile-pic/monika-profile.jpeg"
+                alt=""
+              />
+              <div class="username-txt-comment">
+                <div class="username-comment">{{ comment.by.username }}</div>
+                <span>{{ comment.txt }}</span>
+              </div>
+            </div>
+            <div class="right-comment-container">
+              <img class="icon-comments" src="../icons/heart.png" alt="" />
+            </div>
+          </div>
+          <div class="comment-block-buttom">2h <span>Reply</span></div>
+        </div>
       </div>
     </section>
   </section>
