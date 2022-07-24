@@ -1,38 +1,66 @@
 <template>
-  <section class="user-page-layout">
+  <section v-if="user" class="user-page-layout">
+    <!-- TOP-SECTION -->
     <section class="user-page-top flex">
       <img class="user-img" :src="user.profileImgUrl" alt="" />
       <div class="top-right-userpage-box">
         <div class="top-name-bar-user">
-          <div>{{ user.username }}</div>
+          <div class="username-big-user-page">{{ user.username }}</div>
           <div class="icon-user-page-box">
-            <img class="icon-user-page" src="../icons/explore1.png" alt="" />
-            <img class="icon-user-page" src="../icons/explore1.png" alt="" />
-            <img class="icon-user-page" src="../icons/explore1.png" alt="" />
-            <span>...</span>
+            <div class="message-btn">Message</div>
+            <div class="follow-btn-box-user">
+              <img class="icon-user-page" src="../icons/follow.png" alt="" />
+            </div>
+            <div class="arrow-down-icon-box-user">
+              <img
+                class="arrow-down-icon-user"
+                src="../icons/arrow-down.png"
+                alt=""
+              />
+            </div>
+            <span class="three-dots-user">...</span>
           </div>
         </div>
         <div class="posts-follow-user">
-          <span>91 Posts</span>
-          <span>595 followers</span>
-          <span>345 Following</span>
+          <div><span>91</span> posts</div>
+          <div><span>595</span> followers</div>
+          <div><span>345</span> following</div>
         </div>
         <div class="more-details-user">
-          <span>{{ user.username }}</span>
-          <span>{{ user.about }}</span>
-          <p>Followed by {{ user.followers[0].username }} and more</p>
+          <span>{{ user.fullname }}</span>
+          {{ user.about }}
+          <p>
+            Followed by <span>{{ user.followers[0].username }}</span> and more
+          </p>
         </div>
       </div>
     </section>
-
+    <!-- MIDDLE SECTION - SHORTS -->
     <section class="user-page-story">
       <section v-for="short in user.shorts" :key="short.headline">
         <img :src="short.url" alt="" />
         <div>{{ short.headline }}</div>
       </section>
     </section>
-
-    <section class="user-page-data"></section>
+    <!-- BOTTOM DATA -->
+    <section class="user-page-data">
+      <div class="filter-posts-bar-user">
+        <span>POSTS</span>
+        <span>REELS</span>
+        <span>VIDEOS</span>
+        <span>TAGGED</span>
+      </div>
+      <section class="all-data-container">
+        <div
+          class="data-container-crop"
+          v-for="story in stories"
+          :key="story._id"
+        >
+          <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
+          <img class="data-story-user" :src="story.imgUrl" alt="" />
+        </div>
+      </section>
+    </section>
   </section>
 </template>
 
@@ -53,6 +81,11 @@ export default {
       console.log("currUser", currUser);
       this.user = currUser;
     });
+  },
+  computed: {
+    stories() {
+      return this.$store.getters.storiesToDisplay;
+    },
   },
 };
 </script>

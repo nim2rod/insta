@@ -22,7 +22,7 @@
               alt=""
             />
             <p class="username-comment">{{ story.by.username }}</p>
-            <p class="username-comment">• &nbsp Following</p>
+            <p class="username-comment"><span>•</span> Following</p>
           </div>
           <span
             >...
