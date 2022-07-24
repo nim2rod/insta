@@ -3,9 +3,15 @@
     <!-- TOP -->
     <div class="top-card">
       <div class="flex left-top-card">
-        <img class="profile-pic-card" :src="profileImgSrc" />
+        <router-link class="router-link" :to="'/user/' + story.by._id">
+          <img class="profile-pic-card" :src="profileImgSrc" />
+        </router-link>
         <div class="username-bar">
-          <div class="username-top-card font1">{{ story.by.username }}</div>
+          <div class="username-top-card font1">
+            <router-link class="router-link" :to="'/user/' + story.by._id">{{
+              story.by.username
+            }}</router-link>
+          </div>
           <div class="loc-card font1">{{ location }}</div>
         </div>
       </div>
@@ -30,7 +36,9 @@
     <div class="liked-bar layout-card font1">140 likes</div>
     <div class="content layout-card">
       <div class="username-bottom-card font1">
-        {{ story.by.username }}
+        <router-link class="router-link" :to="'/user/' + story.by._id">
+          {{ story.by.username }}
+        </router-link>
       </div>
       <div class="font1 card-txt">{{ story.txt }}</div>
     </div>

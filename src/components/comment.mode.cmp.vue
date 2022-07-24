@@ -11,12 +11,17 @@
       <div class="comments-txt-box-right">
         <div class="top-comments-bar">
           <div class="left-top-comments-bar">
-            <img
-              class="profile-img-comments-border"
-              :src="story.by.profileImgUrl"
-              alt=""
-            />
-            <p class="username-comment">{{ story.by.username }}</p>
+            <router-link class="router-link" :to="'/user/' + story.by._id">
+              <img
+                class="profile-img-comments-border"
+                :src="story.by.profileImgUrl"
+                alt=""
+            /></router-link>
+            <p class="username-comment">
+              <router-link class="router-link" :to="'/user/' + story.by._id">
+                {{ story.by.username }}</router-link
+              >
+            </p>
             <p class="username-comment"><span>•</span> Following</p>
           </div>
           <span
@@ -24,16 +29,21 @@
             <!-- <img class="icon-comments" src="../icons/more.png" alt="" /> -->
           </span>
         </div>
-
+        <!-- COMMENTS-BOX -->
         <div class="scroll-y">
           <div class="auther-comments-bar">
-            <img
-              class="profile-img-comments-border"
-              :src="story.by.profileImgUrl"
-              alt=""
-            />
+            <router-link class="router-link" :to="'/user/' + story.by._id">
+              <img
+                class="profile-img-comments-border"
+                :src="story.by.profileImgUrl"
+                alt=""
+            /></router-link>
             <div class="content-comments-bar">
-              <span class="username-comment">{{ story.by.username }}</span>
+              <span class="username-comment"
+                ><router-link class="router-link" :to="'/user/' + story.by._id">
+                  {{ story.by.username }}</router-link
+                ></span
+              >
               {{ story.txt }}
               <p v-for="tag in story.tags" :key="tag">#{{ tag }}</p>
             </div>
@@ -46,13 +56,24 @@
           >
             <div class="comment-block-top">
               <div class="left-comment-container">
-                <img
-                  class="profile-img-comments"
-                  :src="comment.by.profileImgUrl"
-                  alt=""
-                />
+                <router-link
+                  class="router-link"
+                  :to="'/user/' + comment.by._id"
+                >
+                  <img
+                    class="profile-img-comments"
+                    :src="comment.by.profileImgUrl"
+                    alt=""
+                /></router-link>
                 <div class="username-txt-comment">
-                  <div class="username-comment">{{ comment.by.username }}</div>
+                  <div class="username-comment">
+                    <router-link
+                      class="router-link"
+                      :to="'/user/' + comment.by._id"
+                    >
+                      {{ comment.by.username }}</router-link
+                    >
+                  </div>
                   <span>{{ comment.txt }}</span>
                 </div>
               </div>

@@ -26,9 +26,10 @@
 }
 
 .top-right-userpage-box {
-    width: 52%;
-    position: relative;
-    right: 2.9em;
+    width: 55%;
+    /* position: relative; */
+    /* right: 2.9em; */
+    margin-right: 2.5em;
     display: flex;
     flex-direction: column;
 }
@@ -159,7 +160,6 @@
 .story-headline div {
     font-weight: 500;
     font-size: 0.95em;
-
 }
 
 .filter-posts-bar-box-user {

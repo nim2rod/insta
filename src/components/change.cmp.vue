@@ -1,7 +1,7 @@
 <template>
   <section class="change-user-bar">
     <div class="flex">
-      <router-link to="/user/:userId">
+      <router-link to="/user/u104">
         <img
           class="img-user-change"
           src="../img/profile-pic/ross-profile.jpeg"
@@ -9,7 +9,7 @@
         />
       </router-link>
       <div class="flex column align-self-center names-change-bar">
-        <router-link class="router-link" to="/user/:userId">
+        <router-link class="router-link" to="/user/u104">
           ross_geller
         </router-link>
         <span>Ross Geller</span>
