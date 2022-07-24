@@ -1,11 +1,10 @@
 .layout-card {
-    margin-left: 0.3em;
+    margin-left: 0.55em;
     padding: 0.25em
 }
 
 
 .story-card {
-    /* margin-left: 15%; */
     margin-bottom: 1.2em;
     border: 1px rgb(229, 202, 202) solid;
     border-radius: 0.54em;
@@ -19,19 +18,25 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5em;
-    height: 3em;
+    height: 3.65em;
+}
+
+.left-top-card {
+    align-items: center;
 }
 
 .profile-pic-card {
     border-radius: 50%;
     width: 2em;
     height: 2em;
+    border: 1.1px rgb(53, 99, 156) solid;
+    background-color: #fff;
+    padding: 0.06em;
 }
 
 .username-top-card {
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: small;
+    font-size: 0.9em;
+    font-weight: 600;
 }
 
 .username-bar {
@@ -40,22 +45,25 @@
 }
 
 .loc-card {
-    font-family: system-ui;
-    font-size: x-small;
+    font-size: 0.84em;
     margin-top: 0.3em;
+}
+
+.three-dots-preview {
+    font-weight: 800;
 }
 
 .img-story {
     width: 100%;
 }
 
+/* ACTION */
+
 .action-card {
     display: flex;
     justify-content: space-between;
     height: 2em;
     margin-top: 0.3em;
-    /* width: 0em; */
-    /* border: #a19b9b solid; */
 }
 
 .like-comment {
@@ -64,14 +72,13 @@
 }
 
 .save-btn-card {
-    /* height: 1.2em; */
     height: 85%;
     margin-right: 0.3em;
 }
 
+/* LIKE-BAR */
+
 .liked-bar {
-    font-family: sans-serif;
-    /* font-size: unset */
     font-size: 0.9em;
     height: 2.1em;
     display: flex;
@@ -79,10 +86,8 @@
 }
 
 .username-bottom-card {
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: small;
-
+    font-size: 0.9em;
+    font-weight: 550;
 }
 
 .content {
@@ -91,16 +96,22 @@
     align-items: baseline;
 }
 
+.card-txt {
+    font-size: 0.905em;
+    font-weight: 350;
+}
+
+/* COMMENTS */
+
 .comments {
     color: #938e8e;
-    font-family: system-ui;
     font-size: 0.88em;
 }
 
 .time-ago {
     color: rgb(143 147 147);
     height: 2.95em;
-    font-family: system-ui;
+
     font-size: 0.77em;
     display: flex;
     align-items: center;
@@ -112,7 +123,6 @@
     border-top: 1px rgb(199 214 216) solid;
     margin-left: auto;
     padding: 0.5em;
-    font-family: sans-serif;
     color: #a19b9b;
     height: 3.1em;
     width: inherit;
@@ -126,7 +136,6 @@
 }
 
 .add-coment-smily {
-    /* width: 11em; */
     width: 80%;
 }
 

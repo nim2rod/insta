@@ -37,18 +37,27 @@
     </section>
     <!-- MIDDLE SECTION - SHORTS -->
     <section class="user-page-story">
-      <section v-for="short in user.shorts" :key="short.headline">
+      <section
+        class="story-headline"
+        v-for="short in user.shorts"
+        :key="short.headline"
+      >
         <img :src="short.url" alt="" />
         <div>{{ short.headline }}</div>
       </section>
     </section>
     <!-- BOTTOM DATA -->
     <section class="user-page-data">
-      <div class="filter-posts-bar-user">
-        <span>POSTS</span>
-        <span>REELS</span>
-        <span>VIDEOS</span>
-        <span>TAGGED</span>
+      <div class="filter-posts-bar-box-user">
+        <div class="filter-posts-bar-user">
+          <span>
+            <img src="../icons/grid.png" alt="" />
+            POSTS</span
+          >
+          <span> <img src="../icons/reels.png" alt="" /> REELS</span>
+          <span> <img src="../icons/play.png" alt="" /> VIDEOS</span>
+          <span> <img src="../icons/tagged.png" alt="" /> TAGGED</span>
+        </div>
       </div>
       <section class="all-data-container">
         <div

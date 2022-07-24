@@ -6,27 +6,27 @@
 }
 
 .img-user-change {
-    width: 3.3em;
-    border-radius: 2em
+    width: 3.9em;
+    border-radius: 5em;
+    border: 2px rgb(53, 99, 156) solid;
+    background-color: #fff;
+    padding: 0.06em;
+    object-fit: cover;
 }
 
 .names-change-bar {
-    font-family: system-ui;
     font-weight: 500;
     font-size: smaller;
     margin-left: 1.2em;
 }
 
 .names-change-bar span {
-    font-family: system-ui;
-
     color: grey;
     margin-top: 0.3em;
 }
 
 .switch-btn {
     color: rgb(192, 141, 237);
-    font-family: system-ui;
     font-weight: 500;
     font-size: small;
 }

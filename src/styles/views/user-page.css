@@ -3,41 +3,34 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-
-    /* width: 90%; */
     max-width: 65em;
-    border: 2px black solid;
-    background-color: antiquewhite;
-    margin-top: 7em;
+    margin-top: 6em;
 }
 
 /* TOP - PAGE */
 .user-page-top {
     justify-content: space-between;
     width: 85%;
-
 }
 
 /*TOP-ROW*/
 .user-img {
-    width: 9em;
-    height: 9em;
+    width: 10.5em;
+    height: 10.5em;
     border-radius: 50%;
     margin-left: 6.5em;
+    margin-top: 1em;
     border: 3px rgb(53, 99, 156) solid;
     background-color: #fff;
     padding: 0.25em;
 }
 
 .top-right-userpage-box {
-    border: 1px blueviolet solid;
-    width: 53%;
+    width: 52%;
     position: relative;
     right: 2.9em;
     display: flex;
     flex-direction: column;
-    /* gap: 1.25em; */
 }
 
 .top-name-bar-user {
@@ -47,13 +40,12 @@
 
 .username-big-user-page {
     font-size: 1.9em;
-    font-family: system-ui;
     font-weight: 300;
 }
 
 .icon-user-page-box {
     display: flex;
-    gap: 1em;
+    gap: 0.5em;
 }
 
 .message-btn {
@@ -61,10 +53,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 27px;
-    width: 75px;
+    height: 30px;
+    width: 80px;
     border-radius: 0.25em;
-    font-family: system-ui;
     font-size: 0.95em;
     font-weight: 500;
 }
@@ -74,13 +65,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 27px;
-    width: 75px;
+    height: 30px;
+    width: 72px;
     border-radius: 0.25em;
 }
 
 .icon-user-page {
-    height: 1.3em;
+    height: 1.2em;
 }
 
 .arrow-down-icon-box-user {
@@ -88,19 +79,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 27px;
+    height: 30px;
     width: 35px;
     border-radius: 0.25em;
 }
 
 .arrow-down-icon-user {
-    height: 1em;
+    height: 0.7em;
 }
 
 .three-dots-user {
     font-weight: 700;
     font-size: 1.5em;
-    /* display: flex; */
     position: relative;
     bottom: 5px;
 }
@@ -111,7 +101,6 @@
     display: flex;
     justify-content: space-between;
     width: 71%;
-    font-family: system-ui;
     margin-top: 1.8em;
 }
 
@@ -122,7 +111,6 @@
 .more-details-user {
     display: flex;
     flex-direction: column;
-    font-family: system-ui;
     gap: 0.24em;
 }
 
@@ -146,29 +134,61 @@
 /* 24 STORY */
 .user-page-story {
     display: flex;
-    gap: 2em;
+    gap: 2.7em;
     align-self: center;
+    margin-top: 2.7em;
 }
 
 .user-page-story img {
-    width: 3em;
-    height: 3em;
+    width: 5.5em;
+    height: 5.5em;
     border-radius: 50%;
+    border: 1.7px rgb(202, 200, 200) solid;
+    background-color: white;
+    padding: 0.15em;
+    object-fit: cover;
 }
 
-/* DATA */
-/* filter */
+.story-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+}
 
-/* .user-page-data {} */
+.story-headline div {
+    font-weight: 500;
+    font-size: 0.95em;
+
+}
+
+.filter-posts-bar-box-user {
+    width: 90.1%;
+    margin: auto;
+    height: 3.5em;
+    margin-top: 3.5em;
+    display: flex;
+    border-top: 1px #dcd8d8 solid;
+}
 
 .filter-posts-bar-user {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 48%;
     margin: auto;
+    font-size: 0.84em;
+    /* border: 1px black solid; */
+    color: grey;
+    font-weight: 500;
 }
 
-/* data */
+.filter-posts-bar-user img {
+    width: 0.85em;
+    margin-right: 0.15em;
+}
+
+/* DATA */
+
 .all-data-container {
     display: flex;
     flex-wrap: wrap;
@@ -177,8 +197,6 @@
 }
 
 .data-container-crop {
-    /* width: 15em;
-    height: 15em; */
     width: 28%;
     height: auto;
     overflow: hidden;
@@ -187,9 +205,5 @@
 .data-story-user {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
-
-
-/* . {} */
-
-/* . {} */

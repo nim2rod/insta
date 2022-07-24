@@ -1,9 +1,7 @@
-.suggestions-container {}
+/* .suggestions-container {} */
 
 .suggest-container {
-    /* border: 2px burlywood solid; */
     display: flex;
-    /* align-content: stretch; */
     justify-content: space-between;
     align-items: center;
     margin-top: 1em;
@@ -14,7 +12,6 @@
 .suggetion-header {
     display: flex;
     justify-content: space-between;
-    font-family: system-ui;
     color: #308478;
     font-weight: 500;
     font-size: 0.91em;
@@ -30,6 +27,7 @@
     width: 2em;
     height: 2em;
     border-radius: 2em;
+    object-fit: cover;
 }
 
 .username-block-suggest {
@@ -40,13 +38,11 @@
 }
 
 .suggest-username {
-    font-family: system-ui;
     font-weight: 500;
     font-size: smaller;
 }
 
 .suggest-for-you {
-    font-family: system-ui;
     font-size: 11px;
     color: grey;
     margin-top: 0.3em;
@@ -54,7 +50,6 @@
 
 .follow-suggest {
     color: rgb(192, 141, 237);
-    font-family: system-ui;
     font-weight: 500;
     font-size: small;
 }
