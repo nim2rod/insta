@@ -4,7 +4,6 @@
     <div class="top-card">
       <div class="flex">
         <img class="profile-pic-card" :src="profileImgSrc" />
-        <!-- <img src="../img/profile-pic/chandler-profile.jpeg" alt="" /> -->
         <div class="username-bar">
           <div class="username-top-card">{{ story.by.username }}</div>
           <div class="loc-card">{{ location }}</div>

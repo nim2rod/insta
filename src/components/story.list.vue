@@ -19,14 +19,7 @@ export default {
   data() {
     return {};
   },
-  methods: {
-    // showComments(story) {
-    //   this.commentMode = 1;
-    // },
-    // closeComments() {
-    //   this.commentMode = 0;
-    // },
-  },
+  methods: {},
 };
 </script>
 

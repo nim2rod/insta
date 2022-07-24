@@ -1,0 +1,86 @@
+/* LAYOUT */
+.user-page-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    width: 66%;
+    border: 2px black solid;
+    background-color: antiquewhite;
+    margin-top: 10em;
+}
+
+/* TOP - PAGE */
+.user-page-top {
+    justify-content: space-between;
+
+}
+
+/*TOP-ROW*/
+.user-img {
+    width: 9em;
+    height: 9em;
+    border-radius: 50%;
+}
+
+.top-right-userpage-box {
+    border: 1px blueviolet solid;
+    width: 60%;
+}
+
+.top-name-bar-user {
+    display: flex;
+    justify-content: space-between;
+}
+
+.icon-user-page-box {
+    display: flex;
+    gap: 1em;
+}
+
+.icon-user-page {
+    width: 2em;
+    height: 2em;
+}
+
+/* FOLLOWING-ROW */
+
+.posts-follow-user {
+    display: flex;
+    justify-content: space-between;
+}
+
+.more-details-user {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 24 STORY */
+.user-page-story {
+    display: flex;
+    gap: 2em;
+}
+
+.user-page-story img {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+}
+
+. {}
+
+. {}
+
+
+
+
+
+
+
+
+
+/* STORY */
+.user-page-story {}
+
+/* DATA */
+.user-page-data {}

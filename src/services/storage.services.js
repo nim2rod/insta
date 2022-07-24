@@ -9,12 +9,16 @@ export const storageService = {
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    console.log('entities', entities);
     return Promise.resolve(entities)
 }
 
 function get(entityType, entityId) {
+    console.log('entityType', entityType);
+    console.log('entityId', entityId);
+
     return query(entityType).then((entities) =>
-        entities.find((entity) => entity.id === entityId)
+        entities.find((entity) => ':' + entity._id === entityId)
     )
 }
 

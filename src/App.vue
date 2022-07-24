@@ -1,6 +1,6 @@
 
 <template>
-  <section>
+  <section class="flex justify-center">
     <app-header></app-header>
     <router-view />
   </section>
@@ -13,6 +13,7 @@ export default {
   created() {
     this.$store.dispatch({ type: "loadStories" }).then(() => {});
     this.$store.dispatch({ type: "loadSuggest4u" }).then(() => {});
+    this.$store.dispatch({ type: "loadUsers" }).then(() => {});
   },
   components: {
     appHeader,

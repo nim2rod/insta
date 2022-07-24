@@ -7,6 +7,7 @@ const store = createStore({
         stories: null,
         filterBy: null,
         suggestions: null,
+        users: null,
     },
     getters: {
         storiesToDisplay(state) {
@@ -22,6 +23,9 @@ const store = createStore({
         },
         setSuggettions(state, { suggestions }) {
             state.suggestions = suggestions
+        },
+        setUsers(state, { users }) {
+            state.users = users
         }
 
     },
@@ -47,10 +51,20 @@ const store = createStore({
                     console.log('index- catch');
                     console.log(err)
                 })
-        }
+        },
+        loadUsers({ commit }) {
+            storyService.queryUsers().then((users) => {
+                commit({ type: 'setUsers', users })
+                return users
+            })
+                .catch((err) => {
+                    console.log('index- catch');
+                    console.log(err)
+                })
+        },
+
     },
-    modules: {
-    },
+    modules: {},
 })
 
 export default store

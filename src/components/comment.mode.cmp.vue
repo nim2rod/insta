@@ -4,12 +4,15 @@
       <img src="../icons/close.png" alt="" @click="closeComments()" />
     </span>
     <section class="comment-view-container-in-cmp">
-      <!-- <img class="img-comment-view" :src="story.imgUrl" alt="" /> -->
-      <img
+      <div class="main-img-comment-container">
+        <img class="img-comment-view" :src="story.imgUrl" alt="" />
+      </div>
+
+      <!-- <img
         class="img-comment-view"
         src="../img/profile-pic/fibi-profile.jpeg"
         alt=""
-      />
+      /> -->
       <div class="comments-txt-box-right">
         <div class="top-comments-bar">
           <div class="left-top-comments-bar">

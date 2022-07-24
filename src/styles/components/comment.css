@@ -46,14 +46,26 @@
     /* min-width: 55em; */
 }
 
+.main-img-comment-container {
+    border: 1px black solid;
+    width: 26em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: rgb(25, 26, 26);
 
-.img-comment-view {}
+}
+
+.img-comment-view {
+    width: inherit;
+}
 
 .comments-txt-box-right {
     display: flex;
     flex-direction: column;
     min-width: 23em;
-    background-color: rgb(240, 238, 238);
+    /* background-color: rgb(240, 238, 238); */
+    background-color: rgb(255, 255, 255);
 }
 
 .top-comments-bar {
