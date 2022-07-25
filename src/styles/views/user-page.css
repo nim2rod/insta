@@ -162,6 +162,8 @@
     font-size: 0.95em;
 }
 
+/* FILTER */
+
 .filter-posts-bar-box-user {
     width: 90.1%;
     margin: auto;
@@ -174,7 +176,8 @@
 .filter-posts-bar-user {
     display: flex;
     justify-content: space-between;
-    width: 48%;
+    /* width: 48%; */
+    gap: 4.5em;
     margin: auto;
     font-size: 0.84em;
     /* border: 1px black solid; */
