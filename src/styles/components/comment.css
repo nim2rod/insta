@@ -184,6 +184,7 @@
 
 .scroll-y {
     overflow-y: scroll;
+    height: 63%;
 }
 
 /*FOOTER*/
