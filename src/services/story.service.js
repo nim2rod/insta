@@ -19,8 +19,24 @@ export const storyService = {
     getById,
     remove,
     save,
-    createExploreStory
-    // getEmptystory,
+    createExploreStory,
+    getEmptyComment
+}
+
+function getEmptyComment() {
+    let newComment = {
+        id: utilService.makeId(),
+        by: {
+            _id: 'u999',
+            username: '',
+            profileImgUrl: ''
+        },
+        txt: '',
+        likedBy: [
+
+        ]
+    }
+    return newComment
 }
 
 function query(filterBy = null) {

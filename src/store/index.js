@@ -26,7 +26,11 @@ const store = createStore({
         },
         setUsers(state, { users }) {
             state.users = users
-        }
+        },
+        updateStory(state, { editedStory }) {
+            const idx = state.stories.findIndex((t) => t._id === editedStory._id)
+            state.stories.splice(idx, 1, editedStory)
+        },
 
     },
     actions: {
@@ -62,9 +66,23 @@ const store = createStore({
                     console.log(err)
                 })
         },
+        addComment: ({ commit }, { editedStory, newComment }) => commit('addComment', editedStory, newComment),
 
+        addComment({ commit }, { editedStory, newComment }) {
+            editedStory.comments.push(newComment)
+            return storyService.save(editedStory)
+                .then((savedStory) => {
+                    commit({ type: 'updateStory', editedStory: savedStory })
+                    return savedStory
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+
+        },
     },
     modules: {},
+
 })
 
 export default store
