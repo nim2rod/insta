@@ -1,0 +1,28 @@
+:root {
+    /* BACKROUND-BODY */
+    --clr1: rgb(250, 250, 250);
+
+    /* BACKROUND- CMP - header/card/box24/exitBtn */
+    --clr2: rgb(255, 255, 255);
+
+    /* GREY-BORDER */
+    --clr3: rgb(219, 219, 219);
+
+    /* GREY-1-TXT1: searchTxt,newtoInstagram,suggestFotYou, NameSwitch */
+    --clr4: rgb(142, 142, 142);
+
+    /* GREY-2-TXT2-LIGHTER: about/help section/ */
+    --clr5: rgb(203, 203, 203);
+
+    /* LIGHT-PURPULE-1 - follow-btn  */
+    --clr6: rgb(53, 149, 246);
+
+    /* THE NEW BLACK: all txt and icon */
+    --clr7: rgb(38, 38, 38);
+    /* --clr7: rgb(214, 10, 10); */
+
+
+    /* LIGHT-PURPLE-2 - Post in off */
+    --clr8: rgb(179, 223, 252);
+
+}

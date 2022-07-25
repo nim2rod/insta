@@ -1,6 +1,8 @@
 @import "./base/helpers.css";
 @import "./base/basic.css";
 @import "./setup/typography.css";
+@import "./setup/vars.css";
+
 
 @import "./components/app-header.css";
 @import "./components/app-footer.css";

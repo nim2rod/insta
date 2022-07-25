@@ -4,5 +4,5 @@
     display: flex;
     flex-direction: column;
     gap: 2.2em;
-    color: #afadad;
+    color: var(--clr5);
 }

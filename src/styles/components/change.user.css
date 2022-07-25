@@ -21,12 +21,12 @@
 }
 
 .names-change-bar span {
-    color: grey;
+    color: var(--clr4);
     margin-top: 0.3em;
 }
 
 .switch-btn {
-    color: rgb(192, 141, 237);
+    color: var(--clr6);
     font-weight: 500;
     font-size: small;
 }

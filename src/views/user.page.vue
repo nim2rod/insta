@@ -65,7 +65,7 @@
           v-for="story in stories"
           :key="story._id"
         >
-          <div class="data-container-crop">
+          <div v-if="story.by._id === user._id" class="data-container-crop">
             <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
             <img class="data-story-user" :src="story.imgUrl" alt="" />
           </div>

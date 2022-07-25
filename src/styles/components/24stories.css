@@ -3,11 +3,12 @@
     height: 7em;
     display: flex;
     margin-top: 5.4em;
-    border: 1px rgb(229, 202, 202) solid;
+    border: 1px rgb(219, 219, 219) solid;
     border-radius: 0.5em;
     margin-bottom: 1em;
     align-items: center;
     overflow: hidden;
+    background-color: var(--clr2);
 }
 
 .stories-bar-box {
