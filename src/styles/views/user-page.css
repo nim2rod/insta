@@ -196,10 +196,15 @@
     justify-content: center;
 }
 
+.data-container-user {
+    display: contents;
+}
+
 .data-container-crop {
     width: 28%;
     height: auto;
     overflow: hidden;
+    height: 18em;
 }
 
 .data-story-user {

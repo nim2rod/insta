@@ -61,12 +61,14 @@
       </div>
       <section class="all-data-container">
         <div
-          class="data-container-crop"
+          class="data-container-user"
           v-for="story in stories"
           :key="story._id"
         >
-          <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
-          <img class="data-story-user" :src="story.imgUrl" alt="" />
+          <div class="data-container-crop">
+            <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
+            <img class="data-story-user" :src="story.imgUrl" alt="" />
+          </div>
         </div>
       </section>
     </section>
