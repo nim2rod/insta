@@ -46,7 +46,7 @@
 .main-img-comment-container {
     border: 1px black solid;
     width: 26em;
-    overflow: hidden;
+    /* overflow: hidden; */
     display: flex;
     align-items: center;
     background-color: rgb(25, 26, 26);
@@ -161,7 +161,7 @@
 
 .username-txt-comment {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 0.3em
 }
 
@@ -184,7 +184,7 @@
 
 .scroll-y {
     overflow-y: scroll;
-    height: 63%;
+    height: 70%;
 }
 
 /*FOOTER*/
