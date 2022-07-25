@@ -139,9 +139,20 @@
             d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"
           ></path>
         </svg>
-        <div class="add-comment">Add a comment</div>
+
+        <input
+          v-if="typingMode"
+          v-model="newComment.txt"
+          type="text"
+          placeholder="add a comment.."
+          clearable
+        />
+
+        <div v-if="!typingMode" @click="typing" class="add-comment">
+          Add a comment
+        </div>
       </div>
-      <div class="post-btn-crd">Post</div>
+      <div @click="addComment" class="post-btn-crd">Post</div>
     </div>
     <!-- COMMENT-CMP -->
     <comment
@@ -155,6 +166,7 @@
 
 <script>
 import comment from "../components/comment.mode.cmp.vue";
+import { storyService } from "../services/story.service";
 
 export default {
   props: {
@@ -167,6 +179,9 @@ export default {
   data() {
     return {
       commentMode: 0,
+      typingMode: 0,
+      newComment: "",
+      editedStory: null,
     };
   },
   methods: {
@@ -177,8 +192,34 @@ export default {
     closeComments() {
       this.commentMode = 0;
     },
+    addComment() {
+      console.log("ad comment to story:", this.newComment);
+      console.log("editedStory", this.editedStory);
+
+      this.$store
+        .dispatch("addComment", {
+          editedStory: this.editedStory,
+          newComment: this.newComment,
+        })
+        .then(console.log("great"))
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // this.editedStory.comments.push(this.newComment);
+
+      this.typingMode = 0;
+      this.newComment = "";
+    },
+    typing() {
+      this.typingMode = 1;
+    },
   },
-  created() {},
+  created() {
+    this.newComment = storyService.getEmptyComment();
+    this.newComment.by = this.story.by;
+    this.editedStory = this.story;
+  },
   computed: {
     imgSrc() {
       return this.story.imgUrl;
