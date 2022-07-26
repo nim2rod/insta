@@ -145,7 +145,6 @@
           v-model="newComment.txt"
           type="text"
           placeholder="add a comment.."
-          clearable
         />
 
         <div v-if="!typingMode" @click="typing" class="add-comment">
@@ -180,7 +179,7 @@ export default {
     return {
       commentMode: 0,
       typingMode: 0,
-      newComment: "",
+      newComment: null,
       editedStory: null,
     };
   },
@@ -195,10 +194,11 @@ export default {
     addComment() {
       console.log("ad comment to story:", this.newComment);
       console.log("editedStory", this.editedStory);
+      const storyCopy = JSON.parse(JSON.stringify(this.story));
 
       this.$store
         .dispatch("addComment", {
-          editedStory: this.editedStory,
+          editedStory: storyCopy,
           newComment: this.newComment,
         })
         .then(console.log("great"))
@@ -209,7 +209,7 @@ export default {
       // this.editedStory.comments.push(this.newComment);
 
       this.typingMode = 0;
-      this.newComment = "";
+      this.newComment = null;
     },
     typing() {
       this.typingMode = 1;
@@ -217,8 +217,7 @@ export default {
   },
   created() {
     this.newComment = storyService.getEmptyComment();
-    this.newComment.by = this.story.by;
-    this.editedStory = this.story;
+    // this.newComment.by = this.story.by;
   },
   computed: {
     imgSrc() {

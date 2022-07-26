@@ -1,6 +1,6 @@
 <template>
   <section class="create-new-backround">
-    <div>
+    <div @click="closeModal" class="btn">
       <svg
         aria-label="Close"
         class="x-create"
@@ -21,7 +21,7 @@
       <div class="create-new-top">
         <p>Create new post</p>
       </div>
-      <div class="create-new-body">
+      <div v-if="!afterChoosePic" class="create-new-body">
         <div>
           <svg
             class="icon-create"
@@ -46,16 +46,63 @@
           </svg>
         </div>
         <div class="create-drag">Select photos from device</div>
-        <div class="create-select">
-          <p>Select from computer</p>
+        <div class="create-select btn">
+          <input
+            type="file"
+            @change="onImgSelected"
+            class="input-file-btn btn"
+          />
+          <p class="btn">Select from computer</p>
         </div>
+      </div>
+      <div v-if="afterChoosePic" class="choosePicContainer">
+        <img :src="newStory.imgUrl" alt="" />
+        <!-- <div class="svg-box-create">
+          <svg>
+            <path
+              d="M10 20H4v-6a1 1 0 00-2 0v7a1 1 0 001 1h7a1 1 0 000-2zM20.999 2H14a1 1 0 000 2h5.999v6a1 1 0 002 0V3a1 1 0 00-1-1z"
+            ></path>
+          </svg>
+        </div> -->
+      </div>
+      <div v-if="afterChoosePic" class="svg-box-create">
+        <svg class="choosePicContainer-svg">
+          <path
+            d="M10 20H4v-6a1 1 0 00-2 0v7a1 1 0 001 1h7a1 1 0 000-2zM20.999 2H14a1 1 0 000 2h5.999v6a1 1 0 002 0V3a1 1 0 00-1-1z"
+          ></path>
+        </svg>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-export default {};
+import { storyService } from "../services/story.service";
+export default {
+  data() {
+    return {
+      createMode: 1,
+      newStory: null,
+      afterChoosePic: 0,
+    };
+  },
+  methods: {
+    closeModal() {
+      this.createMode = 0;
+      this.$emit("closeModal", this.createMode);
+    },
+    onImgSelected(event) {
+      storyService.loadImageFromInput(event, this.addPicToStory);
+      this.afterChoosePic = 1;
+    },
+    addPicToStory({ src }) {
+      this.newStory.imgUrl = src;
+    },
+  },
+  created() {
+    this.newStory = storyService.getEmptyStory();
+  },
+};
 </script>
 
 <style>

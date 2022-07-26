@@ -78,7 +78,7 @@
         <!-- //////////////////////////////////// -->
 
         <!-- COMMENTS-BOX -->
-        <div class="scroll-y">
+        <div class="overflow-y">
           <div class="auther-comments-bar">
             <router-link class="router-link" :to="'/user/' + story.by._id">
               <img
@@ -252,6 +252,9 @@
 export default {
   props: {
     story: Object,
+  },
+  created() {
+    console.log("story", this.story);
   },
   methods: {
     closeComments() {

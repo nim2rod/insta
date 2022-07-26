@@ -32,6 +32,7 @@ const store = createStore({
             state.stories.splice(idx, 1, editedStory)
         },
 
+
     },
     actions: {
         loadStories({ commit }) {
@@ -66,9 +67,11 @@ const store = createStore({
                     console.log(err)
                 })
         },
-        addComment: ({ commit }, { editedStory, newComment }) => commit('addComment', editedStory, newComment),
+        // addComment: ({ commit }, { editedStory, newComment }) => commit('addComment', editedStory, newComment),
 
         addComment({ commit }, { editedStory, newComment }) {
+            const user = storyService.getUser()
+            newComment.by = { ...user }
             editedStory.comments.push(newComment)
             return storyService.save(editedStory)
                 .then((savedStory) => {

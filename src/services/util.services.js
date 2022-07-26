@@ -1,7 +1,8 @@
 export const utilService = {
     saveToStorage,
     loadFromStorage,
-    makeId,
+    makeUserId,
+    makeStoryId
 }
 
 function saveToStorage(key, value) {
@@ -13,8 +14,17 @@ function loadFromStorage(key) {
     return data ? JSON.parse(data) : undefined
 }
 
-function makeId(length = 3) {
+function makeUserId(length = 3) {
     var txt = 'u'
+    var possible = '0123456789'
+    for (var i = 0; i < length; i++) {
+        txt += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    return txt
+}
+
+function makeStoryId(length = 3) {
+    var txt = 's'
     var possible = '0123456789'
     for (var i = 0; i < length; i++) {
         txt += possible.charAt(Math.floor(Math.random() * possible.length))

@@ -59,8 +59,9 @@
         </router-link>
 
         <svg
+          @click="startAddNew"
           aria-label="New post"
-          class="nav-header-icon"
+          class="nav-header-icon btn"
           color="#262626"
           fill="#262626"
           height="24"
@@ -158,12 +159,33 @@
           />
         </router-link>
       </nav>
+      <create-new v-if="createMode" @closeModal="closeModal"></create-new>
     </section>
   </header>
 </template>
 
 <script>
-export default {};
+import createNew from "../components/create.new.cmp.vue";
+
+export default {
+  data() {
+    return {
+      createMode: 0,
+    };
+  },
+  methods: {
+    startAddNew() {
+      console.log("show-modal");
+      this.createMode = 1;
+    },
+    closeModal() {
+      this.createMode = 0;
+    },
+  },
+  components: {
+    createNew,
+  },
+};
 </script>
 
 <style>

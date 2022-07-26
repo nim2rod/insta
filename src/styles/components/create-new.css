@@ -73,3 +73,41 @@
     font-weight: 600;
     color: var(--clr2);
 }
+
+.input-file-btn {
+    opacity: 0.0;
+    position: absolute;
+    width: 192px;
+    height: 37px;
+}
+
+.choosePicContainer {
+    max-height: 94%;
+    max-width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.choosePicContainer img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.svg-box-create {
+    height: 2.5em;
+    width: 2.5em;
+    background-color: var(--clr7);
+    opacity: 83%;
+    border-radius: 50%;
+    left: 1.2em;
+    position: absolute;
+    bottom: 1.3em;
+}
+
+.choosePicContainer-svg {
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+    fill: var(--clr2);
+    width: 2em;
+    height: 2em;
+}

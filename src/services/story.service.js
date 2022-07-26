@@ -20,14 +20,70 @@ export const storyService = {
     remove,
     save,
     createExploreStory,
-    getEmptyComment
+    getEmptyComment,
+    getEmptyStory,
+    loadImageFromInput,
+    getUser
+}
+
+function getUser() {
+    let user = {
+        _id: 'u104',
+        username: 'ross_geller',
+        profileImgUrl: 'data:image/jpeg;base64,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',
+    }
+    return user
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    var reader = new FileReader()
+    //After we read the file
+    reader.onload = function (event) {
+        var img = new Image()// Create a new html img element
+        img.src = event.target.result // Set the img src to the img file we read
+        //Run the callBack func , To render the img on the canvas
+        img.onload = onImageReady.bind(null, img)
+        // imgFlag = true
+    }
+
+    reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
+}
+function getEmptyStory() {
+    let newStory = {
+
+        _id: utilService.makeStoryId(),
+        txt: '',
+        imgUrl: '',
+        createdAt: 123543452,
+        by: {
+            _id: '',
+            username: '',
+            profileImgUrl: ''
+        },
+        loc: {
+            lat: 11.11,
+            lng: 22.22,
+            name: 'new york'
+        },
+        comments: [
+
+        ],
+        likedBy: [
+
+        ],
+        tags: [
+
+        ]
+
+    }
+    return newStory
 }
 
 function getEmptyComment() {
     let newComment = {
-        id: utilService.makeId(),
+        id: utilService.makeUserId(),
         by: {
-            _id: 'u999',
+            _id: '',
             username: '',
             profileImgUrl: ''
         },
@@ -77,7 +133,7 @@ function save(story) {
     // } else {
     //     return axios.post(API + story._id, story).then((res) => res.data);
     // }
-    if (story.id) return storageService.put(KEY, story)
+    if (story._id) return storageService.put(KEY, story)
     return storageService.post(KEY, story)
 }
 

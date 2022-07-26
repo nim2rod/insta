@@ -12,7 +12,7 @@
       <suggest :suggestions="suggestions"></suggest>
       <copy> </copy>
     </section>
-    <create-new v-if="createMode"></create-new>
+    <!-- <create-new v-if="createMode"></create-new> -->
   </section>
 </template>
 
