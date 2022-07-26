@@ -1,0 +1,75 @@
+.create-new-backround {
+    background-color: rgb(105 109 105 / 90%);
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    top: 0%;
+    left: 0%;
+}
+
+.x-create {
+    height: 1.5em;
+    position: fixed;
+    top: 1.7em;
+    right: 2em;
+    z-index: 5;
+}
+
+.create-new-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 6.5em;
+    background-color: var(--clr2);
+    width: 49%;
+    max-width: 39em;
+    min-height: 29em;
+    height: -webkit-fill-available;
+    margin-bottom: 14em;
+    border-radius: 1em
+}
+
+.create-new-top {
+    height: 52px;
+    border-bottom: 1px rgb(219, 219, 219) solid;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.create-new-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12.5em;
+}
+
+.icon-create {
+    width: 7.5em;
+}
+
+.create-drag {
+    font-size: 1.6em;
+    font-weight: 300;
+    margin-top: 0.35em;
+}
+
+.create-select {
+    height: 37px;
+    width: 192px;
+    background-color: rgb(53, 149, 246);
+    margin-top: 1.8em;
+    border-radius: 0.35em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--clr2);
+}

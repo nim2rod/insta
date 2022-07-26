@@ -12,6 +12,7 @@
       <suggest :suggestions="suggestions"></suggest>
       <copy> </copy>
     </section>
+    <create-new v-if="createMode"></create-new>
   </section>
 </template>
 
@@ -21,10 +22,13 @@ import storyList from "../components/story.list.vue";
 import storyTwentyFour from "../components/24stories.cmp.vue";
 import suggest from "../components/suggest4u.cmp.vue";
 import copy from "../components/copyright.cmp.vue";
+import createNew from "../components/create.new.cmp.vue";
 
 export default {
   data() {
-    return {};
+    return {
+      createMode: 1,
+    };
   },
   methods: {},
   computed: {
@@ -41,6 +45,7 @@ export default {
     suggest,
     change,
     copy,
+    createNew,
     // comment,
   },
 };
