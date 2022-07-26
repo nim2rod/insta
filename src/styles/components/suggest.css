@@ -12,7 +12,7 @@
 .suggetion-header {
     display: flex;
     justify-content: space-between;
-    color: #308478;
+    color: var(--clr4);
     font-weight: 500;
     font-size: 0.91em;
     align-items: center;

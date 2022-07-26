@@ -48,6 +48,7 @@ function loadImageFromInput(ev, onImageReady) {
 
     reader.readAsDataURL(ev.target.files[0]) // Read the file we picked
 }
+
 function getEmptyStory() {
     let newStory = {
 

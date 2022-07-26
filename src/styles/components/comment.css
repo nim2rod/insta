@@ -34,6 +34,8 @@
     top: 2em;
     height: 80%;
     max-width: 52em;
+    /* border-radius: 0.3em;
+    overflow: hidden; */
 }
 
 /* IMG-MAIN */
@@ -63,8 +65,8 @@
 
 /* NEW-TOP */
 .top-comment-bar2 {
-    border-bottom: 1px rgb(199 214 216) solid;
-    height: 3.9em;
+    border-bottom: 1px rgb(239, 239, 239) solid;
+    height: 4.9em;
     align-items: center;
 }
 
@@ -150,16 +152,16 @@
     gap: 1em;
 }
 
-/* 
-.overflow-y{
+
+.overflow-y {
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: scroll;
-} */
-.overflow-y {
-    overflow-y: scroll;
-
 }
+
+/* .overflow-y {
+    overflow-y: scroll;
+} */
 
 /* .left-top-comments-bar span {} */
 
@@ -256,4 +258,10 @@
     width: inherit;
     position: relative;
     top: 5px;
+}
+
+.fake-footer {
+    height: 17em;
+    min-width: 30.4em;
+    bottom: 0;
 }

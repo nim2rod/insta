@@ -118,13 +118,16 @@
       <div class="font1 card-txt">{{ story.txt }}</div>
     </div>
 
-    <!-- COMMENTS -->
+    <!-- COMMENTS -Time ago -->
     <div class="comments layout-card btn font1" @click="viewComments(story)">
       View all {{ story.comments.length }} comments
     </div>
     <div class="time-ago layout-card font1">5 hours ago</div>
+
+    <!-- ADD - COMMENTS - BAR -->
     <div class="add-comment-bar layout-card font1">
-      <div class="flex add-coment-smily">
+      <div class="flex add-comment-smily">
+        <!-- SMILY -->
         <svg
           aria-label="Emoji"
           class="_ab6-"
@@ -139,24 +142,31 @@
             d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"
           ></path>
         </svg>
-
+        <!-- INPUT / addComment -->
         <input
           v-if="typingMode"
           v-model="newComment.txt"
           type="text"
-          placeholder="add a comment.."
+          placeholder="Add a comment.."
         />
-
         <div v-if="!typingMode" @click="typing" class="add-comment">
           Add a comment
         </div>
       </div>
-      <div @click="addComment" class="post-btn-crd">Post</div>
+
+      <!-- 2-POST-BTN -->
+      <div v-if="newComment.txt" @click="addComment" class="post-btn-crd2">
+        Post
+      </div>
+      <div v-if="!newComment.txt" @click="addComment" class="post-btn-crd">
+        Post
+      </div>
     </div>
     <!-- COMMENT-CMP -->
     <comment
       v-if="commentMode"
       @closeComments="closeComments"
+      @addCommentTxt="addCommentTxt"
       class="comment-view-container"
       :story="story"
     ></comment>
@@ -191,9 +201,11 @@ export default {
     closeComments() {
       this.commentMode = 0;
     },
+    addCommentTxt(commentTxt) {
+      this.newComment.txt = commentTxt;
+      this.addComment();
+    },
     addComment() {
-      console.log("ad comment to story:", this.newComment);
-      console.log("editedStory", this.editedStory);
       const storyCopy = JSON.parse(JSON.stringify(this.story));
 
       this.$store
@@ -209,7 +221,7 @@ export default {
       // this.editedStory.comments.push(this.newComment);
 
       this.typingMode = 0;
-      this.newComment = null;
+      this.newComment = storyService.getEmptyComment();
     },
     typing() {
       this.typingMode = 1;

@@ -2,10 +2,7 @@
   <section class="insta-app">
     <section class="story-and-short-box">
       <story-twenty-four :stories="stories"></story-twenty-four>
-      <story-list
-        :stories="stories"
-        @showComments="showCommentsMode"
-      ></story-list>
+      <story-list :stories="stories"></story-list>
     </section>
     <section class="user-seggestions-main">
       <change></change>

@@ -134,6 +134,7 @@
           </div>
         </div>
         <!-- FOOTER -->
+        <section class="fake-footer"></section>
         <section class="footer-comments">
           <!-- ACTION -->
           <div class="action-card layout-card">
@@ -221,9 +222,11 @@
           </div>
           <div class="liked-bar layout-card">140 likes</div>
           <div class="time-ago layout-card">5 hours ago</div>
-          <!-- ADD COMMENT -->
+
+          <!-- ADD - COMMENT - BAR-->
           <div class="add-comment-bar-comment-page layout-card">
-            <div class="flex add-coment-smily">
+            <div class="flex add-comment-smily">
+              <!-- SMILY -->
               <svg
                 aria-label="Emoji"
                 class="_ab6-"
@@ -238,9 +241,29 @@
                   d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"
                 ></path>
               </svg>
-              <div class="add-comment">Add a comment</div>
+
+              <!-- INPUT / addComment -->
+              <input
+                v-if="typingMode"
+                v-model="newCommentTxt"
+                type="text"
+                placeholder="Add a comment.."
+              />
+
+              <div v-if="!typingMode" @click="typing" class="add-comment">
+                Add a comment
+              </div>
             </div>
-            <div class="post-btn-crd">Post</div>
+
+            <!-- POST-BTN -->
+            <div
+              v-if="newCommentTxt"
+              @click="addCommentTxt"
+              class="post-btn-crd2"
+            >
+              Post
+            </div>
+            <div v-if="!newCommentTxt" class="post-btn-crd">Post</div>
           </div>
         </section>
       </div>
@@ -253,12 +276,24 @@ export default {
   props: {
     story: Object,
   },
-  created() {
-    console.log("story", this.story);
+  data() {
+    return {
+      typingMode: 0,
+      newCommentTxt: null,
+    };
   },
+  created() {},
   methods: {
     closeComments() {
       this.$emit("closeComments");
+    },
+    typing() {
+      this.typingMode = 1;
+    },
+    addCommentTxt() {
+      this.$emit("addCommentTxt", this.newCommentTxt);
+      this.typingMode = 0;
+      this.newCommentTxt = null;
     },
   },
 };
