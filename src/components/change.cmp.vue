@@ -1,13 +1,15 @@
 <template>
   <section class="change-user-bar">
     <div class="flex">
-      <router-link to="/user/u104">
-        <img
-          class="img-user-change"
-          src="../img/profile-pic/ross-profile.jpeg"
-          alt=""
-        />
-      </router-link>
+      <div class="img-user-change-cont">
+        <router-link to="/user/u104">
+          <img
+            class="img-user-change"
+            src="../img/profile-pic/ross-profile.jpeg"
+            alt=""
+          />
+        </router-link>
+      </div>
       <div class="flex column align-self-center names-change-bar">
         <router-link class="router-link" to="/user/u104">
           ross_geller

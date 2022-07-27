@@ -4,7 +4,9 @@
     <div class="top-card">
       <div class="flex left-top-card">
         <router-link class="router-link" :to="'/user/' + story.by._id">
-          <img class="profile-pic-card" :src="profileImgSrc" />
+          <div class="profile-pic-card-cont">
+            <img class="profile-pic-card" :src="profileImgSrc" />
+          </div>
         </router-link>
         <div class="username-bar">
           <div class="username-top-card font1">
@@ -43,7 +45,7 @@
         </svg>
         <svg
           @click="likedStory"
-          v-if="userLikeStory"
+          v-else
           aria-label="Unlike"
           class="btn"
           color="#ed4956"
@@ -239,8 +241,6 @@ export default {
           console.log(err);
         });
 
-      // this.editedStory.comments.push(this.newComment);
-
       this.typingMode = 0;
       this.newComment = storyService.getEmptyComment();
     },
@@ -253,27 +253,27 @@ export default {
         .dispatch("addLike", {
           editedStory: storyCopy,
         })
-        .then(console.log("great"))
+        .then(() => {
+          this.userLikeStory = this.story.likedBy.find((e) => {
+            // console.log("this.userLikeStory", this.userLikeStory);
+            return e._id === this.loggedInUser._id;
+          });
+        })
+
         .catch((err) => {
           console.log(err);
         });
-      this.userLikeStory = this.story.likedBy.some(
-        (e) => e._id === this.loggedInUser._id
-      )
-        ? true
-        : false;
     },
   },
   created() {
     this.newComment = storyService.getEmptyComment();
     this.loggedInUser = storyService.getUser();
     // this.userLikeStory = this.story.likedBy.includes(loginUser) ? true : false;
-    this.userLikeStory = this.story.likedBy.some(
+    this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id
-    )
-      ? true
-      : false;
-    console.log("this.userLikeStory", this.userLikeStory);
+    );
+
+    // console.log("this.userLikeStory", this.userLikeStory);
   },
   computed: {
     imgSrc() {

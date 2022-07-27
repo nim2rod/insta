@@ -27,32 +27,8 @@
       </div>
 
       <div class="comments-txt-box-right">
-        <!-- /////////////////////////////////////// -->
-
-        <!-- <div class="top-comments-bar">
-          <div class="left-top-comments-bar">
-            <router-link class="router-link" :to="'/user/' + story.by._id">
-              <img
-                class="profile-img-comments-border"
-                :src="story.by.profileImgUrl"
-                alt=""
-            /></router-link>
-            <div></div>
-            <p class="username-comment">
-              <router-link class="router-link" :to="'/user/' + story.by._id">
-                {{ story.by.username }}</router-link
-              >
-            </p>
-            <p class="username-comment"><span>•</span> Following</p>
-          </div>
-          <span>... </span>
-        </div> -->
-
-        <!-- ////// -->
-        <!-- /////////////////////////////////////////////// -->
-
         <div class="top-comment-bar2 flex">
-          <div>
+          <div class="profile-img-comments-border-cont">
             <router-link class="router-link" :to="'/user/' + story.by._id">
               <img
                 class="profile-img-comments-border"
@@ -75,17 +51,17 @@
           </div>
         </div>
 
-        <!-- //////////////////////////////////// -->
-
         <!-- COMMENTS-BOX -->
         <div class="overflow-y">
           <div class="auther-comments-bar">
-            <router-link class="router-link" :to="'/user/' + story.by._id">
-              <img
-                class="profile-img-comments-border"
-                :src="story.by.profileImgUrl"
-                alt=""
-            /></router-link>
+            <div class="profile-img-comments-border-cont">
+              <router-link class="router-link" :to="'/user/' + story.by._id">
+                <img
+                  class="profile-img-comments-border"
+                  :src="story.by.profileImgUrl"
+                  alt=""
+              /></router-link>
+            </div>
             <div class="content-comments-bar">
               <p class="username-comment2">
                 <router-link class="router-link" :to="'/user/' + story.by._id">

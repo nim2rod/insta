@@ -21,38 +21,29 @@
     display: flex;
     gap: 1em;
     margin-left: 1em;
+    align-items: center;
 }
 
-/* .story-img-container {
-    width: 3.8em;
-    height: 3.8em;
-    position: relative;
+.story-img-container {
+    padding: 0.15em;
+    width: 4em;
+    height: 4em;
     overflow: hidden;
     border-radius: 50%;
-    border-color: rgb(53, 99, 156);
-    border-width: 3px;
-    border-style: solid;
-} */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6);
+}
 
 
 .story-img {
-    /* border: 2px solid linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); */
-    /* border: 5px solid transparent; */
-    /* border-image: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d); */
-    /* border-image-slice: 1; */
-    border-radius: 2em;
+    border-radius: 50%;
     height: 100%;
-    width: auto;
-    display: inline;
-    margin: 0 auto;
-    width: 3.8em;
-    height: 3.8em;
-    border: 2px rgb(53, 99, 156) solid;
+    width: 100%;
     background-color: #fff;
     padding: 0.1em;
     object-fit: cover;
-
-    /* background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d) */
 }
 
 .username-stories-bar {

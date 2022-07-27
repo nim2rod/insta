@@ -5,12 +5,25 @@
     margin-bottom: 0.8em;
 }
 
-.img-user-change {
+.img-user-change-cont {
+    padding: 0.13em;
     width: 3.9em;
-    border-radius: 5em;
-    border: 2px rgb(53, 99, 156) solid;
+    height: 3.9em;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6)
+}
+
+.img-user-change {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* border: 2px rgb(53, 99, 156) solid; */
     background-color: #fff;
-    padding: 0.06em;
+    padding: 0.08em;
     object-fit: cover;
 }
 

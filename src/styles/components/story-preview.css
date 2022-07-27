@@ -25,11 +25,23 @@
     align-items: center;
 }
 
-.profile-pic-card {
-    border-radius: 50%;
+.profile-pic-card-cont {
+    padding: 0.1em;
     width: 2em;
     height: 2em;
-    border: 1.1px rgb(53, 99, 156) solid;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6)
+}
+
+.profile-pic-card {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    /* border: 1.1px rgb(53, 99, 156) solid; */
     background-color: #fff;
     padding: 0.06em;
 }
@@ -160,7 +172,11 @@
     font-size: 0.89em;
     margin-top: 0.1em;
     /* color: unset; */
-    color: var(--clr4);
+    color: var(--clr7);
+}
+
+.add-comment-smily input:focus {
+    outline: none;
 }
 
 .post-btn-crd {

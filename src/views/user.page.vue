@@ -2,7 +2,9 @@
   <section v-if="user" class="user-page-layout">
     <!-- TOP-SECTION -->
     <section class="user-page-top flex">
-      <img class="user-img" :src="user.profileImgUrl" alt="" />
+      <div class="user-img-cont">
+        <img class="user-img" :src="user.profileImgUrl" alt="" />
+      </div>
       <div class="top-right-userpage-box">
         <div class="top-name-bar-user">
           <div class="username-big-user-page">{{ user.username }}</div>
