@@ -33,9 +33,9 @@
     display: flex;
     top: 2em;
     height: 80%;
-    max-width: 52em;
-    /* border-radius: 0.3em;
-    overflow: hidden; */
+    /* max-width: 52em; */
+    border-radius: 0.35em;
+    overflow: hidden;
 }
 
 /* IMG-MAIN */
@@ -61,12 +61,13 @@
     /* min-width: 31em; */
     min-width: 30.4em;
     background-color: var(--clr2);
+    max-width: 30em;
 }
 
 /* NEW-TOP */
 .top-comment-bar2 {
     border-bottom: 1px rgb(239, 239, 239) solid;
-    height: 4.9em;
+    height: 102px;
     align-items: center;
 }
 
@@ -154,16 +155,14 @@
 
 
 .overflow-y {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    /* -ms-overflow-style: none; */
+    /* scrollbar-width: none; */
     overflow-y: scroll;
 }
 
-/* .overflow-y {
-    overflow-y: scroll;
-} */
-
-/* .left-top-comments-bar span {} */
+.overflow-y::-webkit-scrollbar {
+    display: none;
+}
 
 .auther-comments-bar {
     display: flex;
@@ -180,12 +179,14 @@
 }
 
 .comment-block {
-    margin-top: 1.5em;
+    margin-top: 1.35em;
 }
 
 .comment-block-top {
     display: flex;
     justify-content: space-between;
+    width: 96%;
+    margin-left: 5px;
 }
 
 .icon-comments {
@@ -228,15 +229,19 @@
     font-weight: 600;
 }
 
-.scroll-y {
-    overflow-y: scroll;
-    height: 70%;
-    -ms-overflow-style: none;
-    /* for Internet Explorer, Edge */
-    scrollbar-width: none;
-    /* for Firefox */
-    overflow-y: scroll;
-}
+/* .scroll-y { */
+/* overflow-y: scroll; */
+/* height: 70%; */
+/* -ms-overflow-style: none; */
+/* for Internet Explorer, Edge */
+/* scrollbar-width: none; */
+/* for Firefox */
+/* overflow-y: scroll;
+} */
+
+/* .scroll-y::-webkit-scrollbar {
+    display: none;
+} */
 
 /*FOOTER*/
 .footer-comments {
@@ -261,7 +266,7 @@
 }
 
 .fake-footer {
-    height: 17em;
+    height: 14em;
     min-width: 30.4em;
     bottom: 0;
 }

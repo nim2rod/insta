@@ -17,7 +17,7 @@
         ></path>
       </svg>
     </div>
-    <div class="create-new-container">
+    <div v-if="!afterChoosePic" class="create-new-container">
       <div class="create-new-top">
         <p>Create new post</p>
       </div>
@@ -55,23 +55,94 @@
           <p class="btn">Select from computer</p>
         </div>
       </div>
-      <div v-if="afterChoosePic" class="choosePicContainer">
+
+      <!-- ///// -->
+
+      <!-- <div v-if="afterChoosePic" class="choose-pic-container">
         <img :src="newStory.imgUrl" alt="" />
-        <!-- <div class="svg-box-create">
-          <svg>
-            <path
-              d="M10 20H4v-6a1 1 0 00-2 0v7a1 1 0 001 1h7a1 1 0 000-2zM20.999 2H14a1 1 0 000 2h5.999v6a1 1 0 002 0V3a1 1 0 00-1-1z"
-            ></path>
-          </svg>
-        </div> -->
-      </div>
-      <div v-if="afterChoosePic" class="svg-box-create">
-        <svg class="choosePicContainer-svg">
+      </div> -->
+      <!-- ///////// -->
+      <!-- <div v-if="afterChoosePic" class="svg-box-create">
+        <svg class="choose-pic-container-svg">
           <path
             d="M10 20H4v-6a1 1 0 00-2 0v7a1 1 0 001 1h7a1 1 0 000-2zM20.999 2H14a1 1 0 000 2h5.999v6a1 1 0 002 0V3a1 1 0 00-1-1z"
           ></path>
         </svg>
+      </div> -->
+    </div>
+
+    <!-- //ADD TXT VIEW// -->
+
+    <div v-if="afterChoosePic" class="create-new-container-2">
+      <!-- TOP -->
+      <div class="create-new-top-2">
+        <svg
+          aria-label="Back"
+          class="_ab6-"
+          color="#262626"
+          fill="#262626"
+          height="24"
+          role="img"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <line
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            x1="2.909"
+            x2="22.001"
+            y1="12.004"
+            y2="12.004"
+          ></line>
+          <polyline
+            fill="none"
+            points="9.276 4.726 2.001 12.004 9.276 19.274"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          ></polyline>
+        </svg>
+        <p>Create new post</p>
+        <div @click="addNewStory">Share</div>
       </div>
+
+      <!-- MAIN-PIC-TXT -->
+      <div class="img-insert-txt-container">
+        <!-- PIC-BOX -->
+        <div v-if="afterChoosePic" class="choose-pic-container-2">
+          <img :src="newStory.imgUrl" alt="" />
+        </div>
+
+        <!-- RIHGT-SIDE-BOX -->
+
+        <div class="insert-txt-box">
+          <div class="username-bar-create">
+            <img :src="newStory.by.profileImgUrl" alt="" />
+            <div>{{ newStory.by.username }}</div>
+          </div>
+
+          <div class="input-txt-box-create">
+            <input
+              v-model="newStory.txt"
+              type="text"
+              placeholder="Write a caption..."
+            />
+          </div>
+          <div class="location-input-create-box">
+            <input
+              class="loc-input-create"
+              v-model="newStory.loc.name"
+              type="text"
+              placeholder="Add location"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- /// -->
     </div>
   </section>
 </template>
@@ -98,9 +169,26 @@ export default {
     addPicToStory({ src }) {
       this.newStory.imgUrl = src;
     },
+    addNewStory() {
+      console.log("newStory-create", this.newStory);
+      this.$store
+        .dispatch("addNewStory", {
+          newStory: this.newStory,
+        })
+        .then(console.log("great"))
+        .catch((err) => {
+          console.log(err, "we have problemmm");
+        });
+      this.createMode = 0;
+      this.newStory = null;
+      this.afterChoosePic = 0;
+      this.$emit("closeModal", this.createMode);
+    },
   },
   created() {
     this.newStory = storyService.getEmptyStory();
+    this.newStory.by = storyService.getUser();
+    console.log("this.newStory", this.newStory);
   },
 };
 </script>

@@ -52,7 +52,7 @@ function loadImageFromInput(ev, onImageReady) {
 function getEmptyStory() {
     let newStory = {
 
-        _id: utilService.makeStoryId(),
+        _id: '',
         txt: '',
         imgUrl: '',
         createdAt: 123543452,
@@ -64,7 +64,7 @@ function getEmptyStory() {
         loc: {
             lat: 11.11,
             lng: 22.22,
-            name: 'new york'
+            name: ''
         },
         comments: [
 

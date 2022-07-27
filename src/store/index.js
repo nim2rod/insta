@@ -31,6 +31,10 @@ const store = createStore({
             const idx = state.stories.findIndex((t) => t._id === editedStory._id)
             state.stories.splice(idx, 1, editedStory)
         },
+        addStory(state, { newStory }) {
+            console.log('mutate- newStory', newStory);
+            state.stories.unshift(newStory)
+        }
 
 
     },
@@ -83,6 +87,18 @@ const store = createStore({
                 })
 
         },
+        addNewStory({ commit }, { newStory }) {
+            console.log('addNewStory - action', newStory);
+            return storyService.save(newStory)
+                .then((savedStory) => {
+                    console.log('thennn- action');
+                    commit({ type: 'addStory', newStory: savedStory })
+                    return savedStory
+                })
+                .catch((err) => {
+                    console.log(err, 'problem with addNewStory - action')
+                })
+        }
     },
     modules: {},
 

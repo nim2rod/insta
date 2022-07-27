@@ -9,6 +9,12 @@
     align-items: center;
     overflow: hidden;
     background-color: var(--clr2);
+    /* /// */
+    overflow-x: scroll;
+}
+
+.stories-bar-container::-webkit-scrollbar {
+    display: none;
 }
 
 .stories-bar-box {
@@ -45,6 +51,8 @@
     background-color: #fff;
     padding: 0.1em;
     object-fit: cover;
+
+    /* background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d) */
 }
 
 .username-stories-bar {
