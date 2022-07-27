@@ -13,6 +13,7 @@
         @closeComments="closeComments"
         class="comment-view-container"
         :story="explore"
+        :loggedInUser="loggedInUser"
       ></comment>
     </div>
   </section>
@@ -26,11 +27,13 @@ export default {
     return {
       explores: null,
       commentMode: 0,
+      loggedInUser: null,
     };
   },
   created() {
     this.explores = storyService.createExploreStory();
     console.log("explore", this.explores);
+    this.loggedInUser = storyService.getUser();
   },
   methods: {
     viewComments(story) {

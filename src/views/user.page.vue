@@ -8,7 +8,7 @@
       <div class="top-right-userpage-box">
         <div class="top-name-bar-user">
           <div class="username-big-user-page">{{ user.username }}</div>
-          <div class="icon-user-page-box">
+          <div v-if="!(user === loggedInUser)" class="icon-user-page-box">
             <div class="message-btn">Message</div>
             <div class="follow-btn-box-user">
               <img class="icon-user-page" src="../icons/follow.png" alt="" />
@@ -24,9 +24,17 @@
           </div>
         </div>
         <div class="posts-follow-user">
-          <div><span>91</span> posts</div>
-          <div><span>595</span> followers</div>
-          <div><span>345</span> following</div>
+          <div>
+            <span>{{ user.postsNumbur }}</span> posts
+          </div>
+          <div>
+            <span>{{ user.followers.length + user.fakeFollowers }}</span>
+            followers
+          </div>
+          <div>
+            <span>{{ user.following.length + user.fakeFollowing }}</span>
+            following
+          </div>
         </div>
         <div class="more-details-user">
           <span>{{ user.fullname }}</span>
@@ -270,8 +278,20 @@
         >
           <div v-if="story.by._id === user._id" class="data-container-crop">
             <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
-            <img class="data-story-user" :src="story.imgUrl" alt="" />
+            <img
+              @click="viewComments"
+              class="data-story-user btn"
+              :src="story.imgUrl"
+              alt=""
+            />
           </div>
+          <comment
+            v-if="commentMode"
+            @closeComments="closeComments"
+            class="comment-view-container"
+            :story="story"
+            :loggedInUser="loggedInUser"
+          ></comment>
         </div>
       </section>
     </section>
@@ -279,6 +299,7 @@
 </template>
 
 <script>
+import comment from "../components/comment.mode.cmp.vue";
 import { storyService } from "../services/story.service";
 
 export default {
@@ -286,6 +307,8 @@ export default {
     return {
       user: null,
       stories: null,
+      loggedInUser: null,
+      commentMode: 0,
       //   user:this.$store.getters.getUser
     };
   },
@@ -295,11 +318,26 @@ export default {
       console.log("currUser", currUser);
       this.user = currUser;
     });
+    this.loggedInUser = storyService.getUser();
+    console.log("user", this.user);
+    console.log("loggedInUser", this.loggedInUser);
+  },
+  methods: {
+    viewComments(story) {
+      console.log("view comment");
+      this.commentMode = 1;
+    },
+    closeComments() {
+      this.commentMode = 0;
+    },
   },
   computed: {
     stories() {
       return this.$store.getters.storiesToDisplay;
     },
+  },
+  components: {
+    comment,
   },
 };
 </script>

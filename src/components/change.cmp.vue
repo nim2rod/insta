@@ -2,19 +2,19 @@
   <section class="change-user-bar">
     <div class="flex">
       <div class="img-user-change-cont">
-        <router-link to="/user/u104">
+        <router-link :to="'/user/' + loggedInUser._id">
           <img
             class="img-user-change"
-            src="../img/profile-pic/ross-profile.jpeg"
+            :src="loggedInUser.profileImgUrl"
             alt=""
           />
         </router-link>
       </div>
       <div class="flex column align-self-center names-change-bar">
-        <router-link class="router-link" to="/user/u104">
-          ross_geller
+        <router-link class="router-link" :to="'/user/' + loggedInUser._id">
+          {{ loggedInUser.username }}
         </router-link>
-        <span>Ross Geller</span>
+        <span>{{ loggedInUser.fullName }}</span>
       </div>
     </div>
     <router-link class="router-link" to="/login">
@@ -24,7 +24,17 @@
 </template>
 
 <script>
-export default {};
+import { storyService } from "../services/story.service";
+export default {
+  data() {
+    return {
+      loggedInUser: null,
+    };
+  },
+  created() {
+    this.loggedInUser = storyService.getUser();
+  },
+};
 </script>
 
 <style>

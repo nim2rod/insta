@@ -37,6 +37,7 @@
     /* border: 3px rgb(53, 99, 156) solid; */
     background-color: #fff;
     padding: 0.25em;
+    object-fit: cover;
 }
 
 .top-right-userpage-box {

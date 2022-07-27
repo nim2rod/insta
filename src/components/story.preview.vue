@@ -220,7 +220,6 @@ export default {
   },
   methods: {
     viewComments(story) {
-      console.log("view comment");
       this.commentMode = 1;
     },
     closeComments() {

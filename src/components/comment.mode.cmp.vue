@@ -281,7 +281,7 @@ export default {
     };
   },
   created() {
-    console.log("created- comment-mose.cmp");
+    // console.log("this.story", this.story);
     this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id
     );
