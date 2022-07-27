@@ -22,7 +22,7 @@ const store = createStore({
             state.stories = stories
         },
         setSuggettions(state, { suggestions }) {
-            state.suggestions = suggestions
+            state.suggestions = suggestions1
         },
         setUsers(state, { users }) {
             state.users = users
@@ -102,16 +102,18 @@ const store = createStore({
         addLike({ commit }, { editedStory }) {
             const user = storyService.getUser()
 
-            const liked = editedStory.likedBy.some((e) => e._id === user._id) ? true : false
-
+            const liked = editedStory.likedBy.find((e) => e._id === user._id)
+            console.log('isLike ?? ', liked);
             if (!liked) {
-
+                console.log('PUSHHHH');
                 editedStory.likedBy.push(user)
+                console.log('editedStory Like by', editedStory.likedBy);
             } else {
-
+                console.log('SPLICE!!!!!');
                 const idx = editedStory.likedBy.findIndex(x => x._id === user._id)
-
                 editedStory.likedBy.splice(idx, 1)
+                console.log('editedStory Like by', editedStory.likedBy);
+
             }
             return storyService.save(editedStory)
                 .then((savedStory) => {
