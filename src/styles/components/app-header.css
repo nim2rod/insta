@@ -50,6 +50,10 @@
     margin-left: inherit;
 }
 
+.search-header:focus {
+    outline: none;
+}
+
 .nav-bar-header {
     display: flex;
     gap: 1.53em;

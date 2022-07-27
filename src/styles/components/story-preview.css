@@ -34,7 +34,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6)
+    /* background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6); */
+    background: linear-gradient(45deg, #ffdc7d, #ffdc7d, #f46f30, #c285a8, #4c5fd7, #c32aa3)
 }
 
 .profile-pic-card {
@@ -124,6 +125,7 @@
     font-size: 0.905em;
     font-weight: 350;
     max-width: 75%;
+    white-space: pre-wrap;
 }
 
 /* COMMENTS */

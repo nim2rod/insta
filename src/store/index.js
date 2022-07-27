@@ -22,7 +22,7 @@ const store = createStore({
             state.stories = stories
         },
         setSuggettions(state, { suggestions }) {
-            state.suggestions = suggestions1
+            state.suggestions = suggestions
         },
         setUsers(state, { users }) {
             state.users = users

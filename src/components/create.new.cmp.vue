@@ -17,6 +17,8 @@
         ></path>
       </svg>
     </div>
+
+    <!-- CHOOSE PIC VIEW -->
     <div v-if="!afterChoosePic" class="create-new-container">
       <div class="create-new-top">
         <p>Create new post</p>
@@ -55,9 +57,7 @@
           <p class="btn">Select from computer</p>
         </div>
       </div>
-
       <!-- ///// -->
-
       <!-- <div v-if="afterChoosePic" class="choose-pic-container">
         <img :src="newStory.imgUrl" alt="" />
       </div> -->
@@ -127,11 +127,21 @@
           </div>
 
           <div class="input-txt-box-create">
-            <input
+            <!-- /// -->
+            <textarea
+              v-model="newStory.txt"
+              placeholder="Write a caption..."
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+            ></textarea>
+            <!-- /// -->
+            <!-- <input
               v-model="newStory.txt"
               type="text"
               placeholder="Write a caption..."
-            />
+            /> -->
           </div>
           <div class="location-input-create-box">
             <input

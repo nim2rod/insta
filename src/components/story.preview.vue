@@ -188,8 +188,10 @@
       v-if="commentMode"
       @closeComments="closeComments"
       @addCommentTxt="addCommentTxt"
+      @likeClicked="likeClicked"
       class="comment-view-container"
       :story="story"
+      :loggedInUser="this.loggedInUser"
     ></comment>
   </section>
 </template>
@@ -246,6 +248,10 @@ export default {
     },
     typing() {
       this.typingMode = 1;
+    },
+    likeClicked() {
+      console.log("click");
+      this.likedStory();
     },
     likedStory() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));

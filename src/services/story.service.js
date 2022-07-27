@@ -107,7 +107,9 @@ function querySuggestions(filterBy = null) {
     //back
     // return axios.get(API, { params: filterBy }).then((res) => res.data)
     //front
+
     return storageService.query(KEY_SUGGEST_4U)
+
 }
 
 function queryUsers(filterBy = null) {
@@ -129,6 +131,7 @@ function remove(storyId) {
 }
 
 function save(story) {
+
     // if (story._id) {
     //     return axios.put(API + story._id, story).then((res) => res.data);
     // } else {
