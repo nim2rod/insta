@@ -77,8 +77,9 @@
       <!-- TOP -->
       <div class="create-new-top-2">
         <svg
+          class="btn"
+          @click="closeModal"
           aria-label="Back"
-          class="_ab6-"
           color="#262626"
           fill="#262626"
           height="24"
@@ -107,7 +108,7 @@
           ></polyline>
         </svg>
         <p>Create new post</p>
-        <div @click="addNewStory">Share</div>
+        <div class="btn" @click="addNewStory">Share</div>
       </div>
 
       <!-- MAIN-PIC-TXT -->

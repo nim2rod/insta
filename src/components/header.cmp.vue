@@ -1,7 +1,9 @@
 <template>
   <header class="header-container">
     <section class="header">
-      <div class="main-logo">Instagram</div>
+      <router-link class="router-link" to="/">
+        <div class="main-logo">Instagram</div></router-link
+      >
 
       <input class="search-header" type="text" placeholder="  🔍   Search" />
 

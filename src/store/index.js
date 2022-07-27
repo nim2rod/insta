@@ -98,6 +98,30 @@ const store = createStore({
                 .catch((err) => {
                     console.log(err, 'problem with addNewStory - action')
                 })
+        },
+        addLike({ commit }, { editedStory }) {
+            const user = storyService.getUser()
+
+            const liked = editedStory.likedBy.some((e) => e._id === user._id) ? true : false
+
+            if (!liked) {
+
+                editedStory.likedBy.push(user)
+            } else {
+
+                const idx = editedStory.likedBy.findIndex(x => x._id === user._id)
+
+                editedStory.likedBy.splice(idx, 1)
+            }
+            return storyService.save(editedStory)
+                .then((savedStory) => {
+
+                    commit({ type: 'updateStory', editedStory: savedStory })
+                    return savedStory
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     },
     modules: {},
