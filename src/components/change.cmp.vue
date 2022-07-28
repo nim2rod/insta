@@ -1,15 +1,16 @@
 <template>
   <section class="change-user-bar">
+    <!-- LEFT-SIDE -->
     <div class="flex">
-      <div class="img-user-change-cont">
-        <router-link :to="'/user/' + loggedInUser._id">
+      <router-link :to="'/user/' + loggedInUser._id">
+        <div class="img-user-change-cont">
           <img
             class="img-user-change"
             :src="loggedInUser.profileImgUrl"
             alt=""
           />
-        </router-link>
-      </div>
+        </div>
+      </router-link>
       <div class="flex column align-self-center names-change-bar">
         <router-link class="router-link" :to="'/user/' + loggedInUser._id">
           {{ loggedInUser.username }}
@@ -17,6 +18,7 @@
         <span>{{ loggedInUser.fullName }}</span>
       </div>
     </div>
+    <!-- SWITCH-BTN -->
     <router-link class="router-link" to="/login">
       <div class="switch-btn">Switch</div>
     </router-link>

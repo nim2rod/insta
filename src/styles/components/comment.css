@@ -32,8 +32,10 @@
 /*CONTAINER*/
 .comment-view-container-in-cmp {
     /* position: fixed; */
+    /* top: 2em; */
     display: flex;
-    top: 2em;
+    justify-content: center;
+    width: 88%;
     height: 80%;
     /* max-width: 52em; */
     border-radius: 0.35em;
@@ -44,7 +46,9 @@
 
 .main-img-comment-container {
     border: 1px black solid;
-    width: 26em;
+    /* width: 26em; */
+    width: 100%;
+    max-width: 35em;
     /* overflow: hidden; */
     display: flex;
     align-items: center;
@@ -62,6 +66,7 @@
     flex-direction: column;
     /* min-width: 31em; */
     min-width: 30.4em;
+    width: 100%;
     background-color: var(--clr2);
     max-width: 30em;
 }
@@ -69,7 +74,8 @@
 /* NEW-TOP */
 .top-comment-bar2 {
     border-bottom: 1px rgb(239, 239, 239) solid;
-    height: 102px;
+    height: 116px;
+    max-height: 73px;
     align-items: center;
 }
 
@@ -258,24 +264,25 @@
 
 /*FOOTER*/
 .footer-comments {
-    border-top: 1px rgb(219, 219, 219) solid;
+    border-top: 1px rgb(239, 239, 239) solid;
     height: 10em;
     min-width: 30.4em;
-    position: absolute;
-    bottom: 10%;
+    /* position: absolute; */
+    /* bottom: 10%; */
     background-color: var(--clr2);
+    margin-top: auto;
 }
 
 .add-comment-bar-comment-page {
     display: flex;
     justify-content: space-between;
-    border-top: 1px rgb(219, 219, 219) solid;
+    border-top: 1px rgb(239, 239, 239) solid;
     margin-left: auto;
     padding: 0.5em;
-    height: 3.1em;
+    height: 3.5em;
     width: inherit;
-    position: relative;
-    top: 5px;
+    /* position: relative;
+    top: 5px; */
 }
 
 /* .fake-footer {

@@ -202,7 +202,7 @@
       </div>
     </div>
     <!-- COMMENT-CMP -->
-    <comment
+    <!-- <comment
       v-if="commentMode"
       @closeComments="closeComments"
       @addCommentTxt="addCommentTxt"
@@ -211,12 +211,12 @@
       class="comment-view-container"
       :story="story"
       :loggedInUser="this.loggedInUser"
-    ></comment>
+    ></comment> -->
   </section>
 </template>
 
 <script>
-import comment from "../components/comment.mode.cmp.vue";
+// import comment from "../components/comment.mode.cmp.vue";
 import { storyService } from "../services/story.service";
 
 export default {
@@ -224,7 +224,7 @@ export default {
     story: Object,
   },
   components: {
-    comment,
+    // comment,
   },
 
   data() {
@@ -289,9 +289,6 @@ export default {
           console.log(err);
         });
     },
-    savedClicked() {
-      this.addStoryToSavedUser();
-    },
     addStoryToSavedUser() {
       const userCopy = JSON.parse(JSON.stringify(this.loggedInUser));
       this.$store
@@ -301,7 +298,7 @@ export default {
         })
         .then((savedUser) => {
           console.log("savedUser:", savedUser);
-
+          this.loggedInUser = savedUser;
           this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
             (id) => {
               return id === this.story._id;

@@ -79,6 +79,7 @@ const store = createStore({
             const user = storyService.getUser()
             newComment.by = { ...user }
             editedStory.comments.push(newComment)
+
             return storyService.save(editedStory)
                 .then((savedStory) => {
                     console.log('index-store-then-savedStory', savedStory);
@@ -130,7 +131,6 @@ const store = createStore({
         },
 
         addStoryToSavedUser({ commit }, { storyId, editedUser }) {
-            console.log('storyId - action', storyId);
             const saved = editedUser.savedStoryIds.find((id) => id === storyId)
 
             if (!saved) {
@@ -142,9 +142,7 @@ const store = createStore({
                 const idx = editedUser.savedStoryIds.findIndex(id => id === storyId)
                 editedUser.savedStoryIds.splice(idx, 1)
                 console.log('editedUser Saved', editedUser);
-
             }
-
             return storyService.save(editedUser, 'user_db')
                 .then((savedUser) => {
                     commit({ type: 'updateUser', editedUser: savedUser })
