@@ -6,9 +6,9 @@
       :key="explore.by.username"
     >
       <div class="img-container-explore btn">
-        <img @click="viewComments" :src="explore.imgUrl" alt="" />
+        <img @click="viewComments(explore)" :src="explore.imgUrl" alt="" />
       </div>
-      <comment
+      <!-- <comment
         v-if="commentMode"
         @closeComments="closeComments"
         @addCommentTxt="addCommentTxt"
@@ -16,7 +16,7 @@
         class="comment-view-container"
         :story="explore"
         :loggedInUser="loggedInUser"
-      ></comment>
+      ></comment> -->
     </div>
   </section>
 </template>
@@ -40,11 +40,12 @@ export default {
   },
   methods: {
     viewComments(story) {
+      this.$router.push(`/explore/story/${story._id}`);
       console.log("view comment");
       this.commentMode = 1;
     },
     closeComments() {
-      this.commentMode = 0;
+      this.$router.push(`/explore`);
     },
     likedStory(story) {
       console.log("story-explore", story);

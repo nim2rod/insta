@@ -241,7 +241,8 @@ export default {
   },
   methods: {
     viewComments(story) {
-      this.commentMode = 1;
+      // this.commentMode = 1;
+      this.$router.push(`/story/${story._id}`);
     },
     closeComments() {
       this.commentMode = 0;

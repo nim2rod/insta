@@ -4,6 +4,7 @@ import UserPage from '../views/user.page.vue'
 import Login from '../views/login.vue'
 import Explore from '../views/explore.vue'
 import DirectMassage from '../views/dm.vue'
+import comment from '../components/comment.mode.cmp.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,16 @@ const router = createRouter({
       path: '/user/:userId',
       name: 'user-page',
       component: UserPage
+    },
+    {
+      path: '/story/:storyId',
+      name: 'post-details',
+      component: comment
+    },
+    {
+      path: '/explore/story/:storyId',
+      name: 'explore-details',
+      component: comment
     },
     {
       path: '/login',

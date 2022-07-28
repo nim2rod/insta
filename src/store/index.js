@@ -81,6 +81,7 @@ const store = createStore({
             editedStory.comments.push(newComment)
             return storyService.save(editedStory)
                 .then((savedStory) => {
+                    console.log('index-store-then-savedStory', savedStory);
                     commit({ type: 'updateStory', editedStory: savedStory })
                     return savedStory
                 })

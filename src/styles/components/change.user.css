@@ -14,7 +14,7 @@
     display: flex;
     /* align-items: center; */
     justify-content: center;
-    background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6)
+    background: linear-gradient(0deg, rgba(255, 220, 125, 1) 0%, rgba(244, 111, 48, 1) 25%, rgba(114, 50, 189, 1) 69%, rgba(187, 50, 127, 1) 100%);
 }
 
 .img-user-change {

@@ -1,5 +1,5 @@
 <template>
-  <section class="comments-backround">
+  <section v-if="story" class="comments-backround">
     <span class="btn">
       <svg
         aria-label="Close"
@@ -242,7 +242,7 @@
               <!-- INPUT / addComment -->
               <input
                 v-if="typingMode"
-                v-model="newCommentTxt"
+                v-model="newComment.txt"
                 type="text"
                 placeholder="Add a comment.."
               />
@@ -254,13 +254,13 @@
 
             <!-- POST-BTN -->
             <div
-              v-if="newCommentTxt"
+              v-if="newComment.txt"
               @click="addCommentTxt"
               class="post-btn-crd2"
             >
               Post
             </div>
-            <div v-if="!newCommentTxt" class="post-btn-crd">Post</div>
+            <div v-if="!newComment.txt" class="post-btn-crd">Post</div>
           </div>
         </section>
       </div>
@@ -269,43 +269,79 @@
 </template>
 
 <script>
+import { storyService } from "../services/story.service";
 export default {
   props: {
-    story: Object,
-    loggedInUser: Object,
+    // story: Object,
+    // loggedInUser: Object,
   },
   data() {
     return {
       typingMode: 0,
-      newCommentTxt: null,
+      newComment: null,
       userLikeStory: false,
+      story: null,
+      loggedInUser: null,
     };
   },
-  created() {
-    // console.log("this.story", this.story);
+  async created() {
+    this.loggedInUser = storyService.getUser();
+    const { storyId } = this.$route.params;
+    const story = await storyService.getById(storyId);
+    this.story = story;
     this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id
     );
+    this.newComment = storyService.getEmptyComment();
   },
   methods: {
     closeComments() {
-      this.$emit("closeComments");
+      this.$router.push(`/`);
     },
     typing() {
       this.typingMode = 1;
     },
     addCommentTxt() {
-      this.$emit("addCommentTxt", this.newCommentTxt, this.story);
+      const storyCopy = JSON.parse(JSON.stringify(this.story));
+      this.$store
+        .dispatch("addComment", {
+          editedStory: storyCopy,
+          newComment: this.newComment,
+        })
+        .then((returnedStory) => {
+          console.log("then-addCommentTxt- returnedSTORY", returnedStory);
+          console.log("then-addCommentTxt- this.story", this.story);
+          const { storyId } = this.$route.params;
+          // const story = storyService.getById(storyId);
+          // console.log("commentCmp-addComment-then-storyId", storyId);
+          // console.log("commentCmp-addComment-then-story", story);
+          this.story = returnedStory;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
       this.typingMode = 0;
-      this.newCommentTxt = null;
+      this.newComment = storyService.getEmptyComment();
     },
+
     likedStory() {
-      ///// maybe problem becaose its not asyncronic/////
-      this.$emit("likeClicked", this.story);
-      // this.userLikeStory = this.story.likedBy.find(
-      //   (e) => e._id === this.loggedInUser._id
-      // );
-      this.userLikeStory = !this.userLikeStory;
+      const storyCopy = JSON.parse(JSON.stringify(this.story));
+      this.$store
+        .dispatch("addLike", {
+          editedStory: storyCopy,
+        })
+        .then((savedStory) => {
+          console.log("Saved Story", savedStory);
+          this.userLikeStory = savedStory.likedBy.find((e) => {
+            return e._id === this.loggedInUser._id;
+          });
+
+          this.story = savedStory;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     savedClicked() {
       this.$emit("savedClicked", this.story);

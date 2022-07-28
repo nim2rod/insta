@@ -279,12 +279,12 @@
           <div v-if="story.by._id === user._id" class="data-container-crop">
             <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
             <img
-              @click="viewComments"
+              @click="viewComments(story._id)"
               class="data-story-user btn"
               :src="story.imgUrl"
               alt=""
             />
-            <comment
+            <!-- <comment
               v-if="commentMode"
               @likeClicked="likedStory"
               @closeComments="closeComments"
@@ -292,7 +292,7 @@
               class="comment-view-container"
               :story="story"
               :loggedInUser="loggedInUser"
-            ></comment>
+            ></comment> -->
           </div>
         </div>
       </section>
@@ -323,11 +323,13 @@ export default {
     });
     this.loggedInUser = storyService.getUser();
     this.newComment = storyService.getEmptyComment();
+    this.stories = this.$store.getters.storiesToDisplay;
   },
   methods: {
-    viewComments(story) {
+    viewComments(storyId) {
       console.log("view comment");
       this.commentMode = 1;
+      this.$router.push(`/story/${storyId}`);
     },
     closeComments() {
       this.commentMode = 0;
@@ -368,9 +370,9 @@ export default {
     },
   },
   computed: {
-    stories() {
-      return this.$store.getters.storiesToDisplay;
-    },
+    // stories() {
+    //   return this.$store.getters.storiesToDisplay;
+    // },
   },
   components: {
     comment,
