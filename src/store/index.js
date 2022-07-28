@@ -28,15 +28,17 @@ const store = createStore({
             state.users = users
         },
         updateStory(state, { editedStory }) {
-            const idx = state.stories.findIndex((t) => t._id === editedStory._id)
+            const idx = state.stories.findIndex((s) => s._id === editedStory._id)
             state.stories.splice(idx, 1, editedStory)
         },
         addStory(state, { newStory }) {
             console.log('mutate- newStory', newStory);
             state.stories.unshift(newStory)
+        },
+        updateUser(state, { editedUser }) {
+            const idx = state.users.findIndex((u) => u._id === editedUser._id)
+            state.users.splice(idx, 1, editedUser)
         }
-
-
     },
     actions: {
         loadStories({ commit }) {
@@ -120,6 +122,32 @@ const store = createStore({
 
                     commit({ type: 'updateStory', editedStory: savedStory })
                     return savedStory
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+
+        addStoryToSavedUser({ commit }, { storyId, editedUser }) {
+            console.log('storyId - action', storyId);
+            const saved = editedUser.savedStoryIds.find((id) => id === storyId)
+
+            if (!saved) {
+                console.log('PUSHHHH');
+                editedUser.savedStoryIds.push(storyId)
+                console.log('editedUser Saved', editedUser);
+            } else {
+                console.log('SPLICE!!!!!');
+                const idx = editedUser.savedStoryIds.findIndex(id => id === storyId)
+                editedUser.savedStoryIds.splice(idx, 1)
+                console.log('editedUser Saved', editedUser);
+
+            }
+
+            return storyService.save(editedUser, 'user_db')
+                .then((savedUser) => {
+                    commit({ type: 'updateUser', editedUser: savedUser })
+                    return savedUser
                 })
                 .catch((err) => {
                     console.log(err)

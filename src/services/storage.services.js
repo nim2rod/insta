@@ -40,6 +40,8 @@ function postMany(entityType, newEntities) {
 }
 
 function put(entityType, updatedEntity) {
+    console.log('storageService- entityType', entityType);
+    console.log('storageService- updatedEntity', updatedEntity);
     return query(entityType).then((entities) => {
         const idx = entities.findIndex((entity) => entity._id === updatedEntity._id)
 

@@ -197,7 +197,8 @@
               </svg>
             </div>
             <svg
-              class="save-post-icon"
+              @click="savedClicked"
+              class="save-post-icon btn"
               aria-label="Save"
               color="#262626"
               fill="#262626"
@@ -305,6 +306,9 @@ export default {
       //   (e) => e._id === this.loggedInUser._id
       // );
       this.userLikeStory = !this.userLikeStory;
+    },
+    savedClicked() {
+      this.$emit("savedClicked", this.story);
     },
   },
 };

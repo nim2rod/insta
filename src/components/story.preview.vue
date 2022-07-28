@@ -1,5 +1,5 @@
 <template>
-  <section v-if="story" class="story-card">
+  <section v-if="isFollow" class="story-card">
     <!-- TOP -->
     <div class="top-card">
       <div class="flex left-top-card">
@@ -108,7 +108,9 @@
         </svg>
       </div>
       <svg
-        class="save-post-icon"
+        v-if="!isStorySavedByUser"
+        @click="addStoryToSavedUser"
+        class="save-post-icon btn"
         aria-label="Save"
         color="#262626"
         fill="#262626"
@@ -125,6 +127,22 @@
           stroke-linejoin="round"
           stroke-width="2"
         ></polygon>
+      </svg>
+      <svg
+        v-else
+        @click="addStoryToSavedUser"
+        aria-label="Remove"
+        class="save-post-icon btn"
+        color="#262626"
+        fill="#262626"
+        height="24"
+        role="img"
+        viewBox="0 0 24 24"
+        width="24"
+      >
+        <path
+          d="M20 22a.999.999 0 01-.687-.273L12 14.815l-7.313 6.912A1 1 0 013 21V3a1 1 0 011-1h16a1 1 0 011 1v18a1 1 0 01-1 1z"
+        ></path>
       </svg>
     </div>
 
@@ -189,6 +207,7 @@
       @closeComments="closeComments"
       @addCommentTxt="addCommentTxt"
       @likeClicked="likeClicked"
+      @savedClicked="savedClicked"
       class="comment-view-container"
       :story="story"
       :loggedInUser="this.loggedInUser"
@@ -216,6 +235,8 @@ export default {
       editedStory: null,
       loggedInUser: null,
       userLikeStory: false,
+      isFollow: false,
+      isStorySavedByUser: false,
     };
   },
   methods: {
@@ -259,7 +280,6 @@ export default {
         })
         .then(() => {
           this.userLikeStory = this.story.likedBy.find((e) => {
-            // console.log("this.userLikeStory", this.userLikeStory);
             return e._id === this.loggedInUser._id;
           });
         })
@@ -268,17 +288,49 @@ export default {
           console.log(err);
         });
     },
+    savedClicked() {
+      this.addStoryToSavedUser();
+    },
+    addStoryToSavedUser() {
+      const userCopy = JSON.parse(JSON.stringify(this.loggedInUser));
+      this.$store
+        .dispatch("addStoryToSavedUser", {
+          storyId: this.story._id,
+          editedUser: userCopy,
+        })
+        .then((savedUser) => {
+          console.log("savedUser:", savedUser);
+
+          this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
+            (id) => {
+              return id === this.story._id;
+            }
+          );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   created() {
     this.newComment = storyService.getEmptyComment();
+
     this.loggedInUser = storyService.getUser();
-    // this.userLikeStory = this.story.likedBy.includes(loginUser) ? true : false;
+
     this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id
     );
 
-    // console.log("this.userLikeStory", this.userLikeStory);
+    this.isFollow = this.loggedInUser.following.find(
+      (u) => u._id === this.story.by._id
+    );
+
+    this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
+      (id) => id === this.story._id
+    );
+    console.log("this.isStorySavedByUser", this.isStorySavedByUser);
   },
+
   computed: {
     imgSrc() {
       return this.story.imgUrl;

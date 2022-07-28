@@ -1,25 +1,44 @@
 <template>
   <section class="stories-bar-container">
     <section class="stories-bar-box">
-      <div v-for="story in stories" :key="story._id">
-        <div class="story-img-container">
-          <img class="story-img" :src="story.by.profileImgUrl" alt="" />
+      <div v-for="story in followingStories" :key="story._id">
+        <div v-if="story">
+          <div class="story-img-container">
+            <img class="story-img" :src="story.by.profileImgUrl" alt="" />
+          </div>
+          <div class="username-stories-bar">{{ story.by.username }}</div>
         </div>
-        <div class="username-stories-bar">{{ story.by.username }}</div>
       </div>
     </section>
   </section>
 </template>
 
 <script>
+import { storyService } from "../services/story.service";
 export default {
   props: {
     stories: Array,
+  },
+  data() {
+    return {
+      followingStories: null,
+      loggedInUser: null,
+    };
   },
   computed: {
     getProfilePic() {
       return this.story.by.profileImgUrl;
     },
+  },
+  created() {
+    const user = storyService.getUser();
+    this.loggedInUser = user;
+    const following = [];
+    this.stories.map((story) => {
+      if (this.loggedInUser.following.find((f) => f._id === story.by._id))
+        following.push(story);
+    });
+    this.followingStories = following;
   },
 };
 </script>
