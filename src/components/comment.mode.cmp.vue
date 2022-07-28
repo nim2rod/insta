@@ -294,13 +294,13 @@ export default {
       this.typingMode = 1;
     },
     addCommentTxt() {
-      this.$emit("addCommentTxt", this.newCommentTxt);
+      this.$emit("addCommentTxt", this.newCommentTxt, this.story);
       this.typingMode = 0;
       this.newCommentTxt = null;
     },
     likedStory() {
       ///// maybe problem becaose its not asyncronic/////
-      this.$emit("likeClicked", this.userLikeStory);
+      this.$emit("likeClicked", this.story);
       // this.userLikeStory = this.story.likedBy.find(
       //   (e) => e._id === this.loggedInUser._id
       // );

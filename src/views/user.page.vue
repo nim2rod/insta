@@ -284,14 +284,16 @@
               :src="story.imgUrl"
               alt=""
             />
+            <comment
+              v-if="commentMode"
+              @likeClicked="likedStory"
+              @closeComments="closeComments"
+              @addCommentTxt="addCommentTxt"
+              class="comment-view-container"
+              :story="story"
+              :loggedInUser="loggedInUser"
+            ></comment>
           </div>
-          <comment
-            v-if="commentMode"
-            @closeComments="closeComments"
-            class="comment-view-container"
-            :story="story"
-            :loggedInUser="loggedInUser"
-          ></comment>
         </div>
       </section>
     </section>
@@ -309,6 +311,7 @@ export default {
       stories: null,
       loggedInUser: null,
       commentMode: 0,
+      newComment: null,
       //   user:this.$store.getters.getUser
     };
   },
@@ -319,8 +322,7 @@ export default {
       this.user = currUser;
     });
     this.loggedInUser = storyService.getUser();
-    console.log("user", this.user);
-    console.log("loggedInUser", this.loggedInUser);
+    this.newComment = storyService.getEmptyComment();
   },
   methods: {
     viewComments(story) {
@@ -329,6 +331,40 @@ export default {
     },
     closeComments() {
       this.commentMode = 0;
+    },
+    likedStory(story) {
+      const storyCopy = JSON.parse(JSON.stringify(story));
+      this.$store
+        .dispatch("addLike", {
+          editedStory: storyCopy,
+        })
+        .then(() => {
+          this.userLikeStory = this.story.likedBy.find((e) => {
+            // console.log("this.userLikeStory", this.userLikeStory);
+            return e._id === this.loggedInUser._id;
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    addCommentTxt(commentTxt, story) {
+      this.newComment.txt = commentTxt;
+      this.addComment(story);
+    },
+    addComment(story) {
+      const storyCopy = JSON.parse(JSON.stringify(story));
+      this.$store
+        .dispatch("addComment", {
+          editedStory: storyCopy,
+          newComment: this.newComment,
+        })
+        .then(console.log("great"))
+        .catch((err) => {
+          console.log(err);
+        });
+
+      this.newComment = storyService.getEmptyComment();
     },
   },
   computed: {

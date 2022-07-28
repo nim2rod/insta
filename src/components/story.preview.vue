@@ -225,13 +225,12 @@ export default {
     closeComments() {
       this.commentMode = 0;
     },
-    addCommentTxt(commentTxt) {
+    addCommentTxt(commentTxt, story) {
       this.newComment.txt = commentTxt;
       this.addComment();
     },
     addComment() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
-
       this.$store
         .dispatch("addComment", {
           editedStory: storyCopy,
@@ -248,8 +247,8 @@ export default {
     typing() {
       this.typingMode = 1;
     },
-    likeClicked() {
-      console.log("click");
+    likeClicked(story) {
+      console.log("click-story", story);
       this.likedStory();
     },
     likedStory() {
