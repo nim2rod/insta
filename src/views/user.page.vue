@@ -60,9 +60,8 @@
     <section class="user-page-data">
       <div class="filter-posts-bar-box-user">
         <div class="filter-posts-bar-user">
-          <div class="user-filter-posts">
-            <span>
-              <!-- icon-filter-story-reel -->
+          <div @click="filterAllPosts" class="user-filter-posts btn">
+            <span v-if="!filterBarPost">
               <svg
                 aria-label=""
                 class="icon-filter-story-reel"
@@ -131,6 +130,75 @@
               </svg>
               POSTS</span
             >
+            <span v-if="filterBarPost" class="user-filter-posts-on">
+              <svg
+                aria-label=""
+                class="_ab6-"
+                color="#262626"
+                fill="#262626"
+                height="12"
+                role="img"
+                viewBox="0 0 24 24"
+                width="12"
+              >
+                <rect
+                  fill="none"
+                  height="18"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  width="18"
+                  x="3"
+                  y="3"
+                ></rect>
+                <line
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  x1="9.015"
+                  x2="9.015"
+                  y1="3"
+                  y2="21"
+                ></line>
+                <line
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  x1="14.985"
+                  x2="14.985"
+                  y1="3"
+                  y2="21"
+                ></line>
+                <line
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  x1="21"
+                  x2="3"
+                  y1="9.015"
+                  y2="9.015"
+                ></line>
+                <line
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  x1="21"
+                  x2="3"
+                  y1="14.985"
+                  y2="14.985"
+                ></line>
+              </svg>
+              POSTS
+            </span>
           </div>
           <span>
             <svg
@@ -207,28 +275,52 @@
             </svg>
             VIDEOS</span
           >
-          <span>
-            <svg
-              aria-label=""
-              class="icon-filter-story-reel"
-              color="#8e8e8e"
-              fill="#8e8e8e"
-              height="12"
-              role="img"
-              viewBox="0 0 24 24"
-              width="12"
+          <div @click="filterSavedPosts" class="btn">
+            <span v-if="!filterBarSaved">
+              <svg
+                aria-label=""
+                class="icon-filter-story-reel"
+                color="#8e8e8e"
+                fill="#8e8e8e"
+                height="12"
+                role="img"
+                viewBox="0 0 24 24"
+                width="12"
+              >
+                <polygon
+                  fill="none"
+                  points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></polygon>
+              </svg>
+              SAVED</span
             >
-              <polygon
-                fill="none"
-                points="20 21 12 13.44 4 21 4 3 20 3 20 21"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-              ></polygon>
-            </svg>
-            TAGGED</span
-          >
+            <span v-if="filterBarSaved" class="user-filter-posts-on">
+              <svg
+                aria-label=""
+                class="_ab6-"
+                color="#262626"
+                fill="#262626"
+                height="12"
+                role="img"
+                viewBox="0 0 24 24"
+                width="12"
+              >
+                <polygon
+                  fill="none"
+                  points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></polygon>
+              </svg>
+              SAVED
+            </span>
+          </div>
           <span
             ><svg
               aria-label=""
@@ -271,30 +363,39 @@
           >
         </div>
       </div>
-      <!-- BOTTOM-DATA -->
-      <section class="all-data-container">
+      <!-- BOTTOM-DATA - ALL POSTS-->
+      <section v-if="filterBarPost" class="all-data-container">
         <div
           class="data-container-user"
           v-for="story in stories"
           :key="story._id"
         >
           <div v-if="story.by._id === user._id" class="data-container-crop">
-            <!-- V-IF STORY-BY-_ID EQUEL USER-_ID -->
             <img
               @click="viewComments(story._id)"
               class="data-story-user btn"
               :src="story.imgUrl"
               alt=""
             />
-            <!-- <comment
-              v-if="commentMode"
-              @likeClicked="likedStory"
-              @closeComments="closeComments"
-              @addCommentTxt="addCommentTxt"
-              class="comment-view-container"
-              :story="story"
-              :loggedInUser="loggedInUser"
-            ></comment> -->
+          </div>
+        </div>
+      </section>
+      <!-- BOTTOM DATA - SAVED POSTS -->
+      <section v-if="filterBarSaved" class="all-data-container">
+        <div
+          class="data-container-user"
+          v-for="story in stories"
+          :key="story._id"
+        >
+          <!-- story.by._id === user.savedStoryId -->
+          <!-- user.savedStoryId.some((s) => s._id === story.by._id -->
+          <div v-if="check(story)" class="data-container-crop">
+            <img
+              @click="viewComments(story._id)"
+              class="data-story-user btn"
+              :src="story.imgUrl"
+              alt=""
+            />
           </div>
         </div>
       </section>
@@ -314,6 +415,8 @@ export default {
       loggedInUser: null,
       commentMode: 0,
       newComment: null,
+      filterBarPost: true,
+      filterBarSaved: false,
       //   user:this.$store.getters.getUser
     };
   },
@@ -369,6 +472,24 @@ export default {
         });
 
       this.newComment = storyService.getEmptyComment();
+    },
+    filterAllPosts() {
+      console.log("filter-POSTS");
+      this.filterBarPost = true;
+      this.filterBarSaved = false;
+    },
+    filterSavedPosts() {
+      console.log("filter-SAVED");
+      this.filterBarSaved = true;
+      this.filterBarPost = false;
+    },
+    check(story) {
+      // console.log("this.user", this.user);
+      console.log("story", story);
+      console.log("this.user.savedStoryId", this.user.savedStoryIds);
+      const check = this.user.savedStoryIds.find((id) => id === story._id);
+      console.log("check", check);
+      return check;
     },
   },
   computed: {

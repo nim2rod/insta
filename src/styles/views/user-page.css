@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
     max-width: 65em;
     margin-top: 6em;
 }
@@ -205,6 +206,17 @@
 .filter-posts-bar-user img {
     width: 0.85em;
     margin-right: 0.15em;
+}
+
+.user-filter-posts-on {
+    color: var(--clr7);
+}
+
+.div-filter {
+    width: 28%;
+    height: auto;
+    overflow: hidden;
+    height: 18em;
 }
 
 /* DATA */
