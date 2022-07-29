@@ -6,7 +6,7 @@
     </section>
     <section class="user-seggestions-main">
       <change></change>
-      <suggest :suggestions="suggestions"></suggest>
+      <suggest :users="users"></suggest>
       <copy> </copy>
     </section>
     <!-- <create-new v-if="createMode"></create-new> -->
@@ -34,6 +34,9 @@ export default {
     },
     suggestions() {
       return this.$store.getters.suggestionsToDisplay;
+    },
+    users() {
+      return this.$store.getters.usersToDisplay;
     },
   },
   components: {

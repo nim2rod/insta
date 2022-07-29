@@ -15,6 +15,9 @@ const store = createStore({
         },
         suggestionsToDisplay(state) {
             return state.suggestions
+        },
+        usersToDisplay(state) {
+            return state.users
         }
     },
     mutations: {

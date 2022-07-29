@@ -397,15 +397,7 @@ export default {
         });
     },
     followBtnClicked() {
-      // console.log("this.isUserFollowStoryBy", this.isUserFollowStoryBy);
-      // console.log("follow clicked");
-      // console.log("this.story", this.story);
-      // console.log("this.story.by", this.story.by);
       const loggedUserCopy = JSON.parse(JSON.stringify(this.loggedInUser));
-
-      // console.log("loggedUserCopy", loggedUserCopy);
-      // console.log("loggedUserCopy.following", loggedUserCopy.following);
-
       this.$store
         .dispatch("changeFollowStatus", {
           storyBy: this.story.by,
