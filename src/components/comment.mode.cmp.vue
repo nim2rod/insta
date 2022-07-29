@@ -45,9 +45,23 @@
                 <router-link class="router-link" :to="'/user/' + story.by._id">
                   {{ story.by.username }}</router-link
                 >
+                <div class="loc-card">{{ story.loc.name }}</div>
               </div>
               <div>•</div>
-              <div>Following</div>
+              <div
+                @click="followBtnClicked"
+                class="btn"
+                v-if="isUserFollowStoryBy"
+              >
+                Following
+              </div>
+              <div
+                @click="followBtnClicked"
+                class="comment-card-follow-btn btn"
+                v-if="!isUserFollowStoryBy"
+              >
+                Follow
+              </div>
             </div>
             <div class="three-dot2">•••</div>
           </div>
@@ -302,6 +316,7 @@ export default {
       story: null,
       loggedInUser: null,
       isStorySavedByUser: false,
+      isUserFollowStoryBy: 0,
     };
   },
   async created() {
@@ -313,6 +328,9 @@ export default {
       (e) => e._id === this.loggedInUser._id
     );
     this.newComment = storyService.getEmptyComment();
+    this.isUserFollowStoryBy = this.loggedInUser.following.find(
+      (by) => by._id === this.story.by._id
+    );
   },
   methods: {
     closeComments() {
@@ -373,6 +391,32 @@ export default {
               return id === this.story._id;
             }
           );
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    followBtnClicked() {
+      // console.log("this.isUserFollowStoryBy", this.isUserFollowStoryBy);
+      // console.log("follow clicked");
+      // console.log("this.story", this.story);
+      // console.log("this.story.by", this.story.by);
+      const loggedUserCopy = JSON.parse(JSON.stringify(this.loggedInUser));
+
+      // console.log("loggedUserCopy", loggedUserCopy);
+      // console.log("loggedUserCopy.following", loggedUserCopy.following);
+
+      this.$store
+        .dispatch("changeFollowStatus", {
+          storyBy: this.story.by,
+          editedUser: loggedUserCopy,
+        })
+        .then((savedUser) => {
+          console.log("savedUser:", savedUser);
+          this.loggedInUser = savedUser;
+          this.isUserFollowStoryBy = this.loggedInUser.following.find((by) => {
+            return by._id === this.story.by._id;
+          });
         })
         .catch((err) => {
           console.log(err);

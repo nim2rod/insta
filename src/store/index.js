@@ -151,6 +151,29 @@ const store = createStore({
                 .catch((err) => {
                     console.log(err)
                 })
+        },
+
+        changeFollowStatus({ commit }, { storyBy, editedUser }) {
+            const follow = editedUser.following.find((by) => by._id === storyBy._id)
+            console.log('index-store-follow', follow);
+            if (!follow) {
+                console.log('PUSHHHH');
+                editedUser.following.push(storyBy)
+                console.log('editedUser Saved', editedUser);
+            } else {
+                console.log('SPLICE!!!!!');
+                const idx = editedUser.following.findIndex(by => by._id === storyBy._id)
+                editedUser.following.splice(idx, 1)
+                console.log('editedUser Saved', editedUser);
+            }
+            return storyService.save(editedUser, 'user_db')
+                .then((savedUser) => {
+                    commit({ type: 'updateUser', editedUser: savedUser })
+                    return savedUser
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         }
     },
     modules: {},

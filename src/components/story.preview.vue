@@ -326,7 +326,7 @@ export default {
     this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
       (id) => id === this.story._id
     );
-    console.log("this.isStorySavedByUser", this.isStorySavedByUser);
+    console.log("preview loaded");
   },
 
   computed: {
