@@ -157,6 +157,8 @@ const store = createStore({
         },
 
         changeFollowStatus({ commit }, { storyBy, editedUser }) {
+            console.log('storyBy/suggestBy', storyBy);
+            console.log('editedUser', editedUser);
             const follow = editedUser.following.find((by) => by._id === storyBy._id)
             console.log('index-store-follow', follow);
             if (!follow) {

@@ -39,13 +39,6 @@ export default {
     };
   },
   methods: {
-    // isFollow(suggest) {
-    //   const check = this.loggedInUser.following.find(
-    //     (by) => by._id === suggest._id
-    //   );
-    //   // console.log("check", check);
-    //   return check;
-    // },
     followBtnClicked(suggest) {
       console.log("follow-suggest", suggest);
 
@@ -58,15 +51,25 @@ export default {
 
       this.$store
         .dispatch("changeFollowStatus", {
-          suggestBy: suggestBy,
+          storyBy: suggestBy,
           editedUser: loggedUserCopy,
         })
         .then((savedUser) => {
           console.log("savedUser:", savedUser);
           this.loggedInUser = savedUser;
-          // this.isUserFollowStoryBy = this.loggedInUser.following.find((by) => {
-          //   return by._id === this.story.by._id;
-          // });
+
+          const render = [];
+          this.users.map((user) => {
+            if (this.loggedInUser.following.some((by) => by._id === user._id))
+              console.log("ttttttttrrrrrruuuueee");
+            else {
+              console.log("elseeeeeeeee");
+              render.push(user);
+            }
+          });
+          const shortRender = render.slice(0, 5);
+          this.suggestUsers = shortRender;
+          // this.suggestUsers = render;
         })
         .catch((err) => {
           console.log(err);
@@ -76,7 +79,6 @@ export default {
   created() {
     this.loggedInUser = storyService.getUser();
     const render = [];
-
     this.users.map((user) => {
       if (this.loggedInUser.following.some((by) => by._id === user._id))
         console.log("ttttttttrrrrrruuuueee");
@@ -85,7 +87,9 @@ export default {
         render.push(user);
       }
     });
-    this.suggestUsers = render;
+    const shortRender = render.slice(0, 5);
+    this.suggestUsers = shortRender;
+    // this.suggestUsers = render;
   },
 };
 </script>
