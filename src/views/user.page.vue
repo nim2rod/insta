@@ -200,7 +200,7 @@
               POSTS
             </span>
           </div>
-          <span>
+          <span class="reels-btn">
             <svg
               aria-label=""
               class="icon-filter-story-reel"
@@ -422,7 +422,7 @@ export default {
   },
   created() {
     const { userId } = this.$route.params;
-    storyService.getById(userId, "user_db").then((currUser) => {
+    storyService.getUserById(userId, "user_db").then((currUser) => {
       console.log("currUser", currUser);
       this.user = currUser;
     });

@@ -1,5 +1,10 @@
 <template>
   <header class="header-container">
+    <section class="mobile-header flex align-self-center">
+      <router-link class="router-link" to="/">
+        <div class="main-logo-mobile">Instagram</div></router-link
+      >
+    </section>
     <section class="header">
       <router-link class="router-link" to="/">
         <div class="main-logo">Instagram</div></router-link

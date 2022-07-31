@@ -322,7 +322,7 @@ export default {
   async created() {
     this.loggedInUser = storyService.getUser();
     const { storyId } = this.$route.params;
-    const story = await storyService.getById(storyId);
+    const story = await storyService.getStoryById(storyId);
     this.story = story;
     this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id

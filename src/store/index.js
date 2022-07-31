@@ -24,9 +24,9 @@ const store = createStore({
         setStories(state, { stories }) {
             state.stories = stories
         },
-        setSuggettions(state, { suggestions }) {
-            state.suggestions = suggestions
-        },
+        // setSuggettions(state, { suggestions }) {
+        //     state.suggestions = suggestions
+        // },
         setUsers(state, { users }) {
             state.users = users
         },
@@ -56,16 +56,6 @@ const store = createStore({
                     console.log(err)
                 })
         },
-        loadSuggest4u({ commit }) {
-            storyService.querySuggestions().then((suggestions) => {
-                commit({ type: 'setSuggettions', suggestions })
-                return suggestions
-            })
-                .catch((err) => {
-                    console.log('index- catch');
-                    console.log(err)
-                })
-        },
         loadUsers({ commit }) {
             storyService.queryUsers().then((users) => {
                 commit({ type: 'setUsers', users })
@@ -76,8 +66,6 @@ const store = createStore({
                     console.log(err)
                 })
         },
-        // addComment: ({ commit }, { editedStory, newComment }) => commit('addComment', editedStory, newComment),
-
         addComment({ commit }, { editedStory, newComment }) {
             const user = storyService.getUser()
             newComment.by = { ...user }

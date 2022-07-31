@@ -12,7 +12,7 @@ export default {
   name: "app",
   created() {
     this.$store.dispatch({ type: "loadStories" }).then(() => {});
-    this.$store.dispatch({ type: "loadSuggest4u" }).then(() => {});
+    // this.$store.dispatch({ type: "loadSuggest4u" }).then(() => {});
     this.$store.dispatch({ type: "loadUsers" }).then(() => {});
   },
   components: {

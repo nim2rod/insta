@@ -32,9 +32,9 @@ export default {
     stories() {
       return this.$store.getters.storiesToDisplay;
     },
-    suggestions() {
-      return this.$store.getters.suggestionsToDisplay;
-    },
+    // suggestions() {
+    //   return this.$store.getters.suggestionsToDisplay;
+    // },
     users() {
       return this.$store.getters.usersToDisplay;
     },

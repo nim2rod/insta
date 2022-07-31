@@ -24,7 +24,7 @@
     align-items: center;
     top: 6.5em;
     background-color: var(--clr2);
-    width: 49%;
+    /* width: 49%; */
     max-width: 39em;
     min-height: 29em;
     height: -webkit-fill-available;
@@ -136,7 +136,7 @@
 .create-new-top-2 {
     height: 52px;
     border-bottom: 1px rgb(219, 219, 219) solid;
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -170,7 +170,7 @@
 }
 
 .insert-txt-box {
-    width: 41%;
+    /* width: 41%; */
     max-height: 100%;
     /* background-color: rgb(164, 129, 198); */
 }
@@ -212,7 +212,7 @@
 }
 
 .location-input-create-box {
-    position: relative;
+    /* position: relative; */
     top: 12em;
     border-bottom: 1px rgb(219, 219, 219) solid;
     border-top: 1px rgb(219, 219, 219) solid;
