@@ -156,6 +156,20 @@
     .insert-txt-box {
         width: 100%;
     }
+
+    .login-container {
+        font-size: 0.9em;
+        min-width: 86%;
+    }
+
+    .login-options {
+        margin-bottom: 5em;
+    }
+
+    .input-box-login div {
+        margin-bottom: 1em;
+    }
+
 }
 
 /* /////////NOT-MOBILE////// */
@@ -270,7 +284,7 @@
 
 
 /* SMALL */
-@media (max-width: 740px) {
+@media (max-width: 810px) {
     .search-header {
         display: none;
     }

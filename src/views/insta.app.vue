@@ -1,12 +1,12 @@
 <template>
   <section class="insta-app">
     <section class="story-and-short-box">
-      <story-twenty-four :stories="stories"></story-twenty-four>
-      <story-list :stories="stories"></story-list>
+      <story-twenty-four v-if="stories" :stories="stories"></story-twenty-four>
+      <story-list v-if="stories" :stories="stories"></story-list>
     </section>
     <section class="user-seggestions-main">
       <change></change>
-      <suggest :users="users"></suggest>
+      <suggest v-if="users" :users="users"></suggest>
       <copy> </copy>
     </section>
     <!-- <create-new v-if="createMode"></create-new> -->
@@ -32,11 +32,18 @@ export default {
     stories() {
       return this.$store.getters.storiesToDisplay;
     },
-    // suggestions() {
-    //   return this.$store.getters.suggestionsToDisplay;
-    // },
     users() {
       return this.$store.getters.usersToDisplay;
+    },
+    created() {
+      // console.log(
+      //   "this.$store.getters.storiesToDisplay",
+      //   this.$store.getters.storiesToDisplay
+      // );
+      // console.log(
+      //   "this.$store.getters.usersToDisplay",
+      //   this.$store.getters.usersToDisplay
+      // );
     },
   },
   components: {
@@ -46,7 +53,6 @@ export default {
     change,
     copy,
     createNew,
-    // comment,
   },
 };
 </script>

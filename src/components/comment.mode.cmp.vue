@@ -289,7 +289,7 @@
             <div
               v-if="newComment.txt"
               @click="addCommentTxt"
-              class="post-btn-crd2"
+              class="post-btn-crd2 btn"
             >
               Post
             </div>
@@ -323,6 +323,7 @@ export default {
     this.loggedInUser = storyService.getUser();
     const { storyId } = this.$route.params;
     const story = await storyService.getStoryById(storyId);
+    console.log("story", story);
     this.story = story;
     this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id

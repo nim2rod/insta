@@ -11,9 +11,9 @@ import appHeader from "./components/header.cmp.vue";
 export default {
   name: "app",
   created() {
-    this.$store.dispatch({ type: "loadStories" }).then(() => {});
+    this.$store.dispatch({ type: "loadStories" }).then((stories) => {});
     // this.$store.dispatch({ type: "loadSuggest4u" }).then(() => {});
-    this.$store.dispatch({ type: "loadUsers" }).then(() => {});
+    this.$store.dispatch({ type: "loadUsers" }).then((users) => {});
   },
   components: {
     appHeader,

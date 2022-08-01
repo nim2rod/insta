@@ -1,4 +1,4 @@
-<template>
+<template >
   <section v-if="users">
     <div class="suggetion-header">
       <div>Suggestions For You</div>
@@ -78,6 +78,7 @@ export default {
   },
   created() {
     this.loggedInUser = storyService.getUser();
+    console.log("this.users", this.users);
     const render = [];
     this.users.map((user) => {
       if (this.loggedInUser.following.some((by) => by._id === user._id))

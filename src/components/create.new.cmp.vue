@@ -198,8 +198,13 @@ export default {
   },
   created() {
     this.newStory = storyService.getEmptyStory();
-    this.newStory.by = storyService.getUser();
-    console.log("this.newStory", this.newStory);
+    const loggedInUser = storyService.getUser();
+    const userBy = {
+      _id: loggedInUser._id,
+      username: loggedInUser.username,
+      profileImgUrl: loggedInUser.profileImgUrl,
+    };
+    this.newStory.by = userBy;
   },
 };
 </script>

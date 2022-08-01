@@ -258,7 +258,7 @@ export default {
           editedStory: storyCopy,
           newComment: this.newComment,
         })
-        .then(console.log("great"))
+        .then(console.log("great-you added a comment"))
         .catch((err) => {
           console.log(err);
         });

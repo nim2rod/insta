@@ -1,4 +1,4 @@
-<template>
+<template v-if="stories">
   <section class="stories-bar-container">
     <section class="stories-bar-box">
       <div v-for="story in followingStories" :key="story._id">
@@ -29,16 +29,29 @@ export default {
     getProfilePic() {
       return this.story.by.profileImgUrl;
     },
+    user() {
+      return this.$store.getters.getUser;
+    },
   },
   created() {
     const user = storyService.getUser();
     this.loggedInUser = user;
+
+    console.log("user", this.user);
+
     const following = [];
     this.stories.map((story) => {
       if (this.loggedInUser.following.find((f) => f._id === story.by._id))
         following.push(story);
     });
     this.followingStories = following;
+
+    // const following = [];
+    // this.stories.map((story) => {
+    //   if (this.user.following.find((f) => f._id === story.by._id))
+    //     following.push(story);
+    // });
+    // this.followingStories = following;
   },
 };
 </script>

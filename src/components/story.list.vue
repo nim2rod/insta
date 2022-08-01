@@ -20,6 +20,9 @@ export default {
     return {};
   },
   methods: {},
+  created() {
+    console.log("this.stories", this.stories);
+  },
 };
 </script>
 

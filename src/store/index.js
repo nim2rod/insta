@@ -1,13 +1,19 @@
 import { createStore } from 'vuex'
+import { userService } from '../services/user.service.js'
 import { storyService } from '../services/story.service.js'
+import userStore from './modules/user.module.js'
 
 const store = createStore({
     strict: true,
+    modules: {
+        userStore
+    },
     state: {
         stories: null,
         filterBy: null,
         suggestions: null,
         users: null,
+        loggedinUser: null
     },
     getters: {
         storiesToDisplay(state) {
@@ -18,10 +24,14 @@ const store = createStore({
         },
         usersToDisplay(state) {
             return state.users
+        },
+        getUser(state) {
+            return state.loggedinUser;
         }
     },
     mutations: {
         setStories(state, { stories }) {
+            console.log('mutations-setStories', stories);
             state.stories = stories
         },
         // setSuggettions(state, { suggestions }) {
@@ -41,6 +51,9 @@ const store = createStore({
         updateUser(state, { editedUser }) {
             const idx = state.users.findIndex((u) => u._id === editedUser._id)
             state.users.splice(idx, 1, editedUser)
+        },
+        setUser(state, { user }) {
+            state.loggedinUser = user;
         }
     },
     actions: {
@@ -48,6 +61,7 @@ const store = createStore({
             storyService
                 .query()
                 .then((stories) => {
+                    console.log('store-action-loadStories', stories);
                     commit({ type: 'setStories', stories })
                     return stories
                 })
@@ -66,24 +80,26 @@ const store = createStore({
                     console.log(err)
                 })
         },
-        addComment({ commit }, { editedStory, newComment }) {
-            const user = storyService.getUser()
-            newComment.by = { ...user }
-            editedStory.comments.push(newComment)
+        async addComment({ commit }, { editedStory, newComment }) {
+            try {
 
-            return storyService.save(editedStory)
-                .then((savedStory) => {
-                    console.log('index-store-then-savedStory', savedStory);
-                    commit({ type: 'updateStory', editedStory: savedStory })
-                    return savedStory
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+                const user = storyService.getUser()
+                newComment.by = { ...user }
+                editedStory.comments.push(newComment)
+
+                const story = await storyService.save(editedStory)
+
+                console.log('index-store-then-savedStory', story);
+                commit({ type: 'updateStory', editedStory: story })
+                return story
+            } catch (err) {
+                console.log(err);
+                throw err
+            }
+
 
         },
         addNewStory({ commit }, { newStory }) {
-            console.log('addNewStory - action', newStory);
             return storyService.save(newStory)
                 .then((savedStory) => {
                     console.log('thennn- action');
@@ -127,7 +143,7 @@ const store = createStore({
             if (!saved) {
                 console.log('PUSHHHH');
                 editedUser.savedStoryIds.push(storyId)
-                console.log('editedUser Saved', editedUser);
+                console.log('editedUser Saved before storage and backend', editedUser);
             } else {
                 console.log('SPLICE!!!!!');
                 const idx = editedUser.savedStoryIds.findIndex(id => id === storyId)
@@ -167,7 +183,18 @@ const store = createStore({
                 .catch((err) => {
                     console.log(err)
                 })
-        }
+        },
+        //log user
+        async login({ commit }, { cred }) {
+            try {
+                console.log('login-user-module', cred);
+                const user = await userService.login(cred);
+                commit({ type: 'setUser', user });
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
     },
     modules: {},
 
