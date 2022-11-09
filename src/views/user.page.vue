@@ -32,7 +32,8 @@
             followers
           </div>
           <div>
-            <span>{{ user.following.length + user.fakeFollowing }}</span>
+            <!-- <span>{{ user.following.length + user.fakeFollowing }}</span> -->
+            <span>{{ user.fakeFollowing }}</span>
             following
           </div>
         </div>
@@ -422,11 +423,14 @@ export default {
   },
   created() {
     const { userId } = this.$route.params;
+    console.log("this.$route.params", this.$route.params);
     storyService.getUserById(userId, "user_db").then((currUser) => {
       console.log("currUser", currUser);
       this.user = currUser;
     });
+
     this.loggedInUser = storyService.getUser();
+    console.log("created-this.loggedInUser", this.loggedInUser);
     this.newComment = storyService.getEmptyComment();
     this.stories = this.$store.getters.storiesToDisplay;
   },

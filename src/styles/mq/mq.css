@@ -76,6 +76,10 @@
         font-size: 0.73em;
     }
 
+    .comments-txt-box-right {
+        min-width: 101%;
+    }
+
     /* .stories-bar-box {
         width: 25em;
     } */
@@ -170,11 +174,19 @@
         margin-bottom: 1em;
     }
 
+    .img-insert-txt-container {
+        max-height: 92%;
+    }
+
 }
 
 /* /////////NOT-MOBILE////// */
 
 @media (min-width: 501px) {
+
+    .add-comment-bar {
+        margin-left: auto;
+    }
 
     /* CREATE-NEW */
     .create-new-container {

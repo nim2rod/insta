@@ -37,7 +37,7 @@ export default {
     const user = storyService.getUser();
     this.loggedInUser = user;
 
-    console.log("user", this.user);
+    // console.log("user", this.user);
 
     const following = [];
     this.stories.map((story) => {

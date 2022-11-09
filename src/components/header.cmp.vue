@@ -2,12 +2,12 @@
   <header class="header-container">
     <section class="mobile-header flex align-self-center">
       <router-link class="router-link" to="/">
-        <div class="main-logo-mobile">Instagram</div></router-link
+        <div class="main-logo-mobile">InstaFriends</div></router-link
       >
     </section>
     <section class="header">
       <router-link class="router-link" to="/">
-        <div class="main-logo">Instagram</div></router-link
+        <div class="main-logo">InstaFriends</div></router-link
       >
 
       <input class="search-header" type="text" placeholder="  🔍   Search" />

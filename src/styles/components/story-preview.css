@@ -150,7 +150,7 @@
     display: flex;
     justify-content: space-between;
     border-top: 1px rgb(239, 239, 239) solid;
-    margin-left: auto;
+    /* margin-left: auto; */
     padding: 0.5em;
     height: 3.1em;
     width: inherit;

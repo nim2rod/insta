@@ -270,7 +270,7 @@
 .footer-comments {
     border-top: 1px rgb(239, 239, 239) solid;
     height: 10em;
-    min-width: 30.4em;
+    /* min-width: 30.4em; */
     /* position: absolute; */
     /* bottom: 10%; */
     background-color: var(--clr2);
