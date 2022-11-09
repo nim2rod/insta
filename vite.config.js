@@ -12,7 +12,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../new-backend/public',
+    outDir: '../insta-backend/public',
     emptyOutDir: true
   }
 })
