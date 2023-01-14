@@ -11,16 +11,12 @@ const store = createStore({
     state: {
         stories: null,
         filterBy: null,
-        suggestions: null,
         users: null,
         loggedinUser: null
     },
     getters: {
         storiesToDisplay(state) {
             return state.stories
-        },
-        suggestionsToDisplay(state) {
-            return state.suggestions
         },
         usersToDisplay(state) {
             return state.users
@@ -34,9 +30,6 @@ const store = createStore({
             console.log('mutations-setStories', stories);
             state.stories = stories
         },
-        // setSuggettions(state, { suggestions }) {
-        //     state.suggestions = suggestions
-        // },
         setUsers(state, { users }) {
             state.users = users
         },
@@ -45,7 +38,6 @@ const store = createStore({
             state.stories.splice(idx, 1, editedStory)
         },
         addStory(state, { newStory }) {
-            console.log('mutate- newStory', newStory);
             state.stories.unshift(newStory)
         },
         updateUser(state, { editedUser }) {
@@ -57,62 +49,52 @@ const store = createStore({
         }
     },
     actions: {
-        loadStories({ commit }) {
-            storyService
-                .query()
-                .then((stories) => {
-                    console.log('store-action-loadStories', stories);
-                    commit({ type: 'setStories', stories })
-                    return stories
-                })
-                .catch((err) => {
-                    console.log('index- catch');
-                    console.log(err)
-                })
+        async loadStories({ commit }) {
+            try {
+                const stories = await storyService.query()
+                commit({ type: 'setStories', stories })
+                return stories
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
         },
-        loadUsers({ commit }) {
-            storyService.queryUsers().then((users) => {
+        async loadUsers({ commit }) {
+            try {
+                const users = await storyService.queryUsers()
                 commit({ type: 'setUsers', users })
                 return users
-            })
-                .catch((err) => {
-                    console.log('index- catch');
-                    console.log(err)
-                })
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
         },
         async addComment({ commit }, { editedStory, newComment }) {
             try {
-
                 const user = storyService.getUser()
                 newComment.by = { ...user }
                 editedStory.comments.push(newComment)
 
                 const story = await storyService.save(editedStory)
-
-                console.log('index-store-then-savedStory', story);
                 commit({ type: 'updateStory', editedStory: story })
                 return story
             } catch (err) {
                 console.log(err);
                 throw err
             }
-
-
         },
-        addNewStory({ commit }, { newStory }) {
-            return storyService.save(newStory)
-                .then((savedStory) => {
-                    console.log('thennn- action');
-                    commit({ type: 'addStory', newStory: savedStory })
-                    return savedStory
-                })
-                .catch((err) => {
-                    console.log(err, 'problem with addNewStory - action')
-                })
+        async addNewStory({ commit }, { newStory }) {
+            try {
+                const savedStory = await storyService.save(newStory)
+                commit({ type: 'addStory', newStory: savedStory })
+                return savedStory
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
         },
-        addLike({ commit }, { editedStory }) {
+        async addLike({ commit }, { editedStory }) {
             const user = storyService.getUser()
-
             const liked = editedStory.likedBy.find((u) => u._id === user._id)
             if (!liked) {
                 editedStory.likedBy.push(user)
@@ -120,63 +102,51 @@ const store = createStore({
                 const idx = editedStory.likedBy.findIndex(x => x._id === user._id)
                 editedStory.likedBy.splice(idx, 1)
             }
-            return storyService.save(editedStory)
-                .then((savedStory) => {
-
-                    commit({ type: 'updateStory', editedStory: savedStory })
-                    return savedStory
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+            try {
+                const savedStory = await storyService.save(editedStory)
+                commit({ type: 'updateStory', editedStory: savedStory })
+                return savedStory
+            } catch (err) {
+                console.log(err);
+                throw err
+            }
         },
-
-        addStoryToSavedUser({ commit }, { storyId, editedUser }) {
+        async addStoryToSavedUser({ commit }, { storyId, editedUser }) {
             const saved = editedUser.savedStoryIds.find((id) => id === storyId)
-
             if (!saved) {
-                console.log('PUSHHHH');
+                console.log('PUSH');
                 editedUser.savedStoryIds.push(storyId)
-                console.log('editedUser Saved before storage and backend', editedUser);
             } else {
-                console.log('SPLICE!!!!!');
+                console.log('SPLICE!');
                 const idx = editedUser.savedStoryIds.findIndex(id => id === storyId)
                 editedUser.savedStoryIds.splice(idx, 1)
-                console.log('editedUser Saved', editedUser);
             }
-            return storyService.save(editedUser, 'user_db')
-                .then((savedUser) => {
-                    commit({ type: 'updateUser', editedUser: savedUser })
-                    return savedUser
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        },
 
-        changeFollowStatus({ commit }, { storyBy, editedUser }) {
-            console.log('storyBy/suggestBy', storyBy);
-            console.log('editedUser', editedUser);
+            try {
+                const savedUser = await storyService.save(editedUser, 'user_db')
+                commit({ type: 'updateUser', editedUser: savedUser })
+                return savedUser
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
+        },
+        async changeFollowStatus({ commit }, { storyBy, editedUser }) {
             const follow = editedUser.following.find((by) => by._id === storyBy._id)
-            console.log('index-store-follow', follow);
             if (!follow) {
-                console.log('PUSHHHH');
                 editedUser.following.push(storyBy)
-                console.log('editedUser Saved', editedUser);
             } else {
-                console.log('SPLICE!!!!!');
                 const idx = editedUser.following.findIndex(by => by._id === storyBy._id)
                 editedUser.following.splice(idx, 1)
-                console.log('editedUser Saved', editedUser);
             }
-            return storyService.save(editedUser, 'user_db')
-                .then((savedUser) => {
-                    commit({ type: 'updateUser', editedUser: savedUser })
-                    return savedUser
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
+            try {
+                const savedUser = await storyService.save(editedUser, 'user_db')
+                commit({ type: 'updateUser', editedUser: savedUser })
+                return savedUser
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
         },
         //log user
         async login({ commit }, { cred }) {
@@ -191,7 +161,6 @@ const store = createStore({
 
     },
     modules: {},
-
 })
 
 export default store

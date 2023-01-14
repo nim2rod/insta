@@ -36,22 +36,12 @@ export default {
   created() {
     const user = storyService.getUser();
     this.loggedInUser = user;
-
-    // console.log("user", this.user);
-
     const following = [];
-    this.stories.map((story) => {
+    this.stories.forEach((story) => {
       if (this.loggedInUser.following.find((f) => f._id === story.by._id))
         following.push(story);
     });
     this.followingStories = following;
-
-    // const following = [];
-    // this.stories.map((story) => {
-    //   if (this.user.following.find((f) => f._id === story.by._id))
-    //     following.push(story);
-    // });
-    // this.followingStories = following;
   },
 };
 </script>

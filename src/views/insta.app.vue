@@ -9,7 +9,6 @@
       <suggest v-if="users" :users="users"></suggest>
       <copy> </copy>
     </section>
-    <!-- <create-new v-if="createMode"></create-new> -->
   </section>
 </template>
 
@@ -19,7 +18,6 @@ import storyList from "../components/story.list.vue";
 import storyTwentyFour from "../components/24stories.cmp.vue";
 import suggest from "../components/suggest4u.cmp.vue";
 import copy from "../components/copyright.cmp.vue";
-import createNew from "../components/create.new.cmp.vue";
 
 export default {
   data() {
@@ -35,16 +33,7 @@ export default {
     users() {
       return this.$store.getters.usersToDisplay;
     },
-    created() {
-      // console.log(
-      //   "this.$store.getters.storiesToDisplay",
-      //   this.$store.getters.storiesToDisplay
-      // );
-      // console.log(
-      //   "this.$store.getters.usersToDisplay",
-      //   this.$store.getters.usersToDisplay
-      // );
-    },
+    created() {},
   },
   components: {
     storyList,
@@ -52,7 +41,6 @@ export default {
     suggest,
     change,
     copy,
-    createNew,
   },
 };
 </script>

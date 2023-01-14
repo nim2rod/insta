@@ -323,7 +323,6 @@ export default {
     this.loggedInUser = storyService.getUser();
     const { storyId } = this.$route.params;
     const story = await storyService.getStoryById(storyId);
-    console.log("story", story);
     this.story = story;
     this.userLikeStory = this.story.likedBy.find(
       (e) => e._id === this.loggedInUser._id
@@ -340,80 +339,66 @@ export default {
     typing() {
       this.typingMode = 1;
     },
-    addCommentTxt() {
+    async addCommentTxt() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
-      this.$store
-        .dispatch("addComment", {
+      try {
+        const returnedStory = await this.$store.dispatch("addComment", {
           editedStory: storyCopy,
           newComment: this.newComment,
-        })
-        .then((returnedStory) => {
-          const { storyId } = this.$route.params;
-
-          this.story = returnedStory;
-        })
-        .catch((err) => {
-          console.log(err);
         });
-
+        const { storyId } = this.$route.params;
+        this.story = returnedStory;
+      } catch (err) {
+        throw err;
+      }
       this.typingMode = 0;
       this.newComment = storyService.getEmptyComment();
     },
-    likedStory() {
+    async likedStory() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
-      this.$store
-        .dispatch("addLike", {
+      try {
+        const savedStory = await this.$store.dispatch("addLike", {
           editedStory: storyCopy,
-        })
-        .then((savedStory) => {
-          console.log("Saved Story", savedStory);
-          this.userLikeStory = savedStory.likedBy.find((e) => {
-            return e._id === this.loggedInUser._id;
-          });
-
-          this.story = savedStory;
-        })
-        .catch((err) => {
-          console.log(err);
         });
+        this.userLikeStory = savedStory.likedBy.find((e) => {
+          return e._id === this.loggedInUser._id;
+        });
+        this.story = savedStory;
+      } catch (err) {
+        throw err;
+      }
     },
-    savedClicked() {
+    async savedClicked() {
       const userCopy = JSON.parse(JSON.stringify(this.loggedInUser));
-      this.$store
-        .dispatch("addStoryToSavedUser", {
+      try {
+        const savedUser = await this.$store.dispatch("addStoryToSavedUser", {
           storyId: this.story._id,
           editedUser: userCopy,
-        })
-        .then((savedUser) => {
-          console.log("savedUser:", savedUser);
-          this.loggedInUser = savedUser;
-          this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
-            (id) => {
-              return id === this.story._id;
-            }
-          );
-        })
-        .catch((err) => {
-          console.log(err);
         });
+        console.log("savedUser:", savedUser);
+        this.loggedInUser = savedUser;
+        this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find((id) => {
+          return id === this.story._id;
+        });
+      } catch (err) {
+        throw err;
+      }
     },
-    followBtnClicked() {
+    async followBtnClicked() {
       const loggedUserCopy = JSON.parse(JSON.stringify(this.loggedInUser));
-      this.$store
-        .dispatch("changeFollowStatus", {
+      try {
+        const savedUser = await this.$store.dispatch("changeFollowStatus", {
           storyBy: this.story.by,
           editedUser: loggedUserCopy,
-        })
-        .then((savedUser) => {
-          console.log("savedUser:", savedUser);
-          this.loggedInUser = savedUser;
-          this.isUserFollowStoryBy = this.loggedInUser.following.find((by) => {
-            return by._id === this.story.by._id;
-          });
-        })
-        .catch((err) => {
-          console.log(err);
         });
+        console.log("savedUser:", savedUser);
+        this.loggedInUser = savedUser;
+        this.isUserFollowStoryBy = this.loggedInUser.following.find((by) => {
+          return by._id === this.story.by._id;
+        });
+      } catch (err) {
+        throw err;
+      }
     },
   },
 };

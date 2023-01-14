@@ -39,58 +39,39 @@ export default {
     };
   },
   methods: {
-    followBtnClicked(suggest) {
-      console.log("follow-suggest", suggest);
-
+    async followBtnClicked(suggest) {
       const loggedUserCopy = JSON.parse(JSON.stringify(this.loggedInUser));
       const suggestBy = {};
       suggestBy._id = suggest._id;
       suggestBy.username = suggest.username;
       suggestBy.profileImgUrl = suggest.profileImgUrl;
-      console.log("suggestBy", suggestBy);
-
-      this.$store
-        .dispatch("changeFollowStatus", {
+      try {
+        const savedUser = await this.$store.dispatch("changeFollowStatus", {
           storyBy: suggestBy,
           editedUser: loggedUserCopy,
-        })
-        .then((savedUser) => {
-          console.log("savedUser:", savedUser);
-          this.loggedInUser = savedUser;
-
-          const render = [];
-          this.users.map((user) => {
-            if (this.loggedInUser.following.some((by) => by._id === user._id))
-              console.log("ttttttttrrrrrruuuueee");
-            else {
-              console.log("elseeeeeeeee");
-              render.push(user);
-            }
-          });
-          const shortRender = render.slice(0, 5);
-          this.suggestUsers = shortRender;
-          // this.suggestUsers = render;
-        })
-        .catch((err) => {
-          console.log(err);
         });
+        this.loggedInUser = savedUser;
+        const render = [];
+        this.users.forEach((user) => {
+          if (!this.loggedInUser.following.some((by) => by._id === user._id))
+            render.push(user);
+        });
+        const shortRender = render.slice(0, 5);
+        this.suggestUsers = shortRender;
+      } catch (err) {
+        throw err;
+      }
     },
   },
   created() {
     this.loggedInUser = storyService.getUser();
-    console.log("this.users", this.users);
     const render = [];
-    this.users.map((user) => {
-      if (this.loggedInUser.following.some((by) => by._id === user._id))
-        console.log("ttttttttrrrrrruuuueee");
-      else {
-        console.log("elseeeeeeeee");
+    this.users.forEach((user) => {
+      if (!this.loggedInUser.following.some((by) => by._id === user._id))
         render.push(user);
-      }
     });
     const shortRender = render.slice(0, 5);
     this.suggestUsers = shortRender;
-    // this.suggestUsers = render;
   },
 };
 </script>

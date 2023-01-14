@@ -201,35 +201,20 @@
         Post
       </div>
     </div>
-    <!-- COMMENT-CMP -->
-    <!-- <comment
-      v-if="commentMode"
-      @closeComments="closeComments"
-      @addCommentTxt="addCommentTxt"
-      @likeClicked="likeClicked"
-      @savedClicked="savedClicked"
-      class="comment-view-container"
-      :story="story"
-      :loggedInUser="this.loggedInUser"
-    ></comment> -->
   </section>
 </template>
 
 <script>
-// import comment from "../components/comment.mode.cmp.vue";
 import { storyService } from "../services/story.service";
 
 export default {
   props: {
     story: Object,
   },
-  components: {
-    // comment,
-  },
+  components: {},
 
   data() {
     return {
-      commentMode: 0,
       typingMode: 0,
       newComment: null,
       editedStory: null,
@@ -241,27 +226,22 @@ export default {
   },
   methods: {
     viewComments(story) {
-      // this.commentMode = 1;
       this.$router.push(`/story/${story._id}`);
-    },
-    closeComments() {
-      this.commentMode = 0;
     },
     addCommentTxt(commentTxt, story) {
       this.newComment.txt = commentTxt;
       this.addComment();
     },
-    addComment() {
+    async addComment() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
-      this.$store
-        .dispatch("addComment", {
+      try {
+        await this.$store.dispatch("addComment", {
           editedStory: storyCopy,
           newComment: this.newComment,
-        })
-        .then(console.log("great-you added a comment"))
-        .catch((err) => {
-          console.log(err);
         });
+      } catch (err) {
+        throw err;
+      }
 
       this.typingMode = 0;
       this.newComment = storyService.getEmptyComment();
@@ -269,45 +249,34 @@ export default {
     typing() {
       this.typingMode = 1;
     },
-    likeClicked(story) {
-      console.log("click-story", story);
+    likeClicked() {
       this.likedStory();
     },
-    likedStory() {
+    async likedStory() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
-      this.$store
-        .dispatch("addLike", {
-          editedStory: storyCopy,
-        })
-        .then(() => {
-          this.userLikeStory = this.story.likedBy.find((e) => {
-            return e._id === this.loggedInUser._id;
-          });
-        })
-
-        .catch((err) => {
-          console.log(err);
+      try {
+        await this.$store.dispatch("addLike", { editedStory: storyCopy });
+        this.userLikeStory = this.story.likedBy.find((e) => {
+          return e._id === this.loggedInUser._id;
         });
+      } catch (err) {
+        throw err;
+      }
     },
-    addStoryToSavedUser() {
+    async addStoryToSavedUser() {
       const userCopy = JSON.parse(JSON.stringify(this.loggedInUser));
-      this.$store
-        .dispatch("addStoryToSavedUser", {
+      try {
+        const savedUser = await this.$store.dispatch("addStoryToSavedUser", {
           storyId: this.story._id,
           editedUser: userCopy,
-        })
-        .then((savedUser) => {
-          console.log("savedUser:", savedUser);
-          this.loggedInUser = savedUser;
-          this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
-            (id) => {
-              return id === this.story._id;
-            }
-          );
-        })
-        .catch((err) => {
-          console.log(err);
         });
+        this.loggedInUser = savedUser;
+        this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find((id) => {
+          return id === this.story._id;
+        });
+      } catch (err) {
+        throw err;
+      }
     },
   },
   created() {
@@ -326,7 +295,6 @@ export default {
     this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
       (id) => id === this.story._id
     );
-    console.log("preview loaded");
   },
 
   computed: {

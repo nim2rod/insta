@@ -405,7 +405,6 @@
 </template>
 
 <script>
-import comment from "../components/comment.mode.cmp.vue";
 import { storyService } from "../services/story.service";
 
 export default {
@@ -414,7 +413,6 @@ export default {
       user: null,
       stories: null,
       loggedInUser: null,
-      commentMode: 0,
       newComment: null,
       filterBarPost: true,
       filterBarSaved: false,
@@ -436,22 +434,17 @@ export default {
   },
   methods: {
     viewComments(storyId) {
-      console.log("view comment");
-      this.commentMode = 1;
       this.$router.push(`/story/${storyId}`);
-    },
-    closeComments() {
-      this.commentMode = 0;
     },
     likedStory(story) {
       const storyCopy = JSON.parse(JSON.stringify(story));
+
       this.$store
         .dispatch("addLike", {
           editedStory: storyCopy,
         })
         .then(() => {
           this.userLikeStory = this.story.likedBy.find((e) => {
-            // console.log("this.userLikeStory", this.userLikeStory);
             return e._id === this.loggedInUser._id;
           });
         })
@@ -488,22 +481,13 @@ export default {
       this.filterBarPost = false;
     },
     check(story) {
-      // console.log("this.user", this.user);
-      console.log("story", story);
-      console.log("this.user.savedStoryId", this.user.savedStoryIds);
       const check = this.user.savedStoryIds.find((id) => id === story._id);
       console.log("check", check);
       return check;
     },
   },
-  computed: {
-    // stories() {
-    //   return this.$store.getters.storiesToDisplay;
-    // },
-  },
-  components: {
-    comment,
-  },
+  computed: {},
+  components: {},
 };
 </script>
 
