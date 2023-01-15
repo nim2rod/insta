@@ -31,7 +31,6 @@ export const storyService = {
 
 function getEmptyStory() {
     let newStory = {
-
         // _id: '',
         txt: '',
         imgUrl: '',
@@ -55,7 +54,6 @@ function getEmptyStory() {
         tags: [
 
         ]
-
     }
     return newStory
 }

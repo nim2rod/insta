@@ -134,7 +134,7 @@
             <div class="action-card layout-card">
               <div class="like-comment">
                 <svg
-                  v-if="!userLikeStory"
+                  v-if="!isUserLikeStory"
                   @click="likedStory"
                   aria-label="Like"
                   class="btn"
@@ -312,23 +312,28 @@ export default {
     return {
       typingMode: 0,
       newComment: null,
-      userLikeStory: false,
+      isUserLikeStory: false,
       story: null,
       loggedInUser: null,
       isStorySavedByUser: false,
-      isUserFollowStoryBy: 0,
+      isUserFollowStoryBy: false,
     };
   },
   async created() {
     this.loggedInUser = storyService.getUser();
+
     const { storyId } = this.$route.params;
+
     const story = await storyService.getStoryById(storyId);
     this.story = story;
-    this.userLikeStory = this.story.likedBy.find(
+
+    this.isUserLikeStory = this.story.likedBy.some(
       (e) => e._id === this.loggedInUser._id
     );
+
     this.newComment = storyService.getEmptyComment();
-    this.isUserFollowStoryBy = this.loggedInUser.following.find(
+
+    this.isUserFollowStoryBy = this.loggedInUser.following.some(
       (by) => by._id === this.story.by._id
     );
   },
@@ -356,20 +361,24 @@ export default {
     },
     async likedStory() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
+      this.isUserLikeStory = !this.isUserLikeStory;
       try {
         const savedStory = await this.$store.dispatch("addLike", {
           editedStory: storyCopy,
         });
-        this.userLikeStory = savedStory.likedBy.find((e) => {
+        this.isUserLikeStory = savedStory.likedBy.some((e) => {
           return e._id === this.loggedInUser._id;
         });
         this.story = savedStory;
       } catch (err) {
+        console.log("liked story catch");
+        this.isUserLikeStory = !this.isUserLikeStory;
         throw err;
       }
     },
     async savedClicked() {
       const userCopy = JSON.parse(JSON.stringify(this.loggedInUser));
+      this.isStorySavedByUser = !this.isStorySavedByUser;
       try {
         const savedUser = await this.$store.dispatch("addStoryToSavedUser", {
           storyId: this.story._id,
@@ -377,15 +386,17 @@ export default {
         });
         console.log("savedUser:", savedUser);
         this.loggedInUser = savedUser;
-        this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find((id) => {
+        this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some((id) => {
           return id === this.story._id;
         });
       } catch (err) {
+        this.isStorySavedByUser = !this.isStorySavedByUser;
         throw err;
       }
     },
     async followBtnClicked() {
       const loggedUserCopy = JSON.parse(JSON.stringify(this.loggedInUser));
+      this.isUserFollowStoryBy = !this.isUserFollowStoryBy;
       try {
         const savedUser = await this.$store.dispatch("changeFollowStatus", {
           storyBy: this.story.by,
@@ -393,10 +404,11 @@ export default {
         });
         console.log("savedUser:", savedUser);
         this.loggedInUser = savedUser;
-        this.isUserFollowStoryBy = this.loggedInUser.following.find((by) => {
+        this.isUserFollowStoryBy = this.loggedInUser.following.some((by) => {
           return by._id === this.story.by._id;
         });
       } catch (err) {
+        this.isUserFollowStoryBy = !this.isUserFollowStoryBy;
         throw err;
       }
     },

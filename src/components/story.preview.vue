@@ -28,7 +28,7 @@
     <div class="action-card layout-card">
       <div class="like-comment">
         <svg
-          v-if="!userLikeStory"
+          v-if="!isUserLikeStory"
           @click="likedStory"
           aria-label="Like"
           class="btn"
@@ -217,9 +217,8 @@ export default {
     return {
       typingMode: 0,
       newComment: null,
-      editedStory: null,
       loggedInUser: null,
-      userLikeStory: false,
+      isUserLikeStory: false,
       isFollow: false,
       isStorySavedByUser: false,
     };
@@ -242,39 +241,40 @@ export default {
       } catch (err) {
         throw err;
       }
-
       this.typingMode = 0;
       this.newComment = storyService.getEmptyComment();
     },
     typing() {
       this.typingMode = 1;
     },
-    likeClicked() {
-      this.likedStory();
-    },
     async likedStory() {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
+      this.isUserLikeStory = !this.isUserLikeStory;
       try {
         await this.$store.dispatch("addLike", { editedStory: storyCopy });
-        this.userLikeStory = this.story.likedBy.find((e) => {
-          return e._id === this.loggedInUser._id;
+        this.isUserLikeStory = this.story.likedBy.some((u) => {
+          return u._id === this.loggedInUser._id;
         });
       } catch (err) {
+        console.log("liked story catch");
+        this.isUserLikeStory = !this.isUserLikeStory;
         throw err;
       }
     },
     async addStoryToSavedUser() {
       const userCopy = JSON.parse(JSON.stringify(this.loggedInUser));
+      this.isStorySavedByUser = !this.isStorySavedByUser;
       try {
         const savedUser = await this.$store.dispatch("addStoryToSavedUser", {
           storyId: this.story._id,
           editedUser: userCopy,
         });
         this.loggedInUser = savedUser;
-        this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find((id) => {
+        this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some((id) => {
           return id === this.story._id;
         });
       } catch (err) {
+        this.isStorySavedByUser = !this.isStorySavedByUser;
         throw err;
       }
     },
@@ -284,15 +284,15 @@ export default {
 
     this.loggedInUser = storyService.getUser();
 
-    this.userLikeStory = this.story.likedBy.find(
-      (e) => e._id === this.loggedInUser._id
+    this.isUserLikeStory = this.story.likedBy.some(
+      (u) => u._id === this.loggedInUser._id
     );
 
-    this.isFollow = this.loggedInUser.following.find(
+    this.isFollow = this.loggedInUser.following.some(
       (u) => u._id === this.story.by._id
     );
 
-    this.isStorySavedByUser = this.loggedInUser.savedStoryIds.find(
+    this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some(
       (id) => id === this.story._id
     );
   },
