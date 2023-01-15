@@ -30,9 +30,9 @@ export default {
   },
   methods: {
     async login() {
-      console.log("login");
       await this.$store.dispatch({ type: "login", cred: this.cred });
       // socketService.emit("set-user-socket", this.$store.getters.getUser._id)
+
       this.$router.push("/");
     },
   },

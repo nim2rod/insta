@@ -31,6 +31,7 @@ const store = createStore({
             state.stories = stories
         },
         setUsers(state, { users }) {
+            console.log('mutations-setUsers', users);
             state.users = users
         },
         updateStory(state, { editedStory }) {
@@ -44,8 +45,11 @@ const store = createStore({
             const idx = state.users.findIndex((u) => u._id === editedUser._id)
             state.users.splice(idx, 1, editedUser)
         },
-        setUser(state, { user }) {
-            state.loggedinUser = user;
+        setUser(state, { loggedinUser }) {
+            console.log('state.loggedinUser', state.loggedinUser);
+            console.log('setUser:', loggedinUser);
+            state.loggedinUser = { ...loggedinUser }
+            console.log(' state.loggedinUser', state.loggedinUser);
         }
     },
     actions: {
@@ -64,6 +68,17 @@ const store = createStore({
                 const users = await storyService.queryUsers()
                 commit({ type: 'setUsers', users })
                 return users
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
+        },
+        async loadLoggedinUser({ commit }) {
+            try {
+                const loggedinUser = userService.getLoggedInUser()
+                console.log('loggedInUser-action', loggedinUser);
+                commit({ type: 'setUser', loggedinUser })
+                return loggedinUser
             } catch (err) {
                 console.log(err)
                 throw err
@@ -151,8 +166,9 @@ const store = createStore({
         //log user
         async login({ commit }, { cred }) {
             try {
-                console.log('login-user-module', cred);
+                console.log('login-user', cred);
                 const user = await userService.login(cred);
+                console.log('user- index-login:', user);
                 commit({ type: 'setUser', user });
             } catch (err) {
                 console.log(err);

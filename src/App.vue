@@ -13,6 +13,7 @@ export default {
   created() {
     this.$store.dispatch({ type: "loadStories" }).then((stories) => {});
     this.$store.dispatch({ type: "loadUsers" }).then((users) => {});
+    this.$store.dispatch({ type: "loadLoggedinUser" }).then((users) => {});
   },
   components: {
     appHeader,

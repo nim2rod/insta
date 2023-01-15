@@ -66,9 +66,13 @@ export default {
   created() {
     this.loggedInUser = storyService.getUser();
     const render = [];
-    this.users.forEach((user) => {
-      if (!this.loggedInUser.following.some((by) => by._id === user._id))
-        render.push(user);
+    this.users.forEach((userSuggest) => {
+      if (
+        !this.loggedInUser.following.some(
+          (followingUser) => followingUser._id === userSuggest._id
+        )
+      )
+        render.push(userSuggest);
     });
     const shortRender = render.slice(0, 5);
     this.suggestUsers = shortRender;
