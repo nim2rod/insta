@@ -229,14 +229,20 @@ async function remove(storyId) {
 }
 
 //PUT  POST
-async function save(story) {
+async function save(story, endpoint) {
+    if (endpoint === 'user_db') endpoint = ENDPOINT_USER
+    else endpoint = ENDPOINT_STORY
+    console.log('endpoint', endpoint);
     var story = JSON.parse(JSON.stringify(story));
     if (story._id) {
-        const updatedStory = await httpService.put(`${ENDPOINT_STORY}/${story._id}`, story);
+        console.log('put-storysERVICE');
+        // const updatedStory = await httpService.put(`${ENDPOINT_STORY}/${story._id}`, story);
+        const updatedStory = await httpService.put(`${endpoint}/${story._id}`, story);
         console.log('story back from PUT', updatedStory)
         return updatedStory
     } else {
-        return await httpService.post(ENDPOINT_STORY, story);
+        // return await httpService.post(ENDPOINT_STORY, story);
+        return await httpService.post(endpoint, story);
     }
 
     // if (story._id) return storageService.put(key, story)

@@ -34,7 +34,8 @@ export default {
     };
   },
   created() {
-    this.loggedInUser = storyService.getUser();
+    // this.loggedInUser = storyService.getUser();
+    this.loggedInUser = this.$store.getters.getUser;
   },
 };
 </script>

@@ -194,7 +194,6 @@ export default {
   created() {
     // this.loggedInUser = storyService.getUser();
     this.loggedInUser = this.$store.getters.getUser;
-    console.log("this.loggedInUser-headr", this.loggedInUser);
   },
   components: {
     createNew,

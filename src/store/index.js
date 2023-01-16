@@ -42,12 +42,13 @@ const store = createStore({
             state.stories.unshift(newStory)
         },
         updateUser(state, { editedUser }) {
+            console.log('editedUser-mutate', editedUser);
             const idx = state.users.findIndex((u) => u._id === editedUser._id)
             state.users.splice(idx, 1, editedUser)
         },
         setUser(state, { loggedinUser }) {
             console.log('state.loggedinUser', state.loggedinUser);
-            console.log('setUser:', loggedinUser);
+            console.log('setUser:', loggedinUser);  //// undifined
             state.loggedinUser = { ...loggedinUser }
             console.log(' state.loggedinUser', state.loggedinUser);
         }
@@ -156,6 +157,7 @@ const store = createStore({
             }
             try {
                 const savedUser = await storyService.save(editedUser, 'user_db')
+                console.log('savedUser', savedUser);
                 commit({ type: 'updateUser', editedUser: savedUser })
                 return savedUser
             } catch (err) {
@@ -166,10 +168,10 @@ const store = createStore({
         //log user
         async login({ commit }, { cred }) {
             try {
-                console.log('login-user', cred);
+                console.log('login-cred', cred);
                 const user = await userService.login(cred);
                 console.log('user- index-login:', user);
-                commit({ type: 'setUser', user });
+                commit({ type: 'setUser', loggedinUser: user });
             } catch (err) {
                 console.log(err);
             }

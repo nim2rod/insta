@@ -13,7 +13,8 @@ export const userService = {
 
 async function login(cred) {
     const user = await httpService.post(ENDPOINT + '/login', cred)
-    console.log('user: userService0login:', user);
+
+    console.log('user: userService-login:', user);
     if (user) {
         // socketService.login(user._id)
         return saveLocalUser(user)

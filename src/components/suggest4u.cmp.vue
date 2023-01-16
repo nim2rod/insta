@@ -45,6 +45,8 @@ export default {
       suggestBy._id = suggest._id;
       suggestBy.username = suggest.username;
       suggestBy.profileImgUrl = suggest.profileImgUrl;
+      console.log("suggestBy:", suggestBy);
+      console.log("loggedUserCopy", loggedUserCopy);
       try {
         const savedUser = await this.$store.dispatch("changeFollowStatus", {
           storyBy: suggestBy,
@@ -64,7 +66,11 @@ export default {
     },
   },
   created() {
-    this.loggedInUser = storyService.getUser();
+    // this.loggedInUser = storyService.getUser();
+    this.loggedInUser = this.$store.getters.getUser;
+
+    console.log("this.loggedInUser", this.loggedInUser);
+    // console.log("this.loggedInUser.following", this.loggedInUser.following);
     const render = [];
     this.users.forEach((userSuggest) => {
       if (
