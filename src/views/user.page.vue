@@ -427,7 +427,9 @@ export default {
       this.user = currUser;
     });
 
-    this.loggedInUser = storyService.getUser();
+    // this.loggedInUser = storyService.getUser();
+    this.loggedInUser = this.$store.getters.getUser;
+
     console.log("created-this.loggedInUser", this.loggedInUser);
     this.newComment = storyService.getEmptyComment();
     this.stories = this.$store.getters.storiesToDisplay;

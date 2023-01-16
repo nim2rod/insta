@@ -198,7 +198,8 @@ export default {
   },
   created() {
     this.newStory = storyService.getEmptyStory();
-    const loggedInUser = storyService.getUser();
+    // const loggedInUser = storyService.getUser();
+    const loggedInUser = this.$store.getters.getUser;
     const userBy = {
       _id: loggedInUser._id,
       username: loggedInUser.username,

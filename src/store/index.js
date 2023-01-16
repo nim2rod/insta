@@ -87,7 +87,9 @@ const store = createStore({
         },
         async addComment({ commit }, { editedStory, newComment }) {
             try {
-                const user = storyService.getUser()
+                // const user = storyService.getUser()
+                const user = this.state.loggedinUser
+
                 newComment.by = { ...user }
                 editedStory.comments.push(newComment)
 
@@ -110,7 +112,9 @@ const store = createStore({
             }
         },
         async addLike({ commit }, { editedStory }) {
-            const user = storyService.getUser()
+            // const user = storyService.getUser()
+            const user = this.state.loggedinUser
+
             const liked = editedStory.likedBy.find((u) => u._id === user._id)
             if (!liked) {
                 editedStory.likedBy.push(user)
