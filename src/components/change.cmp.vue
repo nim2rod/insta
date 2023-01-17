@@ -1,5 +1,5 @@
 <template>
-  <section class="change-user-bar">
+  <section v-if="loggedInUser" class="change-user-bar">
     <!-- LEFT-SIDE -->
     <div class="flex">
       <router-link :to="'/user/' + loggedInUser._id">

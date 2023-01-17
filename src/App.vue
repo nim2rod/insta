@@ -8,12 +8,13 @@
 
 <script>
 import appHeader from "./components/header.cmp.vue";
+import { userService } from "./services/user.service";
 export default {
   name: "app",
   created() {
-    this.$store.dispatch({ type: "loadStories" }).then((stories) => {});
-    this.$store.dispatch({ type: "loadUsers" }).then((users) => {});
-    this.$store.dispatch({ type: "loadLoggedinUser" }).then((users) => {});
+    this.$store.dispatch({ type: "loadStories" });
+    this.$store.dispatch({ type: "loadUsers" });
+    this.$store.dispatch({ type: "loadLoggedinUser" });
   },
   components: {
     appHeader,

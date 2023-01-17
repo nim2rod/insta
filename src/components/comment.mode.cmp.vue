@@ -304,10 +304,7 @@
 <script>
 import { storyService } from "../services/story.service";
 export default {
-  props: {
-    // story: Object,
-    // loggedInUser: Object,
-  },
+  props: {},
   data() {
     return {
       typingMode: 0,

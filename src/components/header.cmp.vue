@@ -1,5 +1,5 @@
 <template>
-  <header class="header-container">
+  <header v-if="loggedInUser" class="header-container">
     <section class="mobile-header flex align-self-center">
       <router-link class="router-link" to="/">
         <div class="main-logo-mobile">InstaFriends</div></router-link

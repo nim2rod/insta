@@ -283,7 +283,8 @@ export default {
     this.newComment = storyService.getEmptyComment();
 
     // this.loggedInUser = storyService.getUser();
-    this.loggedInUser = this.$store.getters.getuser;
+    this.loggedInUser = this.$store.getters.getUser;
+    // console.log("this.loggedInUser", this.loggedInUser);
 
     this.isUserLikeStory = this.story.likedBy.some(
       (u) => u._id === this.loggedInUser._id

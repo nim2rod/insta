@@ -42,15 +42,13 @@ const store = createStore({
             state.stories.unshift(newStory)
         },
         updateUser(state, { editedUser }) {
-            console.log('editedUser-mutate', editedUser);
+            userService.saveLocalUser(editedUser)
             const idx = state.users.findIndex((u) => u._id === editedUser._id)
             state.users.splice(idx, 1, editedUser)
+            state.loggedinUser = editedUser
         },
         setUser(state, { loggedinUser }) {
-            console.log('state.loggedinUser', state.loggedinUser);
-            console.log('setUser:', loggedinUser);  //// undifined
             state.loggedinUser = { ...loggedinUser }
-            console.log(' state.loggedinUser', state.loggedinUser);
         }
     },
     actions: {
@@ -77,7 +75,6 @@ const store = createStore({
         async loadLoggedinUser({ commit }) {
             try {
                 const loggedinUser = userService.getLoggedInUser()
-                console.log('loggedInUser-action', loggedinUser);
                 commit({ type: 'setUser', loggedinUser })
                 return loggedinUser
             } catch (err) {
@@ -88,9 +85,12 @@ const store = createStore({
         async addComment({ commit }, { editedStory, newComment }) {
             try {
                 // const user = storyService.getUser()
-                const user = this.state.loggedinUser
-
-                newComment.by = { ...user }
+                const user = { ...this.state.loggedinUser }
+                const by = {}
+                by.username = user.username
+                by.profileImgUrl = user.profileImgUrl
+                by._id = user._id
+                newComment.by = by
                 editedStory.comments.push(newComment)
 
                 const story = await storyService.save(editedStory)
@@ -169,12 +169,9 @@ const store = createStore({
                 throw err
             }
         },
-        //log user
         async login({ commit }, { cred }) {
             try {
-                console.log('login-cred', cred);
                 const user = await userService.login(cred);
-                console.log('user- index-login:', user);
                 commit({ type: 'setUser', loggedinUser: user });
             } catch (err) {
                 console.log(err);

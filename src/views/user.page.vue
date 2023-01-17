@@ -388,8 +388,6 @@
           v-for="story in stories"
           :key="story._id"
         >
-          <!-- story.by._id === user.savedStoryId -->
-          <!-- user.savedStoryId.some((s) => s._id === story.by._id -->
           <div v-if="check(story)" class="data-container-crop">
             <img
               @click="viewComments(story._id)"
@@ -413,78 +411,35 @@ export default {
       user: null,
       stories: null,
       loggedInUser: null,
-      newComment: null,
       filterBarPost: true,
       filterBarSaved: false,
-      //   user:this.$store.getters.getUser
     };
   },
-  created() {
+  async created() {
     const { userId } = this.$route.params;
-    console.log("this.$route.params", this.$route.params);
-    storyService.getUserById(userId, "user_db").then((currUser) => {
-      console.log("currUser", currUser);
+    try {
+      const currUser = await storyService.getUserById(userId, "user_db");
       this.user = currUser;
-    });
-
-    // this.loggedInUser = storyService.getUser();
+    } catch {
+      throw err;
+    }
     this.loggedInUser = this.$store.getters.getUser;
-
-    console.log("created-this.loggedInUser", this.loggedInUser);
-    this.newComment = storyService.getEmptyComment();
     this.stories = this.$store.getters.storiesToDisplay;
   },
   methods: {
     viewComments(storyId) {
       this.$router.push(`/story/${storyId}`);
     },
-    likedStory(story) {
-      const storyCopy = JSON.parse(JSON.stringify(story));
-
-      this.$store
-        .dispatch("addLike", {
-          editedStory: storyCopy,
-        })
-        .then(() => {
-          this.userLikeStory = this.story.likedBy.find((e) => {
-            return e._id === this.loggedInUser._id;
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    addCommentTxt(commentTxt, story) {
-      this.newComment.txt = commentTxt;
-      this.addComment(story);
-    },
-    addComment(story) {
-      const storyCopy = JSON.parse(JSON.stringify(story));
-      this.$store
-        .dispatch("addComment", {
-          editedStory: storyCopy,
-          newComment: this.newComment,
-        })
-        .then(console.log("great"))
-        .catch((err) => {
-          console.log(err);
-        });
-
-      this.newComment = storyService.getEmptyComment();
-    },
     filterAllPosts() {
-      console.log("filter-POSTS");
       this.filterBarPost = true;
       this.filterBarSaved = false;
     },
     filterSavedPosts() {
-      console.log("filter-SAVED");
       this.filterBarSaved = true;
       this.filterBarPost = false;
     },
     check(story) {
-      const check = this.user.savedStoryIds.find((id) => id === story._id);
-      console.log("check", check);
+      const check = this.user.savedStoryIds.some((id) => id === story._id);
       return check;
     },
   },
