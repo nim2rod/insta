@@ -173,6 +173,7 @@
 
 <script>
 import createNew from "../components/create.new.cmp.vue";
+import { eventBus } from "../services/event-bus.service";
 import { storyService } from "../services/story.service";
 
 export default {
@@ -182,6 +183,11 @@ export default {
       loggedInUser: null,
     };
   },
+  created() {
+    // this.loggedInUser = storyService.getUser();
+    this.loggedInUser = this.$store.getters.getUser;
+    eventBus.on("change-user-bus", this.changeLoggedInUser);
+  },
   methods: {
     startAddNew() {
       console.log("show-modal");
@@ -190,10 +196,9 @@ export default {
     closeModal() {
       this.createMode = 0;
     },
-  },
-  created() {
-    // this.loggedInUser = storyService.getUser();
-    this.loggedInUser = this.$store.getters.getUser;
+    changeLoggedInUser() {
+      this.loggedInUser = this.$store.getters.getUser;
+    },
   },
   components: {
     createNew,

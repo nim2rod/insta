@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { eventBus } from "../services/event-bus.service";
 export default {
   name: "login-page",
   data() {
@@ -32,7 +33,10 @@ export default {
     async login() {
       await this.$store.dispatch({ type: "login", cred: this.cred });
       // socketService.emit("set-user-socket", this.$store.getters.getUser._id)
-      this.$emit("change-user", true);
+
+      // this.$emit("change-user", true);
+
+      eventBus.emit("change-user-bus", true);
       this.$router.push("/");
     },
   },

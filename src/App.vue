@@ -2,7 +2,7 @@
 <template>
   <section class="flex justify-center">
     <app-header></app-header>
-    <router-view @change-user="getUserFromStore" />
+    <router-view />
   </section>
 </template>
 
@@ -19,10 +19,6 @@ export default {
   components: {
     appHeader,
   },
-  methods: {
-    getUserFromStore() {
-      console.log(" getUserFromStore - app");
-    },
-  },
+  methods: {},
 };
 </script>
