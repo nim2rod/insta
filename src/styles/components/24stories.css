@@ -1,15 +1,12 @@
 .stories-bar-container {
-    /* width: 29.5em; */
     height: 7em;
     display: flex;
-    /* margin-top: 5.4em; */
     border: 1px rgb(219, 219, 219) solid;
     border-radius: 0.5em;
     margin-bottom: 1em;
     align-items: center;
     overflow: hidden;
     background-color: var(--clr2);
-    /* /// */
     overflow-x: scroll;
 }
 
@@ -33,8 +30,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: linear-gradient(45deg, #adac75, #10c041, #664b5a, #c285a8, #b45aa3, #e63be6); */
-    /* background: linear-gradient(0deg, rgba(255, 220, 125, 1) 0%, rgba(244, 111, 48, 1) 25%, rgba(114, 50, 189, 1) 54%, rgba(76, 95, 215, 1) 76%, rgba(195, 42, 163, 1) 100%); */
     background: linear-gradient(0deg, rgba(255, 220, 125, 1) 0%, rgba(244, 111, 48, 1) 25%, rgba(114, 50, 189, 1) 69%, rgba(187, 50, 127, 1) 100%);
 }
 

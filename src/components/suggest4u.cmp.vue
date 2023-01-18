@@ -66,11 +66,7 @@ export default {
     },
   },
   created() {
-    // this.loggedInUser = storyService.getUser();
     this.loggedInUser = this.$store.getters.getUser;
-
-    console.log("this.loggedInUser", this.loggedInUser);
-    // console.log("this.loggedInUser.following", this.loggedInUser.following);
     const render = [];
     this.users.forEach((userSuggest) => {
       if (

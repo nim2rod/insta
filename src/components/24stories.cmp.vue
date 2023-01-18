@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import { storyService } from "../services/story.service";
 export default {
   props: {
     stories: Array,
@@ -34,7 +33,6 @@ export default {
     },
   },
   created() {
-    // const user = storyService.getUser();
     const user = this.$store.getters.getUser;
     this.loggedInUser = user;
     const following = [];

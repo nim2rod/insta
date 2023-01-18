@@ -9,14 +9,10 @@ export const storageService = {
 
 function query(entityType) {
     var entities = JSON.parse(localStorage.getItem(entityType)) || []
-    console.log('entities - storage service-query', entities);
     return Promise.resolve(entities)
 }
 
 function get(entityType, entityId) {
-    console.log('entityType', entityType);
-    console.log('entityId', entityId);
-
     return query(entityType).then((entities) =>
         entities.find((entity) => entity._id === entityId)
     )
@@ -40,8 +36,6 @@ function postMany(entityType, newEntities) {
 }
 
 function put(entityType, updatedEntity) {
-    // console.log('storageService- entityType', entityType);
-    // console.log('storageService- updatedEntity', updatedEntity);
     return query(entityType).then((entities) => {
         const idx = entities.findIndex((entity) => entity._id === updatedEntity._id)
         entities.splice(idx, 1, updatedEntity)

@@ -1,8 +1,5 @@
 /* MOBILE */
 @media (max-width: 500px) {
-    /* body {
-        background-color: yellow;
-    } */
 
     .header {
         bottom: 0;
@@ -79,10 +76,6 @@
     .comments-txt-box-right {
         min-width: 101%;
     }
-
-    /* .stories-bar-box {
-        width: 25em;
-    } */
 
     .insta-app {
         width: 100%;
@@ -236,7 +229,6 @@
 
     .filter-posts-bar-box-user {
         margin-top: 3.5em;
-        /* margin: auto; */
         width: 90.1%;
     }
 
@@ -293,15 +285,12 @@
 }
 
 
-
-
 /* SMALL */
 @media (max-width: 810px) {
     .search-header {
         display: none;
     }
 }
-
 
 
 /* MEDIUM */
@@ -314,7 +303,6 @@
         width: 100%;
     }
 }
-
 
 
 /* DESKTOP */

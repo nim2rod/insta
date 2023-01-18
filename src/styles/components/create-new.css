@@ -24,7 +24,6 @@
     align-items: center;
     top: 6.5em;
     background-color: var(--clr2);
-    /* width: 49%; */
     max-width: 39em;
     min-height: 29em;
     height: -webkit-fill-available;
@@ -126,7 +125,6 @@
     background-color: var(--clr2);
     border-radius: 1em;
     width: 86%;
-    /* max-width: 48em; */
     max-width: 54em;
     min-height: 29em;
     max-height: 40em;
@@ -136,7 +134,6 @@
 .create-new-top-2 {
     height: 52px;
     border-bottom: 1px rgb(219, 219, 219) solid;
-    /* width: 100%; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -160,8 +157,6 @@
 .choose-pic-container-2 {
     width: 60%;
     max-height: 100%;
-    /* background-color: antiquewhite; */
-    /* object-fit: cover; */
     overflow: hidden;
     align-self: center;
 }
@@ -172,9 +167,7 @@
 }
 
 .insert-txt-box {
-    /* width: 41%; */
     max-height: 100%;
-    /* background-color: rgb(164, 129, 198); */
     background-color: var(--clr2);
     border-left: 1px rgb(219, 219, 219) solid;
 }
@@ -193,10 +186,6 @@
     width: 2em;
     height: 2em;
     border-radius: 2em;
-    /* border-radius: 2em;
-    border-color: rgb(53, 99, 156);
-    border-width: 2.8px;
-    border-style: solid; */
     object-fit: cover;
 }
 
@@ -216,7 +205,6 @@
 }
 
 .location-input-create-box {
-    /* position: relative; */
     top: 12em;
     border-bottom: 1px rgb(219, 219, 219) solid;
     border-top: 1px rgb(219, 219, 219) solid;

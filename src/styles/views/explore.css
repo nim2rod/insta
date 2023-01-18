@@ -16,14 +16,8 @@ img {
     aspect-ratio: auto;
 }
 
-/* .img-box-for:nth-child(6n) {
-    grid-column: span 2;
-    aspect-ratio: auto;
-} */
-
 .img-box-for {
     aspect-ratio: 1 /1;
-    /* aspect-ratio: auto; */
 }
 
 

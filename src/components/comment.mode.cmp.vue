@@ -317,7 +317,6 @@ export default {
     };
   },
   async created() {
-    // this.loggedInUser = storyService.getUser();
     this.loggedInUser = this.$store.getters.getUser;
 
     const { storyId } = this.$route.params;

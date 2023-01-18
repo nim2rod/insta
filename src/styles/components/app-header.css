@@ -2,12 +2,9 @@
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    /* margin-bottom: 1.2em; */
     position: fixed;
-    /* width: 61em; */
     background-color: var(--clr2);
     border-bottom: 1px rgb(219, 219, 219) solid;
-    /* top: 0; */
     height: 4.08em;
     align-items: center;
     margin-left: 17%;
@@ -22,7 +19,6 @@
     display: flex;
     justify-content: center;
     position: fixed;
-    /* top: 0; */
 }
 
 .link-btn {
@@ -55,13 +51,7 @@
 
 .nav-bar-header {
     display: flex;
-    /* gap: 1.53em; */
-    /* height: 2em; */
 }
-
-/* .nav-header-icon {
-    height: 2em;
-} */
 
 .profile-pic-header {
     border-radius: 50%;

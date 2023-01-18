@@ -57,18 +57,6 @@
           <p class="btn">Select from computer</p>
         </div>
       </div>
-      <!-- ///// -->
-      <!-- <div v-if="afterChoosePic" class="choose-pic-container">
-        <img :src="newStory.imgUrl" alt="" />
-      </div> -->
-      <!-- ///////// -->
-      <!-- <div v-if="afterChoosePic" class="svg-box-create">
-        <svg class="choose-pic-container-svg">
-          <path
-            d="M10 20H4v-6a1 1 0 00-2 0v7a1 1 0 001 1h7a1 1 0 000-2zM20.999 2H14a1 1 0 000 2h5.999v6a1 1 0 002 0V3a1 1 0 00-1-1z"
-          ></path>
-        </svg>
-      </div> -->
     </div>
 
     <!-- //ADD TXT VIEW// -->
@@ -137,11 +125,6 @@
               rows="10"
             ></textarea>
             <!-- /// -->
-            <!-- <input
-              v-model="newStory.txt"
-              type="text"
-              placeholder="Write a caption..."
-            /> -->
           </div>
           <div class="location-input-create-box">
             <input
@@ -198,7 +181,6 @@ export default {
   },
   created() {
     this.newStory = storyService.getEmptyStory();
-    // const loggedInUser = storyService.getUser();
     const loggedInUser = this.$store.getters.getUser;
     const userBy = {
       _id: loggedInUser._id,

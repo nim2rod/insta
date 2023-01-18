@@ -174,7 +174,6 @@
 <script>
 import createNew from "../components/create.new.cmp.vue";
 import { eventBus } from "../services/event-bus.service";
-import { storyService } from "../services/story.service";
 
 export default {
   data() {
@@ -184,7 +183,6 @@ export default {
     };
   },
   created() {
-    // this.loggedInUser = storyService.getUser();
     this.loggedInUser = this.$store.getters.getUser;
     eventBus.on("change-user-bus", this.changeLoggedInUser);
   },

@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { storyService } from "../services/story.service";
 export default {
   data() {
     return {
@@ -34,7 +33,6 @@ export default {
     };
   },
   created() {
-    // this.loggedInUser = storyService.getUser();
     this.loggedInUser = this.$store.getters.getUser;
   },
 };
