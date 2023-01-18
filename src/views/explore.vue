@@ -18,7 +18,6 @@ export default {
   data() {
     return {
       loggedInUser: null,
-      stories: null,
       newComment: null,
     };
   },
