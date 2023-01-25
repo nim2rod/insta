@@ -18,6 +18,8 @@ of every one you want - just click on his name(or your name to go to your profil
 In the newsfeed tab or in comment view. 
 - Add post:<br> 
 with location, text and picture. 
+- Multyply Users to choose from:<br>
+The looged in User comes from the backend and stay on the store. 
 
 
 ## The motivation and achedule
@@ -35,7 +37,11 @@ It was an adventure and great experience to deal with this challenge.
 - Link to live project:   https://instafriends.onrender.com
 
  
- ## 
+## 
+https://user-images.githubusercontent.com/106229019/213155726-ffea64d7-3aca-4314-a3f1-29273783cbda.mp4
+#
+ 
+ 
 https://user-images.githubusercontent.com/106229019/209372997-ba86c3b6-291b-4b9c-8dd6-8009580caf6a.mp4
 
 
