@@ -19,7 +19,7 @@ In the newsfeed tab or in comment view.
 - Add post:<br> 
 with location, text and picture. 
 - Multyply Users to choose from:<br>
-The looged in User comes from the backend and stay on the store. 
+The logged in User comes from the backend and stay on the store. 
 
 
 ## The motivation and achedule
@@ -35,7 +35,7 @@ It was an adventure and great experience to deal with this challenge.
 - MongoDB Atlas Database - database.
 - Render - deploy and host for the site. 
 - Link to live project:   https://instafriends.onrender.com
-
+- Socket.IO package - for real time changes. 
  
 ## 
 https://user-images.githubusercontent.com/106229019/213155726-ffea64d7-3aca-4314-a3f1-29273783cbda.mp4
