@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import { userService } from '../services/user.service.js'
 import { storyService } from '../services/story.service.js'
 import userStore from './modules/user.module.js'
+import { socketService } from '../services/socket.service.js'
 
 const store = createStore({
     strict: true,
@@ -49,7 +50,7 @@ const store = createStore({
         },
         setUser(state, { loggedinUser }) {
             state.loggedinUser = { ...loggedinUser }
-        }
+        },
     },
     actions: {
         async loadStories({ commit }) {
@@ -94,6 +95,9 @@ const store = createStore({
                 editedStory.comments.push(newComment)
 
                 const story = await storyService.save(editedStory)
+
+                socketService.emit('this-user-add-comment', story)
+
                 commit({ type: 'updateStory', editedStory: story })
                 return story
             } catch (err) {

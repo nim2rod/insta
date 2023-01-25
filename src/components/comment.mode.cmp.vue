@@ -302,6 +302,7 @@
 </template>
 
 <script>
+import { socketService } from "../services/socket.service";
 import { storyService } from "../services/story.service";
 export default {
   props: {},
@@ -333,6 +334,13 @@ export default {
     this.isUserFollowStoryBy = this.loggedInUser.following.some(
       (by) => by._id === this.story.by._id
     );
+
+    //socket
+    socketService.emit("set-story-socket", this.story._id);
+    socketService.on("other-user-add-comment", (story) => {
+      this.$store.commit({ type: "updateStory", editedStory: story });
+      this.story = story;
+    });
   },
   methods: {
     closeComments() {

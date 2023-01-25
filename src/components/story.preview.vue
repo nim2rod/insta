@@ -159,7 +159,7 @@
 
     <!-- COMMENTS -Time ago -->
     <div class="comments layout-card btn font1" @click="viewComments(story)">
-      View all {{ story.comments.length }} comments
+      View all {{ this.currStory.comments.length }} comments
     </div>
     <div class="time-ago layout-card font1">5 hours ago</div>
 
@@ -221,6 +221,7 @@ export default {
       isUserLikeStory: false,
       isFollow: false,
       isStorySavedByUser: false,
+      currStory: null,
     };
   },
   methods: {
@@ -295,6 +296,12 @@ export default {
     this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some(
       (id) => id === this.story._id
     );
+
+    this.currStory = this.story;
+    socketService.on("other-user-add-comment", (story) => {
+      this.$store.commit({ type: "updateStory", editedStory: story });
+      this.currStory = story;
+    });
   },
 
   computed: {
