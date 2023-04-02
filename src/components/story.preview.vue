@@ -161,7 +161,8 @@
     <div class="comments layout-card btn font1" @click="viewComments(story)">
       View all {{ this.currStory.comments.length }} comments
     </div>
-    <div class="time-ago layout-card font1">5 hours ago</div>
+    <!-- <div class="time-ago layout-card font1">5 hours ago</div> -->
+    <div class="time-ago layout-card font1">{{ timeAgo() }}</div>
 
     <!-- ADD - COMMENTS - BAR -->
     <div class="add-comment-bar layout-card font1">
@@ -278,6 +279,23 @@ export default {
         this.isStorySavedByUser = !this.isStorySavedByUser;
         throw err;
       }
+    },
+    timeAgo() {
+      let timeAgo;
+      if (this.story.timeAgoMiliSec < 1000 * 60 * 60)
+        timeAgo = `${
+          (this.story.timeAgoMiliSec / (1000 * 60)).Math.floor
+        } minuts ago`;
+      else if (this.story.timeAgoMiliSec < 1000 * 60 * 60 * 24)
+        timeAgo = `${
+          (this.story.timeAgoMiliSec / (1000 * 60 * 60)).Math.floor
+        } hours ago`;
+      else
+        timeAgo = this.story.createdAt.slice(
+          0,
+          this.story.createdAt.indexOf(" ")
+        );
+      return timeAgo;
     },
   },
   created() {
