@@ -128,6 +128,7 @@ const store = createStore({
             }
             try {
                 const savedStory = await storyService.save(editedStory)
+                socketService.emit('this-user-add-like', savedStory)
                 commit({ type: 'updateStory', editedStory: savedStory })
                 return savedStory
             } catch (err) {
@@ -169,6 +170,7 @@ const store = createStore({
 
             try {
                 const savedStory = await storyService.save(editedStory)
+                socketService.emit('this-user-add-like-to-comment', savedStory)
                 commit({ type: 'updateStory', editedStory: savedStory })
                 return savedStory
             } catch (err) {

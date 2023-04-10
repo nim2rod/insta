@@ -337,7 +337,18 @@ export default {
     );
 
     this.currStory = this.story;
+
     socketService.on("other-user-add-comment", (story) => {
+      this.$store.commit({ type: "updateStory", editedStory: story });
+      this.currStory = story;
+    });
+
+    socketService.on("other-user-add-like", (story) => {
+      this.$store.commit({ type: "updateStory", editedStory: story });
+      this.currStory = story;
+    });
+
+    socketService.on("other-user-add-like-to-story", (story) => {
       this.$store.commit({ type: "updateStory", editedStory: story });
       this.currStory = story;
     });
