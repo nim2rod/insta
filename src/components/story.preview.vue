@@ -170,7 +170,7 @@
         <!-- SMILY -->
         <svg
           aria-label="Emoji"
-          class="_ab6-"
+          class="_ab6- btn"
           color="#262626"
           fill="#262626"
           height="24"
