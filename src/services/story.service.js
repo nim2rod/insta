@@ -230,6 +230,7 @@ async function remove(storyId) {
 
 //PUT  POST
 async function save(story, endpoint) {
+    console.log('story-service-save:', story)
     if (endpoint === 'user_db') endpoint = ENDPOINT_USER
     else endpoint = ENDPOINT_STORY
     var story = JSON.parse(JSON.stringify(story));

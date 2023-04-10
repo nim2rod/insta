@@ -155,6 +155,18 @@ const store = createStore({
                 throw err
             }
         },
+        async addLikeToComment({ commit }, { editedStory }) {
+            // const user = this.state.loggedinUser
+            try {
+                const savedStory = await storyService.save(editedStory)
+                commit({ type: 'updateStory', editedStory: savedStory })
+                return savedStory
+            } catch (err) {
+                console.log(err);
+                throw err
+            }
+        },
+
         async changeFollowStatus({ commit }, { storyBy, editedUser }) {
             const follow = editedUser.following.find((by) => by._id === storyBy._id)
             if (!follow) {

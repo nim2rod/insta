@@ -361,7 +361,6 @@ export default {
       isStorySavedByUser: false,
       isUserFollowStoryBy: false,
       emojiBar: false,
-      commentsArr: null,
     };
   },
   async created() {
@@ -383,8 +382,6 @@ export default {
     this.isUserFollowStoryBy = this.loggedInUser.following.some(
       (by) => by._id === this.story.by._id
     );
-
-    this.commentsArr = this.story.comments;
 
     //socket
     socketService.emit("set-story-socket", this.story._id);
@@ -419,6 +416,7 @@ export default {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
       this.isUserLikeStory = !this.isUserLikeStory;
       try {
+        console.log("cmp:", storyCopy);
         const savedStory = await this.$store.dispatch("addLike", {
           editedStory: storyCopy,
         });
@@ -475,13 +473,20 @@ export default {
     addEmoji(emoji) {
       this.newComment.txt += emoji;
     },
-    likedComment(comment, action) {
-      console.log("this.loggedInUser._id", this.loggedInUser._id);
-
-      console.log("comment", comment);
-      console.log("action", action);
+    async likedComment(comment, action) {
       if (action === 1) comment.likedBy.push(this.loggedInUser._id);
       else comment.likedBy.pop(this.loggedInUser._id);
+
+      const storyCopy = JSON.parse(JSON.stringify(this.story));
+      try {
+        const savedStory = await this.$store.dispatch("addLikeToComment", {
+          editedStory: storyCopy,
+        });
+        this.story = savedStory;
+      } catch (err) {
+        console.log("liked story catch");
+        throw err;
+      }
     },
   },
 };
