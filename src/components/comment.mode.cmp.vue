@@ -416,7 +416,6 @@ export default {
       const storyCopy = JSON.parse(JSON.stringify(this.story));
       this.isUserLikeStory = !this.isUserLikeStory;
       try {
-        console.log("cmp:", storyCopy);
         const savedStory = await this.$store.dispatch("addLike", {
           editedStory: storyCopy,
         });
@@ -474,13 +473,12 @@ export default {
       this.newComment.txt += emoji;
     },
     async likedComment(comment, action) {
-      if (action === 1) comment.likedBy.push(this.loggedInUser._id);
-      else comment.likedBy.pop(this.loggedInUser._id);
-
       const storyCopy = JSON.parse(JSON.stringify(this.story));
+      const commentToChange = JSON.parse(JSON.stringify(comment));
       try {
         const savedStory = await this.$store.dispatch("addLikeToComment", {
           editedStory: storyCopy,
+          comment: commentToChange,
         });
         this.story = savedStory;
       } catch (err) {

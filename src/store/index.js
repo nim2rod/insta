@@ -155,8 +155,18 @@ const store = createStore({
                 throw err
             }
         },
-        async addLikeToComment({ commit }, { editedStory }) {
-            // const user = this.state.loggedinUser
+        async addLikeToComment({ commit }, { editedStory, comment }) {
+            const user = this.state.loggedinUser
+
+            if (!comment.likedBy.includes(user._id)) comment.likedBy.push(user._id)
+            else {
+                const idx = comment.likedBy.findIndex(id => id === user._id)
+                comment.likedBy.splice(idx, 1)
+            }
+
+            const commentIdx = editedStory.comments.findIndex((c) => c.id === comment.id)
+            editedStory.comments[commentIdx] = comment
+
             try {
                 const savedStory = await storyService.save(editedStory)
                 commit({ type: 'updateStory', editedStory: savedStory })
@@ -166,7 +176,6 @@ const store = createStore({
                 throw err
             }
         },
-
         async changeFollowStatus({ commit }, { storyBy, editedUser }) {
             const follow = editedUser.following.find((by) => by._id === storyBy._id)
             if (!follow) {
