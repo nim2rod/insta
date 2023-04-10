@@ -166,6 +166,10 @@
     align-items: center;
 }
 
+.add-comment-smily svg {
+    min-width: fit-content;
+}
+
 .add-comment-smily input {
     border: none;
     background: transparent;
@@ -194,4 +198,21 @@
     align-items: center;
     font-size: 0.9em;
     margin-right: 0.6em;
+}
+
+.emoji-cont {
+    background-color: azure;
+    border: solid 1px rgb(219, 219, 219);
+    border-radius: 5px;
+    display: flex;
+    position: relative;
+    bottom: 37px;
+    gap: 4px;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: center;
+}
+
+.emoji-cont div {
+    font-size: 1.8em;
 }
