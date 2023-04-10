@@ -90,7 +90,7 @@
             </div>
           </div>
 
-          <div class="time-ago-comment">43m</div>
+          <div class="time-ago-comment">{{ timeAgo() }}</div>
           <div
             class="comment-block"
             v-for="comment in story.comments"
@@ -284,7 +284,7 @@
               </svg>
             </div>
             <div class="liked-bar layout-card">140 likes</div>
-            <div class="time-ago layout-card">43 min</div>
+            <div class="time-ago layout-card">{{ timeAgo() }}</div>
           </div>
           <!-- ADD - COMMENT - BAR-->
           <div class="add-comment-bar-comment-page layout-card">
@@ -485,6 +485,23 @@ export default {
         console.log("liked story catch");
         throw err;
       }
+    },
+    timeAgo() {
+      let timeAgo;
+      if (this.story.timeAgoMiliSec < 1000 * 60 * 60)
+        timeAgo = `${
+          (this.story.timeAgoMiliSec / (1000 * 60)).Math.floor
+        } minuts ago`;
+      else if (this.story.timeAgoMiliSec < 1000 * 60 * 60 * 24)
+        timeAgo = `${
+          (this.story.timeAgoMiliSec / (1000 * 60 * 60)).Math.floor
+        } hours ago`;
+      else
+        timeAgo = this.story.createdAt.slice(
+          0,
+          this.story.createdAt.indexOf(",")
+        );
+      return timeAgo;
     },
   },
 };

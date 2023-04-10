@@ -307,7 +307,7 @@ export default {
       else
         timeAgo = this.story.createdAt.slice(
           0,
-          this.story.createdAt.indexOf(" ")
+          this.story.createdAt.indexOf(",")
         );
       return timeAgo;
     },
