@@ -1,0 +1,7 @@
+.event-header {
+    margin-top: 5em;
+    border: solid 1px rgb(219, 219, 219);
+    padding: 7px;
+    border-radius: 6px;
+    background-color: var(--clr2);
+}

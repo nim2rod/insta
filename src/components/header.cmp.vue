@@ -34,7 +34,7 @@
           </svg>
         </router-link>
 
-        <router-link to="/dm">
+        <router-link to="/events">
           <svg
             aria-label="Direct"
             class="nav-header-icon"

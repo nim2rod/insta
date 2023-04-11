@@ -3,7 +3,7 @@ import HomeView from '../views/insta.app.vue'
 import UserPage from '../views/user.page.vue'
 import Login from '../views/login.vue'
 import Explore from '../views/explore.vue'
-import DirectMassage from '../views/dm.vue'
+import Event from '../views/events.vue'
 import comment from '../components/comment.mode.cmp.vue'
 
 const router = createRouter({
@@ -40,9 +40,9 @@ const router = createRouter({
       component: Explore
     },
     {
-      path: '/dm',
-      name: 'direct-massage',
-      component: DirectMassage
+      path: '/events',
+      name: 'events',
+      component: Event
     },
   ]
 })
