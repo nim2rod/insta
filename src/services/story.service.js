@@ -201,9 +201,10 @@ async function queryUsers(filterBy = null) {
 }
 
 //GET
-async function query(filterBy = null) {
+async function query(filterBy = null, limit = 15, skip = 0) {
     //http-mongo
-    return await httpService.get(ENDPOINT_STORY, filterBy);
+    const queryUrl = `${ENDPOINT_STORY}?limit=${limit}&skip=${skip}`;
+    return await httpService.get(queryUrl, filterBy);
 
     //front
     // return storageService.query(KEY)

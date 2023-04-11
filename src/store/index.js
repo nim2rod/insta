@@ -29,7 +29,8 @@ const store = createStore({
     mutations: {
         setStories(state, { stories }) {
             console.log('mutations-setStories', stories);
-            state.stories = stories
+            if (state.stories && state.stories.length) state.stories = [...state.stories, ...stories]
+            else state.stories = stories
         },
         setUsers(state, { users }) {
             console.log('mutations-setUsers', users);
@@ -53,10 +54,19 @@ const store = createStore({
         },
     },
     actions: {
-        async loadStories({ commit }) {
+        async loadStories({ commit, dispatch }) {
             try {
-                const stories = await storyService.query()
+                const limit = 15
+                let skip = 0
+                if (this.state.stories) skip = this.state.stories.length
+                const stories = await storyService.query({}, limit, skip)
                 commit({ type: 'setStories', stories })
+
+                if (stories.length === 15) {
+                    setTimeout(async () => {
+                        await dispatch('loadStories', { dispatch });
+                    }, 1800)
+                }
                 return stories
             } catch (err) {
                 console.log(err)
