@@ -171,6 +171,11 @@
         max-height: 92%;
     }
 
+    /* EVENTS */
+    .event-page {
+        width: 100%;
+    }
+
 }
 
 /* /////////NOT-MOBILE////// */

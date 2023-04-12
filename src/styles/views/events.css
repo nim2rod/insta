@@ -4,4 +4,44 @@
     padding: 7px;
     border-radius: 6px;
     background-color: var(--clr2);
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.event-list-cont {
+    width: 29.5em;
+}
+
+.event-card {
+    margin-bottom: 1.2em;
+    border: 1px rgb(219, 219, 219) solid;
+    border-radius: 0.54em;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--clr2);
+    overflow: auto;
+}
+
+.event-card div,
+h3,
+span,
+a {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.event-card span {
+    font-weight: 200;
+}
+
+.event-card a {
+    font-weight: 500;
+}
+
+.event-card h3 {
+    margin-top: 7px;
+}
+
+.event-card img {
+    margin-bottom: 5px;
 }
