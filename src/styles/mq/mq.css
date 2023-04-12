@@ -176,6 +176,9 @@
         width: 100%;
     }
 
+    .event-list-cont {
+        max-width: 100%;
+    }
 }
 
 /* /////////NOT-MOBILE////// */
