@@ -35,7 +35,7 @@
         </router-link>
 
         <router-link to="/events">
-          <svg
+          <!-- <svg
             aria-label="Direct"
             class="nav-header-icon"
             color="#262626"
@@ -62,7 +62,8 @@
               stroke-linejoin="round"
               stroke-width="2"
             ></polygon>
-          </svg>
+          </svg> -->
+          <img class="nav-header-icon-ny" src="../icons/new-york.png" alt="" />
         </router-link>
 
         <svg

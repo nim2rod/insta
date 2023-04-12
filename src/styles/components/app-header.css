@@ -59,3 +59,9 @@
     width: 1.5em;
     object-fit: cover;
 }
+
+.nav-header-icon-ny {
+    width: 29px;
+    position: relative;
+    top: -2px;
+}
