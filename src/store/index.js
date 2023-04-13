@@ -28,9 +28,16 @@ const store = createStore({
     },
     mutations: {
         setStories(state, { stories }) {
-            console.log('mutations-setStories', stories);
-            if (state.stories && state.stories.length) state.stories = [...state.stories, ...stories]
-            else state.stories = stories
+            console.log('setStories:', stories);
+            if (state.filterBy && state.filterBy.by.username) state.stories = stories
+            else {
+                if (state.stories && state.stories.length) state.stories = [...state.stories, ...stories]
+                else state.stories = stories
+            }
+        },
+        setStoriesAfterFilterOff(state, { stories }) {
+            console.log('setStoriesAfterFilterOff:', stories);
+            state.stories = stories
         },
         setUsers(state, { users }) {
             console.log('mutations-setUsers', users);
@@ -52,6 +59,9 @@ const store = createStore({
         setUser(state, { loggedinUser }) {
             state.loggedinUser = { ...loggedinUser }
         },
+        setFilter(state, { filterBy }) {
+            state.filterBy = filterBy
+        },
     },
     actions: {
         async loadStories({ commit, dispatch }) {
@@ -61,12 +71,40 @@ const store = createStore({
                 if (this.state.stories) skip = this.state.stories.length
                 const stories = await storyService.query({}, limit, skip)
                 commit({ type: 'setStories', stories })
-
                 if (stories.length === 15) {
                     setTimeout(async () => {
                         await dispatch('loadStories', { dispatch });
-                    }, 1800)
+                    }, 1500)
                 }
+                return stories
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
+        },
+        async loadStoriesAfterFilterOff({ commit, dispatch }) {
+            try {
+                const limit = 15
+                let skip = 0
+                const stories = await storyService.query(this.state.filterBy, limit, skip)
+                commit({ type: 'setStoriesAfterFilterOff', stories })
+                if (stories.length === 15) {
+                    setTimeout(async () => {
+                        await dispatch('loadStories', { dispatch });
+                    }, 1500)
+                }
+                return stories
+            } catch (err) {
+                console.log(err)
+                throw err
+            }
+        },
+        async loadStoriesFilter({ commit, dispatch }) {
+            try {
+                const limit = 30
+                let skip = 0
+                const stories = await storyService.query(this.state.filterBy, limit, skip)
+                commit({ type: 'setStories', stories })
                 return stories
             } catch (err) {
                 console.log(err)
@@ -205,6 +243,11 @@ const store = createStore({
                 console.log(err)
                 throw err
             }
+        },
+        setFilter({ dispatch, commit }, { filterBy }) {
+            commit({ type: 'setFilter', filterBy })
+            if (filterBy && filterBy.by.username) dispatch({ type: 'loadStoriesFilter' })
+            else dispatch({ type: 'loadStoriesAfterFilterOff' })
         },
         async login({ commit }, { cred }) {
             try {

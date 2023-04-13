@@ -10,7 +10,13 @@
         <div class="main-logo">InstaFriends</div></router-link
       >
 
-      <input class="search-header" type="text" placeholder="  🔍   Search" />
+      <input
+        v-model="filterBy.by.username"
+        class="search-header"
+        type="text"
+        placeholder="  🔍   Search"
+        @input="setFilter"
+      />
 
       <nav class="nav-bar-header">
         <router-link to="/">
@@ -35,34 +41,6 @@
         </router-link>
 
         <router-link to="/events">
-          <!-- <svg
-            aria-label="Direct"
-            class="nav-header-icon"
-            color="#262626"
-            fill="#262626"
-            height="24"
-            role="img"
-            viewBox="0 0 24 24"
-            width="24"
-          >
-            <line
-              fill="none"
-              stroke="currentColor"
-              stroke-linejoin="round"
-              stroke-width="2"
-              x1="22"
-              x2="9.218"
-              y1="3"
-              y2="10.083"
-            ></line>
-            <polygon
-              fill="none"
-              points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
-              stroke="currentColor"
-              stroke-linejoin="round"
-              stroke-width="2"
-            ></polygon>
-          </svg> -->
           <img class="nav-header-icon-ny" src="../icons/new-york.png" alt="" />
         </router-link>
 
@@ -181,6 +159,11 @@ export default {
     return {
       createMode: 0,
       loggedInUser: null,
+      filterBy: {
+        by: {
+          username: null,
+        },
+      },
     };
   },
   created() {
@@ -197,6 +180,10 @@ export default {
     },
     changeLoggedInUser() {
       this.loggedInUser = this.$store.getters.getUser;
+    },
+    setFilter() {
+      const copyfilter = JSON.parse(JSON.stringify(this.filterBy));
+      this.$store.dispatch({ type: "setFilter", filterBy: copyfilter });
     },
   },
   components: {
