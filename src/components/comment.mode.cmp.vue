@@ -403,7 +403,7 @@ export default {
   },
   methods: {
     closeComments() {
-      this.$router.push(`/`);
+      this.$router.back();
     },
     typing() {
       this.typingMode = 1;
