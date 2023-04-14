@@ -87,6 +87,7 @@
           role="img"
           viewBox="0 0 24 24"
           width="24"
+          @click="share"
         >
           <line
             fill="none"
@@ -317,6 +318,23 @@ export default {
     },
     addEmoji(emoji) {
       this.newComment.txt += emoji;
+    },
+    share() {
+      console.log("this.story", this.story.imgUrl);
+      console.log("navigator", navigator);
+
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Share on Whatsapp",
+            text: "Check out this awesome image!",
+            url: this.story.imgUrl,
+          })
+          .then(() => console.log("Shared successfully."))
+          .catch((error) => console.log("Error sharing:", error));
+      } else {
+        console.log("Sharing not supported on this device/browser.");
+      }
     },
   },
   created() {
