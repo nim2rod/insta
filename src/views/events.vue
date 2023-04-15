@@ -20,22 +20,15 @@ export default {
     const perPage = 10;
 
     const currentDate = new Date();
-
-    const firstDayOfWeek = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getDay() + 1
-    );
     const lastDayOfWeek = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      currentDate.getDate() - currentDate.getDay() + 7
+      currentDate.getDate() + 7
     );
-    const startDateIsoString = firstDayOfWeek.toISOString().split("T")[0];
+    const startDateIsoString = currentDate.toISOString().split("T")[0];
     const endDateIsoString = lastDayOfWeek.toISOString().split("T")[0];
 
     const endpointUrl = `${baseUrl}?client_id=${apiKey}&venue.city=${city}&datetime_utc.gte=${startDateIsoString}&datetime_utc.lte=${endDateIsoString}&sort=datetime_utc.asc&per_page=${perPage}`;
-
     fetch(endpointUrl)
       .then((response) => response.json())
       .then((data) => {
