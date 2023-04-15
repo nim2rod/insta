@@ -121,7 +121,7 @@
 
 .content {
     display: flex;
-    gap: 0.5em;
+    gap: 0.15em;
     align-items: baseline;
     margin-top: 0.32em;
 }
@@ -131,6 +131,7 @@
     font-weight: 350;
     max-width: 75%;
     white-space: pre-wrap;
+    margin-left: 0.5em;
 }
 
 /* COMMENTS */
