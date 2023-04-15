@@ -325,22 +325,25 @@ export default {
     addEmoji(emoji) {
       this.newComment.txt += emoji;
     },
-    share() {
-      console.log("this.story", this.story.imgUrl);
-      console.log("navigator", navigator);
+    async share() {
+      try {
+        // Download the image from the URL
+        const response = await fetch(this.story.imgUrl);
+        const data = await response.blob();
 
-      if (navigator.share) {
-        navigator
-          .share({
-            title: "Share on Whatsapp",
-            text: "Check out this awesome image!",
-            url: this.story.imgUrl,
-          })
-          .then(() => console.log("Shared successfully."))
-          .catch((error) => console.log("Error sharing:", error));
-      } else {
-        console.log("Sharing not supported on this device/browser.");
+        // Create a file object with the downloaded image
+        const file = new File([data], "image.jpg", { type: "image/jpeg" });
+
+        // Share the content with the image file
+        navigator.share({
+          title: "Share on Whatsapp",
+          text: "Check out this awesome post!",
+          url: this.$route.href,
+          files: [file],
+        });
+      } catch (error) {
         this.showErrMsg();
+        console.error("Error sharing content:", error);
       }
     },
     showErrMsg() {

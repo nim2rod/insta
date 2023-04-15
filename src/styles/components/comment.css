@@ -6,6 +6,17 @@
     z-index: 5;
 }
 
+.home-btn-comment-mode {
+    height: 2em;
+    position: fixed;
+    top: 0.6em;
+    left: 1.2em;
+    z-index: 5;
+    color: var(--clr1);
+    font-family: Fontspring;
+    font-size: x-large
+}
+
 /*BACKROUND*/
 .comments-backround {
     background-color: rgb(105 109 105 / 90%);
