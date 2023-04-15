@@ -107,6 +107,13 @@
     font-weight: 500;
 }
 
+.share-err {
+    border: 1px solid rgb(195, 208, 210);
+    height: fit-content;
+    padding: 3px;
+    border-radius: 7px;
+}
+
 .username-bottom-card {
     font-size: 0.9em;
     font-weight: 550;

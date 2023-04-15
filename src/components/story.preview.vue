@@ -79,6 +79,7 @@
           ></path>
         </svg>
         <svg
+          v-if="!shareErrShow"
           aria-label="Share Post"
           class="_ab6-"
           color="#262626"
@@ -107,6 +108,10 @@
             stroke-width="2"
           ></polygon>
         </svg>
+        <div v-if="shareErrShow" class="share-err">
+          share content is not availble <br />
+          in this browser or device
+        </div>
       </div>
       <svg
         v-if="!isStorySavedByUser"
@@ -238,6 +243,7 @@ export default {
       isStorySavedByUser: false,
       currStory: null,
       emojiBar: false,
+      shareErrShow: 0,
     };
   },
   methods: {
@@ -334,7 +340,12 @@ export default {
           .catch((error) => console.log("Error sharing:", error));
       } else {
         console.log("Sharing not supported on this device/browser.");
+        this.showErrMsg();
       }
+    },
+    showErrMsg() {
+      this.shareErrShow = 1;
+      setTimeout(() => (this.shareErrShow = 0), 1800);
     },
   },
   created() {

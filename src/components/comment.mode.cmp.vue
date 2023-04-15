@@ -217,6 +217,7 @@
                   ></path>
                 </svg>
                 <svg
+                  v-if="!shareErrShow"
                   aria-label="Share Post"
                   class="_ab6-"
                   color="#262626"
@@ -225,6 +226,7 @@
                   role="img"
                   viewBox="0 0 24 24"
                   width="24"
+                  @click="share"
                 >
                   <line
                     fill="none"
@@ -244,6 +246,10 @@
                     stroke-width="2"
                   ></polygon>
                 </svg>
+                <div v-if="shareErrShow" class="share-err">
+                  share content is not availble <br />
+                  in this browser or device
+                </div>
               </div>
               <svg
                 v-if="!isStorySavedByUser"
@@ -361,6 +367,7 @@ export default {
       isStorySavedByUser: false,
       isUserFollowStoryBy: false,
       emojiBar: false,
+      shareErrShow: 0,
     };
   },
   async created() {
@@ -513,6 +520,28 @@ export default {
           this.story.createdAt.indexOf(",")
         );
       return timeAgo;
+    },
+    share() {
+      console.log("this.story", this.story.imgUrl);
+      console.log("navigator", navigator);
+
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Share on Whatsapp",
+            text: "Check out this awesome image!",
+            url: this.story.imgUrl,
+          })
+          .then(() => console.log("Shared successfully."))
+          .catch((error) => console.log("Error sharing:", error));
+      } else {
+        console.log("Sharing not supported on this device/browser.");
+        this.showErrMsg();
+      }
+    },
+    showErrMsg() {
+      this.shareErrShow = 1;
+      setTimeout(() => (this.shareErrShow = 0), 1800);
     },
   },
 };
