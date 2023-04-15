@@ -55,6 +55,12 @@
         display: none;
     }
 
+    .card-txt {
+        min-width: 40%;
+        max-width: 65%;
+        margin-left: 0.8em;
+    }
+
     .user-page-story {
         width: 20em;
         width: 100%;
