@@ -81,7 +81,7 @@
         <svg
           v-if="!shareErrShow"
           aria-label="Share Post"
-          class="_ab6-"
+          class="_ab6- btn"
           color="#262626"
           fill="#262626"
           height="24"
