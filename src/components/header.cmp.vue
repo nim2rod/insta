@@ -158,7 +158,7 @@ export default {
   data() {
     return {
       createMode: 0,
-      loggedInUser: null,
+      // loggedInUser: null,
       filterBy: {
         by: {
           username: null,
@@ -167,8 +167,14 @@ export default {
     };
   },
   created() {
-    this.loggedInUser = this.$store.getters.getUser;
+    // this.loggedInUser = this.$store.getters.getUser;
+    // console.log("this.loggedInUser", this.loggedInUser);
     eventBus.on("change-user-bus", this.changeLoggedInUser);
+  },
+  computed: {
+    loggedInUser() {
+      return this.$store.getters.getUser;
+    },
   },
   methods: {
     startAddNew() {

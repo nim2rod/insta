@@ -124,7 +124,7 @@ const store = createStore({
         },
         async loadLoggedinUser({ commit }) {
             try {
-                const loggedinUser = userService.getLoggedInUser()
+                const loggedinUser = await userService.getLoggedInUser()
                 commit({ type: 'setUser', loggedinUser })
                 return loggedinUser
             } catch (err) {

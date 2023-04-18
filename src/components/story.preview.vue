@@ -360,6 +360,11 @@ export default {
         (id) => id === this.story._id
       );
     },
+    checkFollowStatus() {
+      this.isFollow = this.loggedInUser.following.some(
+        (u) => u._id === this.story.by._id
+      );
+    },
   },
   created() {
     this.newComment = storyService.getEmptyComment();
