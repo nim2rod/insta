@@ -1,7 +1,9 @@
 <template>
   <section class="insta-app">
     <section class="story-and-short-box">
-      <story-twenty-four v-if="stories" :stories="stories"></story-twenty-four>
+      <!-- <story-twenty-four v-if="stories" :stories="stories"></story-twenty-four> -->
+      <story-twenty-four v-if="users" :users="users"></story-twenty-four>
+
       <story-list v-if="stories" :stories="stories"></story-list>
     </section>
     <section class="user-seggestions-main">

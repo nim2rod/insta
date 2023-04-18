@@ -40,9 +40,7 @@
         <div class="more-details-user">
           <span>{{ user.fullname }}</span>
           {{ user.about }}
-          <p>
-            Followed by <span>{{ user.followers[0].username }}</span> and more
-          </p>
+          <p>Followed by monica_geller and more</p>
         </div>
       </div>
     </section>

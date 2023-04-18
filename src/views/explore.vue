@@ -19,7 +19,13 @@ export default {
     return {
       loggedInUser: null,
       newComment: null,
+      reOrderStories: null,
     };
+  },
+  computed: {
+    stories() {
+      return this.$store.getters.storiesToDisplay;
+    },
   },
   created() {
     this.loggedInUser = this.$store.getters.getUser;
@@ -34,11 +40,7 @@ export default {
       this.$router.push(`/explore`);
     },
   },
-  computed: {
-    stories() {
-      return this.$store.getters.storiesToDisplay;
-    },
-  },
+
   components: {},
 };
 </script>

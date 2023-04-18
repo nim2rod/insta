@@ -58,6 +58,7 @@ const store = createStore({
         },
         setUser(state, { loggedinUser }) {
             state.loggedinUser = { ...loggedinUser }
+            console.log('state.loggedinUser', state.loggedinUser)
         },
         setFilter(state, { filterBy }) {
             state.filterBy = filterBy
@@ -167,11 +168,11 @@ const store = createStore({
             // const user = storyService.getUser()
             const user = this.state.loggedinUser
 
-            const liked = editedStory.likedBy.find((u) => u._id === user._id)
+            const liked = editedStory.likedBy.find((_id) => _id === user._id)
             if (!liked) {
-                editedStory.likedBy.push(user)
+                editedStory.likedBy.push(user._id)
             } else {
-                const idx = editedStory.likedBy.findIndex(x => x._id === user._id)
+                const idx = editedStory.likedBy.findIndex(_id => _id === user._id)
                 editedStory.likedBy.splice(idx, 1)
             }
             try {

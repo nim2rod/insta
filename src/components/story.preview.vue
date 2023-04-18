@@ -275,8 +275,8 @@ export default {
       this.isUserLikeStory = !this.isUserLikeStory;
       try {
         await this.$store.dispatch("addLike", { editedStory: storyCopy });
-        this.isUserLikeStory = this.story.likedBy.some((u) => {
-          return u._id === this.loggedInUser._id;
+        this.isUserLikeStory = this.story.likedBy.some((_id) => {
+          return _id === this.loggedInUser._id;
         });
       } catch (err) {
         console.log("liked story catch");
@@ -304,13 +304,13 @@ export default {
     timeAgo() {
       let timeAgo;
       if (this.story.timeAgoMiliSec < 1000 * 60 * 60)
-        timeAgo = `${
-          (this.story.timeAgoMiliSec / (1000 * 60)).Math.floor
-        } minuts ago`;
+        timeAgo = `${Math.floor(
+          this.story.timeAgoMiliSec / (1000 * 60)
+        )} minuts ago`;
       else if (this.story.timeAgoMiliSec < 1000 * 60 * 60 * 24)
-        timeAgo = `${
-          (this.story.timeAgoMiliSec / (1000 * 60 * 60)).Math.floor
-        } hours ago`;
+        timeAgo = `${Math.floor(
+          this.story.timeAgoMiliSec / (1000 * 60 * 60)
+        )} hours ago`;
       else
         timeAgo = this.story.createdAt.slice(
           0,
@@ -357,7 +357,8 @@ export default {
     this.loggedInUser = this.$store.getters.getUser;
 
     this.isUserLikeStory = this.story.likedBy.some(
-      (u) => u._id === this.loggedInUser._id
+      // (u) => u._id === this.loggedInUser._id
+      (_id) => _id === this.loggedInUser._id
     );
 
     this.isFollow = this.loggedInUser.following.some(

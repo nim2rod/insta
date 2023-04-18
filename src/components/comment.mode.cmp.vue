@@ -422,8 +422,8 @@ export default {
         const savedStory = await this.$store.dispatch("addLike", {
           editedStory: storyCopy,
         });
-        this.isUserLikeStory = savedStory.likedBy.some((e) => {
-          return e._id === this.loggedInUser._id;
+        this.isUserLikeStory = savedStory.likedBy.some((_id) => {
+          return _id === this.loggedInUser._id;
         });
         this.story = savedStory;
       } catch (err) {
@@ -492,13 +492,13 @@ export default {
     timeAgo() {
       let timeAgo;
       if (this.story.timeAgoMiliSec < 1000 * 60 * 60)
-        timeAgo = `${
-          (this.story.timeAgoMiliSec / (1000 * 60)).Math.floor
-        } minuts ago`;
+        timeAgo = `${Math.floor(
+          this.story.timeAgoMiliSec / (1000 * 60)
+        )} minuts ago`;
       else if (this.story.timeAgoMiliSec < 1000 * 60 * 60 * 24)
-        timeAgo = `${
-          (this.story.timeAgoMiliSec / (1000 * 60 * 60)).Math.floor
-        } hours ago`;
+        timeAgo = `${Math.floor(
+          this.story.timeAgoMiliSec / (1000 * 60 * 60)
+        )} hours ago`;
       else
         timeAgo = this.story.createdAt.slice(
           0,
