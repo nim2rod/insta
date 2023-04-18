@@ -198,6 +198,7 @@ const store = createStore({
 
             try {
                 const savedUser = await storyService.save(editedUser, 'user_db')
+                socketService.emit('this-user-saved-story', savedUser)
                 commit({ type: 'updateUser', editedUser: savedUser })
                 return savedUser
             } catch (err) {

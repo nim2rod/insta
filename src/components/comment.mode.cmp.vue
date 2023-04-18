@@ -366,7 +366,11 @@ export default {
     console.log("this.story", this.story);
 
     this.isUserLikeStory = this.story.likedBy.some(
-      (e) => e._id === this.loggedInUser._id
+      (_id) => _id === this.loggedInUser._id
+    );
+
+    this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some(
+      (_id) => _id === this.story._id
     );
 
     this.newComment = storyService.getEmptyComment();
@@ -386,11 +390,18 @@ export default {
     socketService.on("other-user-add-like", (story) => {
       this.$store.commit({ type: "updateStory", editedStory: story });
       this.story = story;
+      this.checkLikeStatus();
     });
 
     socketService.on("other-user-add-like-to-story", (story) => {
       this.$store.commit({ type: "updateStory", editedStory: story });
       this.story = story;
+    });
+
+    socketService.on("other-device-save-story", (user) => {
+      this.$store.commit({ type: "updateUser", editedUser: user });
+      this.loggedInUser = user;
+      this.checkSavedStatus();
     });
   },
   methods: {
@@ -530,6 +541,16 @@ export default {
     showErrMsg() {
       this.shareErrShow = 1;
       setTimeout(() => (this.shareErrShow = 0), 1800);
+    },
+    checkSavedStatus() {
+      this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some(
+        (id) => id === this.story._id
+      );
+    },
+    checkLikeStatus() {
+      this.isUserLikeStory = this.story.likedBy.some(
+        (_id) => _id === this.loggedInUser._id
+      );
     },
   },
 };

@@ -350,6 +350,16 @@ export default {
       this.shareErrShow = 1;
       setTimeout(() => (this.shareErrShow = 0), 1800);
     },
+    checkLikeStatus() {
+      this.isUserLikeStory = this.currStory.likedBy.some(
+        (_id) => _id === this.loggedInUser._id
+      );
+    },
+    checkSavedStatus() {
+      this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some(
+        (id) => id === this.story._id
+      );
+    },
   },
   created() {
     this.newComment = storyService.getEmptyComment();
@@ -357,7 +367,6 @@ export default {
     this.loggedInUser = this.$store.getters.getUser;
 
     this.isUserLikeStory = this.story.likedBy.some(
-      // (u) => u._id === this.loggedInUser._id
       (_id) => _id === this.loggedInUser._id
     );
 
@@ -379,11 +388,18 @@ export default {
     socketService.on("other-user-add-like", (story) => {
       this.$store.commit({ type: "updateStory", editedStory: story });
       this.currStory = story;
+      this.checkLikeStatus();
     });
 
     socketService.on("other-user-add-like-to-story", (story) => {
       this.$store.commit({ type: "updateStory", editedStory: story });
       this.currStory = story;
+    });
+
+    socketService.on("other-device-save-story", (user) => {
+      this.$store.commit({ type: "updateUser", editedUser: user });
+      this.loggedInUser = user;
+      this.checkSavedStatus();
     });
   },
 
