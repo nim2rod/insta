@@ -228,11 +228,11 @@ const store = createStore({
             }
         },
         async changeFollowStatus({ commit }, { storyBy, editedUser }) {
-            const follow = editedUser.following.find((_id) => _id === storyBy._id)
+            const follow = editedUser.following.find((by) => by._id === storyBy._id)
             if (!follow) {
-                editedUser.following.push(storyBy._id)
+                editedUser.following.push(storyBy)
             } else {
-                const idx = editedUser.following.findIndex(_id => _id === storyBy._id)
+                const idx = editedUser.following.findIndex(by => by._id === storyBy._id)
                 editedUser.following.splice(idx, 1)
             }
             try {
