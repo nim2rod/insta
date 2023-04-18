@@ -152,7 +152,7 @@ function getUser() {
 }
 
 //GET
-async function getUserById(userId, key = KEY_USERS) {
+async function getUserById(userId = '643e7bec3509ec945c934025', key = KEY_USERS) {
     console.log('userId', userId);
     return await httpService.get(`${ENDPOINT_USER}/${userId}`);
 

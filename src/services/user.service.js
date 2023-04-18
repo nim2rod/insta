@@ -35,7 +35,8 @@ function saveLocalUser(user) {
 }
 
 function getLoggedInUser() {
-    const defultUser = storyService.getUser()
+    // const defultUser = storyService.getUser()
+    const defultUser = storyService.getUserById()
     const user = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) || defultUser
     return user
 }
