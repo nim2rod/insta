@@ -232,7 +232,6 @@ export default {
     story: Object,
   },
   components: {},
-
   data() {
     return {
       typingMode: 0,
@@ -367,23 +366,13 @@ export default {
     },
   },
   created() {
+    this.loggedInUser = this.$store.getters.getUser;
+    this.currStory = this.story;
     this.newComment = storyService.getEmptyComment();
 
-    this.loggedInUser = this.$store.getters.getUser;
-
-    this.isUserLikeStory = this.story.likedBy.some(
-      (_id) => _id === this.loggedInUser._id
-    );
-
-    this.isFollow = this.loggedInUser.following.some(
-      (u) => u._id === this.story.by._id
-    );
-
-    this.isStorySavedByUser = this.loggedInUser.savedStoryIds.some(
-      (id) => id === this.story._id
-    );
-
-    this.currStory = this.story;
+    this.checkLikeStatus();
+    this.checkFollowStatus();
+    this.checkSavedStatus();
 
     socketService.on("other-user-add-comment", (story) => {
       this.$store.commit({ type: "updateStory", editedStory: story });
@@ -407,7 +396,6 @@ export default {
       this.checkSavedStatus();
     });
   },
-
   computed: {
     imgSrc() {
       return this.story.imgUrl;
