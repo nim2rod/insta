@@ -45,39 +45,36 @@ export default {
       suggestBy._id = suggest._id;
       suggestBy.username = suggest.username;
       suggestBy.profileImgUrl = suggest.profileImgUrl;
-      console.log("suggestBy:", suggestBy);
-      console.log("loggedUserCopy", loggedUserCopy);
+
       try {
         const savedUser = await this.$store.dispatch("changeFollowStatus", {
           storyBy: suggestBy,
           editedUser: loggedUserCopy,
         });
         this.loggedInUser = savedUser;
-        const render = [];
-        this.users.forEach((user) => {
-          if (!this.loggedInUser.following.some((by) => by._id === user._id))
-            render.push(user);
-        });
-        const shortRender = render.slice(0, 5);
-        this.suggestUsers = shortRender;
+
+        this.renderSuggest();
       } catch (err) {
         throw err;
       }
     },
+    renderSuggest() {
+      const render = [];
+      this.users.forEach((userSuggest) => {
+        if (
+          !this.loggedInUser.following.some(
+            (followingUser) => followingUser._id === userSuggest._id
+          )
+        )
+          render.push(userSuggest);
+      });
+      const shortRender = render.slice(0, 5);
+      this.suggestUsers = shortRender;
+    },
   },
   created() {
     this.loggedInUser = this.$store.getters.getUser;
-    const render = [];
-    this.users.forEach((userSuggest) => {
-      if (
-        !this.loggedInUser.following.some(
-          (followingUser) => followingUser._id === userSuggest._id
-        )
-      )
-        render.push(userSuggest);
-    });
-    const shortRender = render.slice(0, 5);
-    this.suggestUsers = shortRender;
+    this.renderSuggest();
   },
 };
 </script>

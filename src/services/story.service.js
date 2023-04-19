@@ -160,8 +160,9 @@ async function getUserById(userId = '643e7bec3509ec945c934025', key = KEY_USERS)
 }
 
 //GET
-async function queryUsers(filterBy = null) {
-    return await httpService.get(ENDPOINT_USER, filterBy);
+async function queryUsers(filterBy = null, limit = 6, skip = 0) {
+    const queryUrl = `${ENDPOINT_USER}?limit=${limit}&skip=${skip}`;
+    return await httpService.get(queryUrl, filterBy);
 
     //back
     // return axios.get(API, { params: filterBy }).then((res) => res.data)

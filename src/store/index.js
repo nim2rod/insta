@@ -41,7 +41,8 @@ const store = createStore({
         },
         setUsers(state, { users }) {
             console.log('mutations-setUsers', users);
-            state.users = users
+            if (state.users && state.users.length) state.users = [...state.users, ...users]
+            else state.users = users
         },
         updateStory(state, { editedStory }) {
             const idx = state.stories.findIndex((s) => s._id === editedStory._id)
@@ -75,7 +76,7 @@ const store = createStore({
                 if (stories.length === 15) {
                     setTimeout(async () => {
                         await dispatch('loadStories', { dispatch });
-                    }, 1500)
+                    }, 1200)
                 }
                 return stories
             } catch (err) {
@@ -112,10 +113,18 @@ const store = createStore({
                 throw err
             }
         },
-        async loadUsers({ commit }) {
+        async loadUsers({ commit, dispatch }) {
             try {
-                const users = await storyService.queryUsers()
+                const limit = 11
+                let skip = 0
+                if (this.state.users) skip = this.state.users.length
+                const users = await storyService.queryUsers({}, limit, skip)
                 commit({ type: 'setUsers', users })
+                if (users.length === 11) {
+                    setTimeout(async () => {
+                        await dispatch('loadUsers', { dispatch });
+                    }, 200)
+                }
                 return users
             } catch (err) {
                 console.log(err)
