@@ -137,6 +137,7 @@
         grid-auto-rows: 8.1rem;
         gap: 0.1em;
         margin-top: 4em;
+        width: 100%;
     }
 
     /* CREATE-NEW */
