@@ -297,6 +297,10 @@
     .user-page-story {
         gap: 2.7em;
     }
+
+    .only-mobile {
+        display: none;
+    }
 }
 
 

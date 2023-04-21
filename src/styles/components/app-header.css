@@ -45,6 +45,18 @@
     margin-left: inherit;
 }
 
+.search-header-mobile {
+    background-color: rgb(239, 239, 239);
+    border-style: none;
+    border-radius: 0.4em;
+    font-size: 1em;
+    font-family: system-ui;
+    font-weight: 250;
+    height: 2.25em;
+    width: 8.7em;
+    margin-left: inherit;
+}
+
 .search-header:focus {
     outline: none;
 }
@@ -64,4 +76,23 @@
     width: 29px;
     position: relative;
     top: -2px;
+}
+
+.switch-user-mobile-header {
+    color: var(--clr7);
+    font-weight: 500;
+    font-size: small;
+    text-align: -webkit-center;
+    margin-left: 32px;
+    align-self: center;
+}
+
+.suggest-header-mobile {
+    background-color: var(--clr2);
+    border-radius: 3px;
+    width: 17em;
+    height: 17em;
+    margin-top: 25em;
+    margin-left: 8em;
+    border: 1px rgb(195, 208, 210) solid;
 }
