@@ -53,11 +53,15 @@
     font-family: system-ui;
     font-weight: 250;
     height: 2.25em;
-    width: 8.7em;
+    width: 35%;
     margin-left: inherit;
 }
 
 .search-header:focus {
+    outline: none;
+}
+
+.search-header-mobile:focus {
     outline: none;
 }
 
@@ -85,6 +89,7 @@
     text-align: -webkit-center;
     margin-left: 32px;
     align-self: center;
+    width: min-content;
 }
 
 .suggest-header-mobile {
