@@ -97,7 +97,10 @@
     border-radius: 3px;
     width: 17em;
     height: 17em;
-    margin-top: 25em;
-    margin-left: 8em;
     border: 1px rgb(195, 208, 210) solid;
+    /* margin-top: 25em;
+    margin-left: 8em; */
+    position: fixed;
+    right: 0px;
+    bottom: 65px;
 }

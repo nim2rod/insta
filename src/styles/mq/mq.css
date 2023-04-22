@@ -134,7 +134,7 @@
 
     /* EXPLORE */
     .grid-container {
-        grid-auto-rows: 8.1rem;
+        /* grid-auto-rows: 8.1rem; */
         gap: 0.1em;
         margin-top: 4em;
         width: 100%;
