@@ -10,8 +10,8 @@ const KEY = 'story_db'
 const ENDPOINT_STORY = 'story';
 const ENDPOINT_USER = 'user'
 
-_createStorys()
-_createUsers()
+// _createStorys()
+// _createUsers()
 
 
 export const storyService = {

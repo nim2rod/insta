@@ -30,13 +30,12 @@ async function logout() {
 }
 
 function saveLocalUser(user) {
-    sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
+    localStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
 
 function getLoggedInUser() {
-    const defultUser = storyService.getUser()
-    // const defultUser = storyService.getUserById()
-    const user = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) || defultUser
+    // const defultUser = storyService.getUser()
+    const user = JSON.parse(localStorage.getItem(STORAGE_KEY_LOGGEDIN_USER)) || null
     return user
 }

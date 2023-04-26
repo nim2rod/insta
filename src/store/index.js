@@ -3,6 +3,7 @@ import { userService } from '../services/user.service.js'
 import { storyService } from '../services/story.service.js'
 import userStore from './modules/user.module.js'
 import { socketService } from '../services/socket.service.js'
+import router from '../router'
 
 const store = createStore({
     strict: true,
@@ -134,6 +135,7 @@ const store = createStore({
         async loadLoggedinUser({ commit }) {
             try {
                 const loggedinUser = await userService.getLoggedInUser()
+                if (loggedinUser === null) router.push('/login')
                 commit({ type: 'setUser', loggedinUser })
                 return loggedinUser
             } catch (err) {
